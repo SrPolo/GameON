@@ -16,35 +16,32 @@ namespace GameON.Web.Data.Entities
         [Required(ErrorMessage = "The field {0} is mandatory.")]
         public string Name { get; set; }
 
-
         [Display(Name = "Synopsis")]
-        [MaxLength(300, ErrorMessage = "The {0} field can not have more than {1} characters.")]
+        [MaxLength(1500, ErrorMessage = "The {0} field can not have more than {1} characters.")]
         [Required(ErrorMessage = "The field {0} is mandatory.")]
-        public string Synopsis { get; set; }
+        public string Synopsis { get; set; }        
 
-
-        [Display(Name = "Developer")]
-        [MaxLength(50, ErrorMessage = "The {0} field can not have more than {1} characters.")]
-        [Required(ErrorMessage = "The field {0} is mandatory.")]
-        public DeveloperEntity Developer { get; set; }
-
-
-        [Display(Name = "Genres")]
-        [Required(ErrorMessage = "The field {0} is mandatory.")]
-        public ICollection<GenreEntity> Genres { get; set; }
-
-        public ICollection<ReviewEntity> Reviews { get; set; }
-
-        [Display(Name = "Platform")]
-        [Required(ErrorMessage = "The field {0} is mandatory.")]
-        public PlatformEntity Platform { get; set; }
-
+        [Display(Name = "Score")]
+        [Range(1, 10, ErrorMessage = "The field {0} must be in range 1-10.")]
         public float Score { get; set; }
-
 
         [Display(Name = "Picture")]
         public string PicturePath { get; set; }
 
+        [Display(Name = "Release date")]
+        [DataType(DataType.DateTime)]
+        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = false)]
         public DateTime ReleaseDate { get; set; }
+
+        public ICollection<VideoGameDeveloperEntity> Developers { get; set; }
+
+        public ICollection<VideoGameGenreEntity> Genres { get; set; }
+
+        public ICollection<VideoGamePlatformEntity> Platforms { get; set; }
+
+        public ICollection<ReviewEntity> Reviews { get; set; }
+
+        public ICollection<UserEntity> Users { get; set; }
+
     }
 }

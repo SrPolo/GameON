@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace GameON.Web.Migrations
 {
-    public partial class InitialDb : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -40,11 +40,25 @@ namespace GameON.Web.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    status = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_GameLists", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Genres",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Genre = table.Column<string>(maxLength: 20, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Genres", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -53,7 +67,7 @@ namespace GameON.Web.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(nullable: false)
+                    Name = table.Column<string>(maxLength: 50, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -89,48 +103,20 @@ namespace GameON.Web.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(maxLength: 50, nullable: false),
                     Synopsis = table.Column<string>(maxLength: 300, nullable: false),
-                    DeveloperId = table.Column<int>(nullable: false),
-                    PlatformId = table.Column<int>(nullable: false),
                     Score = table.Column<float>(nullable: false),
                     PicturePath = table.Column<string>(nullable: true),
                     ReleaseDate = table.Column<DateTime>(nullable: false),
-                    GameListEntityId = table.Column<int>(nullable: true),
-                    GameListEntityId1 = table.Column<int>(nullable: true),
-                    GameListEntityId2 = table.Column<int>(nullable: true)
+                    GameListEntityId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_VideoGames", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_VideoGames_Developers_DeveloperId",
-                        column: x => x.DeveloperId,
-                        principalTable: "Developers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_VideoGames_GameLists_GameListEntityId",
                         column: x => x.GameListEntityId,
                         principalTable: "GameLists",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_VideoGames_GameLists_GameListEntityId1",
-                        column: x => x.GameListEntityId1,
-                        principalTable: "GameLists",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_VideoGames_GameLists_GameListEntityId2",
-                        column: x => x.GameListEntityId2,
-                        principalTable: "GameLists",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_VideoGames_Platforms_PlatformId",
-                        column: x => x.PlatformId,
-                        principalTable: "Platforms",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -178,20 +164,78 @@ namespace GameON.Web.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Genres",
+                name: "VGDevelopers",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Genre = table.Column<string>(maxLength: 20, nullable: false),
-                    VideoGameEntityId = table.Column<int>(nullable: true)
+                    VideoGameId = table.Column<int>(nullable: true),
+                    DeveloperId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Genres", x => x.Id);
+                    table.PrimaryKey("PK_VGDevelopers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Genres_VideoGames_VideoGameEntityId",
-                        column: x => x.VideoGameEntityId,
+                        name: "FK_VGDevelopers_Developers_DeveloperId",
+                        column: x => x.DeveloperId,
+                        principalTable: "Developers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_VGDevelopers_VideoGames_VideoGameId",
+                        column: x => x.VideoGameId,
+                        principalTable: "VideoGames",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "VGGenres",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    VideoGameId = table.Column<int>(nullable: true),
+                    GenreId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_VGGenres", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_VGGenres_Genres_GenreId",
+                        column: x => x.GenreId,
+                        principalTable: "Genres",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_VGGenres_VideoGames_VideoGameId",
+                        column: x => x.VideoGameId,
+                        principalTable: "VideoGames",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "VGPlatforms",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    VideoGameId = table.Column<int>(nullable: true),
+                    PlatformId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_VGPlatforms", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_VGPlatforms_Platforms_PlatformId",
+                        column: x => x.PlatformId,
+                        principalTable: "Platforms",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_VGPlatforms_VideoGames_VideoGameId",
+                        column: x => x.VideoGameId,
                         principalTable: "VideoGames",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -360,9 +404,22 @@ namespace GameON.Web.Migrations
                 column: "VideoGameId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Genres_VideoGameEntityId",
+                name: "IX_Developers_Name",
+                table: "Developers",
+                column: "Name",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Genres_Genre",
                 table: "Genres",
-                column: "VideoGameEntityId");
+                column: "Genre",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Platforms_Name",
+                table: "Platforms",
+                column: "Name",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Reviews_UserId",
@@ -375,29 +432,39 @@ namespace GameON.Web.Migrations
                 column: "VideoGameId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_VideoGames_DeveloperId",
-                table: "VideoGames",
+                name: "IX_VGDevelopers_DeveloperId",
+                table: "VGDevelopers",
                 column: "DeveloperId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_VGDevelopers_VideoGameId",
+                table: "VGDevelopers",
+                column: "VideoGameId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_VGGenres_GenreId",
+                table: "VGGenres",
+                column: "GenreId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_VGGenres_VideoGameId",
+                table: "VGGenres",
+                column: "VideoGameId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_VGPlatforms_PlatformId",
+                table: "VGPlatforms",
+                column: "PlatformId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_VGPlatforms_VideoGameId",
+                table: "VGPlatforms",
+                column: "VideoGameId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_VideoGames_GameListEntityId",
                 table: "VideoGames",
                 column: "GameListEntityId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_VideoGames_GameListEntityId1",
-                table: "VideoGames",
-                column: "GameListEntityId1");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_VideoGames_GameListEntityId2",
-                table: "VideoGames",
-                column: "GameListEntityId2");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_VideoGames_PlatformId",
-                table: "VideoGames",
-                column: "PlatformId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -418,10 +485,16 @@ namespace GameON.Web.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Genres");
+                name: "Reviews");
 
             migrationBuilder.DropTable(
-                name: "Reviews");
+                name: "VGDevelopers");
+
+            migrationBuilder.DropTable(
+                name: "VGGenres");
+
+            migrationBuilder.DropTable(
+                name: "VGPlatforms");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -430,16 +503,19 @@ namespace GameON.Web.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "VideoGames");
-
-            migrationBuilder.DropTable(
                 name: "Developers");
 
             migrationBuilder.DropTable(
-                name: "GameLists");
+                name: "Genres");
 
             migrationBuilder.DropTable(
                 name: "Platforms");
+
+            migrationBuilder.DropTable(
+                name: "VideoGames");
+
+            migrationBuilder.DropTable(
+                name: "GameLists");
         }
     }
 }

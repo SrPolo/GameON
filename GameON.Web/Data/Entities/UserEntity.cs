@@ -32,15 +32,15 @@ namespace GameON.Web.Data.Entities
         [Display(Name = "User Type")]
         public UserType UserType { get; set; }
 
-        [Display(Name = "Favorite Videogame")]
-        public VideoGameEntity VideoGame { get; set; }
-
         public string FullName => $"{FirstName} {LastName}";
 
 
+        [Display(Name = "Favorite Videogame")]
+        public VideoGameEntity VideoGame { get; set; }
+
         public ICollection<ReviewEntity> Review { get; set; }
 
+        public ICollection<GameListEntity> GameList { get; set; }
 
-        public GameListEntity GameList { get; set; }
     }
 }

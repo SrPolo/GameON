@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GameON.Web.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200522005543_InitialDb")]
-    partial class InitialDb
+    [Migration("20200524020648_updated-gamelist")]
+    partial class updatedgamelist
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -33,6 +33,9 @@ namespace GameON.Web.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Name")
+                        .IsUnique();
+
                     b.ToTable("Developers");
                 });
 
@@ -42,7 +45,17 @@ namespace GameON.Web.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("UserId");
+
+                    b.Property<int?>("VideoGameId");
+
+                    b.Property<int>("status");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.HasIndex("VideoGameId");
 
                     b.ToTable("GameLists");
                 });
@@ -57,11 +70,10 @@ namespace GameON.Web.Migrations
                         .IsRequired()
                         .HasMaxLength(20);
 
-                    b.Property<int?>("VideoGameEntityId");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("VideoGameEntityId");
+                    b.HasIndex("Genre")
+                        .IsUnique();
 
                     b.ToTable("Genres");
                 });
@@ -73,9 +85,13 @@ namespace GameON.Web.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Name")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasMaxLength(50);
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
 
                     b.ToTable("Platforms");
                 });
@@ -128,8 +144,6 @@ namespace GameON.Web.Migrations
                         .IsRequired()
                         .HasMaxLength(50);
 
-                    b.Property<int?>("GameListId");
-
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasMaxLength(50);
@@ -165,8 +179,6 @@ namespace GameON.Web.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("GameListId");
-
                     b.HasIndex("NormalizedEmail")
                         .HasName("EmailIndex");
 
@@ -180,27 +192,36 @@ namespace GameON.Web.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("GameON.Web.Data.Entities.VideoGameDeveloperEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("DeveloperId");
+
+                    b.Property<int?>("VideoGameId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DeveloperId");
+
+                    b.HasIndex("VideoGameId");
+
+                    b.ToTable("VGDevelopers");
+                });
+
             modelBuilder.Entity("GameON.Web.Data.Entities.VideoGameEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("DeveloperId");
-
-                    b.Property<int?>("GameListEntityId");
-
-                    b.Property<int?>("GameListEntityId1");
-
-                    b.Property<int?>("GameListEntityId2");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50);
 
                     b.Property<string>("PicturePath");
-
-                    b.Property<int>("PlatformId");
 
                     b.Property<DateTime>("ReleaseDate");
 
@@ -212,17 +233,45 @@ namespace GameON.Web.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DeveloperId");
+                    b.ToTable("VideoGames");
+                });
 
-                    b.HasIndex("GameListEntityId");
+            modelBuilder.Entity("GameON.Web.Data.Entities.VideoGameGenreEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.HasIndex("GameListEntityId1");
+                    b.Property<int?>("GenreId");
 
-                    b.HasIndex("GameListEntityId2");
+                    b.Property<int?>("VideoGameId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("GenreId");
+
+                    b.HasIndex("VideoGameId");
+
+                    b.ToTable("VGGenres");
+                });
+
+            modelBuilder.Entity("GameON.Web.Data.Entities.VideoGamePlatformEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("PlatformId");
+
+                    b.Property<int?>("VideoGameId");
+
+                    b.HasKey("Id");
 
                     b.HasIndex("PlatformId");
 
-                    b.ToTable("VideoGames");
+                    b.HasIndex("VideoGameId");
+
+                    b.ToTable("VGPlatforms");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -335,11 +384,15 @@ namespace GameON.Web.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("GameON.Web.Data.Entities.GenreEntity", b =>
+            modelBuilder.Entity("GameON.Web.Data.Entities.GameListEntity", b =>
                 {
-                    b.HasOne("GameON.Web.Data.Entities.VideoGameEntity")
-                        .WithMany("Genres")
-                        .HasForeignKey("VideoGameEntityId");
+                    b.HasOne("GameON.Web.Data.Entities.UserEntity", "User")
+                        .WithMany("GameList")
+                        .HasForeignKey("UserId");
+
+                    b.HasOne("GameON.Web.Data.Entities.VideoGameEntity", "VideoGame")
+                        .WithMany()
+                        .HasForeignKey("VideoGameId");
                 });
 
             modelBuilder.Entity("GameON.Web.Data.Entities.ReviewEntity", b =>
@@ -355,38 +408,42 @@ namespace GameON.Web.Migrations
 
             modelBuilder.Entity("GameON.Web.Data.Entities.UserEntity", b =>
                 {
-                    b.HasOne("GameON.Web.Data.Entities.GameListEntity", "GameList")
-                        .WithMany()
-                        .HasForeignKey("GameListId");
-
                     b.HasOne("GameON.Web.Data.Entities.VideoGameEntity", "VideoGame")
-                        .WithMany()
+                        .WithMany("Users")
                         .HasForeignKey("VideoGameId");
                 });
 
-            modelBuilder.Entity("GameON.Web.Data.Entities.VideoGameEntity", b =>
+            modelBuilder.Entity("GameON.Web.Data.Entities.VideoGameDeveloperEntity", b =>
                 {
                     b.HasOne("GameON.Web.Data.Entities.DeveloperEntity", "Developer")
                         .WithMany()
-                        .HasForeignKey("DeveloperId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("DeveloperId");
 
-                    b.HasOne("GameON.Web.Data.Entities.GameListEntity")
-                        .WithMany("PlantoPlay")
-                        .HasForeignKey("GameListEntityId");
+                    b.HasOne("GameON.Web.Data.Entities.VideoGameEntity", "VideoGame")
+                        .WithMany("Developers")
+                        .HasForeignKey("VideoGameId");
+                });
 
-                    b.HasOne("GameON.Web.Data.Entities.GameListEntity")
-                        .WithMany("Played")
-                        .HasForeignKey("GameListEntityId1");
+            modelBuilder.Entity("GameON.Web.Data.Entities.VideoGameGenreEntity", b =>
+                {
+                    b.HasOne("GameON.Web.Data.Entities.GenreEntity", "Genre")
+                        .WithMany()
+                        .HasForeignKey("GenreId");
 
-                    b.HasOne("GameON.Web.Data.Entities.GameListEntity")
-                        .WithMany("Playing")
-                        .HasForeignKey("GameListEntityId2");
+                    b.HasOne("GameON.Web.Data.Entities.VideoGameEntity", "VideoGame")
+                        .WithMany("Genres")
+                        .HasForeignKey("VideoGameId");
+                });
 
+            modelBuilder.Entity("GameON.Web.Data.Entities.VideoGamePlatformEntity", b =>
+                {
                     b.HasOne("GameON.Web.Data.Entities.PlatformEntity", "Platform")
                         .WithMany()
-                        .HasForeignKey("PlatformId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("PlatformId");
+
+                    b.HasOne("GameON.Web.Data.Entities.VideoGameEntity", "VideoGame")
+                        .WithMany("Platforms")
+                        .HasForeignKey("VideoGameId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

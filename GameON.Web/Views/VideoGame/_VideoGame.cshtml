@@ -1,0 +1,49 @@
+﻿@model GameON.Web.Models.VideoGameViewModel
+
+<div class="form-group">
+    <label asp-for="Name" class="control-label"></label>
+    <input asp-for="Name" class="form-control" />
+    <span asp-validation-for="Name" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+    <label asp-for="Synopsis" class="control-label"></label>
+    <textarea asp-for="Synopsis" class="form-control" style="resize:none" maxlength="1500" rows="6"></textarea>
+    <span asp-validation-for="Synopsis" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+    <label asp-for="DevelopersId" class="control-label"></label>
+    <select asp-for="DevelopersId" asp-items="Model.DeveloperList" class="form-control selectpicker" multiple data-live-search="true"></select>
+    <span asp-validation-for="DevelopersId" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+    <label asp-for="GenresId" class="control-label"></label>
+    <select asp-for="GenresId" asp-items="Model.GenreList" class="form-control selectpicker" multiple data-live-search="true"></select>
+    <span asp-validation-for="GenresId" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+    <label asp-for="PlatformsId" class="control-label"></label>
+    <select asp-for="PlatformsId" asp-items="Model.PlatformList" class="form-control selectpicker" multiple data-live-search="true"></select>
+    <span asp-validation-for="PlatformsId" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+    <label asp-for="Score" class="control-label"></label>
+    <input asp-for="Score" class="form-control" type="number" min="1" max="10" />
+    <span asp-validation-for="Score" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+    <label asp-for="ReleaseDate" class="control-label"></label>
+    <input type="date" asp-for="ReleaseDate" class="form-control" />
+    <span asp-validation-for="ReleaseDate" class="text-danger"></span>
+</div>
+<img src="@Model.PicturePath" style="width:200px; max-width: 100%; height: auto;" />
+<div class="form-group">
+    <label asp-for="CoverFile" class="control-label"></label>
+    <input asp-for="CoverFile" class="form-control" type="file" />
+    <span asp-validation-for="CoverFile" class="text-danger"></span>
+</div>

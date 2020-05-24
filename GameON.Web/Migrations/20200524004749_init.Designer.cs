@@ -4,14 +4,16 @@ using GameON.Web.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GameON.Web.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20200524004749_init")]
+    partial class init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -43,17 +45,9 @@ namespace GameON.Web.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("UserId");
-
-                    b.Property<int?>("VideoGameId");
-
                     b.Property<int>("status");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.HasIndex("VideoGameId");
 
                     b.ToTable("GameLists");
                 });
@@ -142,6 +136,8 @@ namespace GameON.Web.Migrations
                         .IsRequired()
                         .HasMaxLength(50);
 
+                    b.Property<int?>("GameListId");
+
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasMaxLength(50);
@@ -176,6 +172,8 @@ namespace GameON.Web.Migrations
                     b.Property<int?>("VideoGameId");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("GameListId");
 
                     b.HasIndex("NormalizedEmail")
                         .HasName("EmailIndex");
@@ -215,6 +213,8 @@ namespace GameON.Web.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("GameListEntityId");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50);
@@ -227,9 +227,11 @@ namespace GameON.Web.Migrations
 
                     b.Property<string>("Synopsis")
                         .IsRequired()
-                        .HasMaxLength(1500);
+                        .HasMaxLength(300);
 
                     b.HasKey("Id");
+
+                    b.HasIndex("GameListEntityId");
 
                     b.ToTable("VideoGames");
                 });
@@ -382,17 +384,6 @@ namespace GameON.Web.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("GameON.Web.Data.Entities.GameListEntity", b =>
-                {
-                    b.HasOne("GameON.Web.Data.Entities.UserEntity", "User")
-                        .WithMany("GameList")
-                        .HasForeignKey("UserId");
-
-                    b.HasOne("GameON.Web.Data.Entities.VideoGameEntity", "VideoGame")
-                        .WithMany()
-                        .HasForeignKey("VideoGameId");
-                });
-
             modelBuilder.Entity("GameON.Web.Data.Entities.ReviewEntity", b =>
                 {
                     b.HasOne("GameON.Web.Data.Entities.UserEntity", "User")
@@ -406,6 +397,10 @@ namespace GameON.Web.Migrations
 
             modelBuilder.Entity("GameON.Web.Data.Entities.UserEntity", b =>
                 {
+                    b.HasOne("GameON.Web.Data.Entities.GameListEntity", "GameList")
+                        .WithMany()
+                        .HasForeignKey("GameListId");
+
                     b.HasOne("GameON.Web.Data.Entities.VideoGameEntity", "VideoGame")
                         .WithMany("Users")
                         .HasForeignKey("VideoGameId");
@@ -420,6 +415,13 @@ namespace GameON.Web.Migrations
                     b.HasOne("GameON.Web.Data.Entities.VideoGameEntity", "VideoGame")
                         .WithMany("Developers")
                         .HasForeignKey("VideoGameId");
+                });
+
+            modelBuilder.Entity("GameON.Web.Data.Entities.VideoGameEntity", b =>
+                {
+                    b.HasOne("GameON.Web.Data.Entities.GameListEntity")
+                        .WithMany("VideoGames")
+                        .HasForeignKey("GameListEntityId");
                 });
 
             modelBuilder.Entity("GameON.Web.Data.Entities.VideoGameGenreEntity", b =>

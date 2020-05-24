@@ -26,5 +26,21 @@ namespace GameON.Web.Data
         public DbSet<PlatformEntity> Platforms { get; set; }
 
         public DbSet<VideoGameEntity> VideoGames { get; set; }
+
+        public DbSet<VideoGameDeveloperEntity> VGDevelopers { get; set; }
+
+        public DbSet<VideoGameGenreEntity> VGGenres { get; set; }
+
+        public DbSet<VideoGamePlatformEntity> VGPlatforms { get; set; }
+
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+
+            builder.Entity<DeveloperEntity>().HasIndex(t => t.Name).IsUnique();
+            builder.Entity<PlatformEntity>().HasIndex(t => t.Name).IsUnique();
+            builder.Entity<GenreEntity>().HasIndex(t => t.Genre).IsUnique();
+        }
     }
 }

@@ -14,4 +14,8 @@
     <ProjectReference Include="..\GameON.Common\GameON.Common.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\images\VideoGames\" />
+  </ItemGroup>
+
 </Project>

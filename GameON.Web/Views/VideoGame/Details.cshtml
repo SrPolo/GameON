@@ -1,0 +1,63 @@
+﻿@model GameON.Web.Data.Entities.VideoGameEntity
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+    <h2> @Html.DisplayFor(model => model.Name)</h2>
+
+<div class="row">
+<div class="col-md-3">
+            @if (!string.IsNullOrEmpty(Model.PicturePath))
+            {
+                <img src="@Url.Content(Model.PicturePath)" alt="Image" style="width:100%;max-width: 100%; height: auto;" />
+            }
+</div>
+<div class="col-md-9">
+    <dl>
+        <dt>
+            @Html.DisplayNameFor(model => model.Platforms)
+        </dt>
+        <dd>
+            @String.Join(", ", Model.Platforms.Select(p => p.Platform.Name).ToArray())
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Genres)
+        </dt>
+        <dd>
+            @String.Join(", ", Model.Genres.Select(p => p.Genre.Genre).ToArray())
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Developers)
+        </dt>
+        <dd>
+            @String.Join(", ", Model.Developers.Select(p => p.Developer.Name).ToArray())
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ReleaseDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ReleaseDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Score)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Score)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Synopsis)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Synopsis)
+        </dd>
+
+    </dl>
+</div>
+
+</div>
+<hr />
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a>
+    <a asp-action="Index" class="btn btn-success">Back to List</a>
+</div>
