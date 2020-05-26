@@ -1,4 +1,5 @@
-﻿using GameON.Web.Data;
+﻿using GameON.Common.Models;
+using GameON.Web.Data;
 using GameON.Web.Data.Entities;
 using GameON.Web.Models;
 using System;
@@ -17,6 +18,55 @@ namespace GameON.Web.Helpers
         {
             _context = context;
             _combosHelper = combosHelper;
+        }
+
+        public List<VideoGameResponse> ToVideoGameResponse(List<VideoGameEntity> videoGameEntities)
+        {
+            List<VideoGameResponse> list = new List<VideoGameResponse>();
+            foreach (VideoGameEntity videoGameEntity in videoGameEntities)
+            {
+                list.Add(ToVideoGameResponse(videoGameEntity));
+            }
+
+            return list;
+        }
+        public VideoGameResponse ToVideoGameResponse(VideoGameEntity videoGameEntity)
+        {
+            return new VideoGameResponse
+            {
+                Id = videoGameEntity.Id,
+                Name = videoGameEntity.Name,
+                PicturePath = videoGameEntity.PicturePath,
+                Score = videoGameEntity.Score,
+                Synopsis = videoGameEntity.Synopsis,
+                ReleaseDate = videoGameEntity.ReleaseDate,
+                Developers = videoGameEntity.Developers.Select(d=> new VGDeveloperResponse
+                { 
+                    Id = d.Id,
+                    Developer = new DeveloperResponse { 
+                        Id = d.Developer.Id,
+                        Name = d.Developer.Name
+                    }
+                }).ToList(),
+                Genres = videoGameEntity.Genres.Select(d => new VGGenreResponse
+                {
+                    Id = d.Id,
+                    Genre = new GenreResponse
+                    {
+                        Id = d.Genre.Id,
+                        Genre = d.Genre.Genre
+                    }
+                }).ToList(),
+                Platforms = videoGameEntity.Platforms.Select(d => new VGPlatformResponse
+                {
+                    Id = d.Id,
+                    Platform = new PlatformResponse
+                    {
+                        Id = d.Platform.Id,
+                        Name = d.Platform.Name
+                    }
+                }).ToList()
+            };
         }
 
         public VideoGameEntity ToVideoGameEntity(VideoGameViewModel model, string path, bool isNew)
@@ -58,6 +108,14 @@ namespace GameON.Web.Helpers
             };
         }
 
+        public ReviewResponse ToReviewResponse(ReviewEntity reviewEntity)
+        {
+            throw new NotImplementedException();
+        }
 
+        public List<ReviewResponse> ToReviewResponse(List<ReviewEntity> reviewEntities)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -1,15 +1,23 @@
 ﻿using GameON.Web.Data.Entities;
 using GameON.Web.Models;
-using System;
+using GameON.Common.Models;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace GameON.Web.Helpers
 {
     public interface IConverterHelper
     {
-       VideoGameEntity ToVideoGameEntity(VideoGameViewModel model, string path, bool isNew);
-        VideoGameViewModel ToVideoGameViewModel(VideoGameEntity teamEntity);
+        VideoGameEntity ToVideoGameEntity(VideoGameViewModel model, string path, bool isNew);
+
+        VideoGameViewModel ToVideoGameViewModel(VideoGameEntity videoGameEntity);
+
+        VideoGameResponse ToVideoGameResponse(VideoGameEntity videoGameEntity);
+
+        List<VideoGameResponse> ToVideoGameResponse(List<VideoGameEntity> videoGameEntities);
+
+        ReviewResponse ToReviewResponse(ReviewEntity reviewEntity);
+
+        List<ReviewResponse> ToReviewResponse(List<ReviewEntity> reviewEntities);
+
     }
 }

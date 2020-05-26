@@ -46,7 +46,7 @@ namespace GameON.Web.Data
 
         private async Task CheckGenresAsync()
         {
-            if (!_context.Platforms.Any())
+            if (!_context.Genres.Any())
             {
                 AddGenre("Action");
                 AddGenre("Adventure");
@@ -58,6 +58,7 @@ namespace GameON.Web.Data
                 AddGenre("RPG");
                 AddGenre("Sports");
                 AddGenre("Open World");
+                AddGenre("Sandbox");
                 await _context.SaveChangesAsync();
             }
         }
@@ -376,7 +377,7 @@ namespace GameON.Web.Data
                         },
                         new VideoGamePlatformEntity
                         {
-                            Platform = _context.Platforms.FirstOrDefault(t=>t.Name == "Xbox 36")
+                            Platform = _context.Platforms.FirstOrDefault(t=>t.Name == "Xbox 360")
                         },
                         new VideoGamePlatformEntity
                         {
