@@ -36,7 +36,25 @@
                     <li><a asp-area="" asp-controller="VideoGame" asp-action="Index">VideoGames</a></li>
                     <li><a asp-area="" asp-controller="Developer" asp-action="Index">Developers</a></li>
                     <li><a asp-area="" asp-controller="Platforms" asp-action="Index">Platforms</a></li>
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                    {
+                        <li><a asp-area="" asp-controller="Trips" asp-action="Index">Trips  Sumary</a></li>
+                        <li><a asp-area="" asp-controller="ExpenseType" asp-action="Index">Expense Types</a></li>
+                    }
                 </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li><a asp-area="" asp-controller="Account" asp-action="ChangeUser">@User.Identity.Name</a></li>
+                        <li><a asp-area="" asp-controller="Account" asp-action="Logout">Logout</a></li>
+                    }
+                    else
+                    {
+                        <li><a asp-area="" asp-controller="Account" asp-action="Login">Login</a></li>
+                    }
+                </ul>
+
+                
             </div>
         </div>
     </nav>
