@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="GameON.Prism.Views.RegisterPage">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Entry Grid.Row="0"
+                   Grid.ColumnSpan="2"
+                   Placeholder="Firstname"
+                   Margin="10,20,10,0"/>
+        <Entry Grid.Row="1"
+                   Grid.ColumnSpan="2"
+                   Placeholder="Lastname"
+                   Margin="10,10,10,0"/>
+        <Entry Grid.Row="2"
+               Keyboard="Numeric"
+               Grid.ColumnSpan="2"
+               Placeholder="Document"
+               Margin="10,10,10,0"/>
+        <Entry Grid.Row="3"
+               Keyboard="Email"
+               Grid.ColumnSpan="2"
+               Placeholder="Email"
+               Margin="10,10,10,0"/>
+        <Entry Grid.Row="4"
+               IsPassword="True"
+               Grid.ColumnSpan="2"
+               Placeholder="Password"
+               Margin="10,10,10,0"/>
+        <Button Grid.Column="0"
+                Grid.Row="5"
+                Text="Cancel"
+                BorderRadius="30"
+                VerticalOptions="End"
+                Margin="10,0,5,20"/>
+        <Button Grid.Column="1"
+                Grid.Row="5"
+                Text="Register"
+                BorderRadius="30"
+                VerticalOptions="EndAndExpand"
+                Margin="5,0,10,20"/>
+    </Grid>
+</ContentPage>

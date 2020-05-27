@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="GameON.Prism.Views.VideoGamesPage"
+             Title="{Binding Title}">
+
+    <StackLayout Padding="5">
+        <CollectionView ItemsSource="{Binding VideoGames}">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                        <Frame Margin="30">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding SelectVideoGameCommand}"></TapGestureRecognizer>
+                        </Frame.GestureRecognizers>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <ffimageloading:CachedImage Grid.Column="0"
+                                                            Aspect="AspectFill"
+                                                            Source="{Binding PictureFullPath}" 
+                                                            CacheDuration= "50"
+                                                            RetryCount= "3"
+                                                            RetryDelay= "600"
+                                                            HeightRequest="100"
+                                                            WidthRequest="100"/>
+                                <StackLayout Padding="10,5"
+                                             Grid.Column="1">
+                                    <Label  Text="{Binding Name}"
+                                            FontAttributes="Bold"
+                                            FontSize="Large"
+                                            TextColor="Black"
+                                            LineBreakMode="TailTruncation"/>
+                                    <Label Text="{Binding Synopsis}"
+                                           FontSize="Small"
+                                           TextColor="Black"
+                                           LineBreakMode="WordWrap"
+                                           MaxLines="5"/>
+                                </StackLayout>
+                            </Grid>
+                        </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
+
+</ContentPage>

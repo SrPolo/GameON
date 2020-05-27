@@ -28,6 +28,11 @@ namespace GameON.Web.Data.Entities
         [Display(Name = "Picture")]
         public string PicturePath { get; set; }
 
+        [Display(Name = "Picture")]
+        public string PictureFullPath => string.IsNullOrEmpty(PicturePath)
+            ? "https://gameonweb.azurewebsites.net/images/noimage.png"
+            : $"https://gameonweb.azurewebsites.net{PicturePath}";
+
         [Display(Name = "Release date")]
         [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = false)]

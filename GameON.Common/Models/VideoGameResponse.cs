@@ -15,6 +15,10 @@ namespace GameON.Common.Models
 
         public string PicturePath { get; set; }
 
+        public string PictureFullPath => string.IsNullOrEmpty(PicturePath)
+            ? "https://gameonweb.azurewebsites.net/images/noimage.png"
+            : $"https://gameonweb.azurewebsites.net{PicturePath}";
+
         public DateTime ReleaseDate { get; set; }
 
         public ICollection<VGDeveloperResponse> Developers { get; set; }
