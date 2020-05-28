@@ -12,7 +12,7 @@ namespace GameON.Web.Data.Entities
 
 
         [Display(Name = "Review")]
-        [MaxLength(300, ErrorMessage = "The {0} field can not have more than {1} characters.")]
+        [MaxLength(1500, ErrorMessage = "The {0} field can not have more than {1} characters.")]
         [Required(ErrorMessage = "The field {0} is mandatory.")]
         public string Review { get; set; }
 

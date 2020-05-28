@@ -11,6 +11,7 @@ namespace GameON.Prism.ViewModels
         private readonly INavigationService _navigationService;
         private readonly IApiService _apiService;
         private List<VideoGameItemViewModel> _videoGames;
+        private bool _isRunning;
 
         public VideoGamesPageViewModel(INavigationService navigationService, IApiService apiService) : base(navigationService)
         {
@@ -26,18 +27,28 @@ namespace GameON.Prism.ViewModels
             set => SetProperty(ref _videoGames, value);
         }
 
+        public bool IsRunning
+        {
+            get => _isRunning;
+            set => SetProperty(ref _isRunning, value);
+        }
+
+
         private async void LoadVideoGamesAsync()
         {
+            IsRunning = true;
             string url = App.Current.Resources["UrlAPI"].ToString();
 
             Response response = await _apiService.GetListAsync<VideoGameResponse>(url, "/api", "/videogames");
-
+            IsRunning = false;  
+            
             if (!response.IsSuccess)
             {
                 await App.Current.MainPage.DisplayAlert("Error", response.Message, "Accept");
                 return;
             }
 
+            
             List<VideoGameResponse> videoGames = (List<VideoGameResponse>)response.Result;
             VideoGames = videoGames.Select(v => new VideoGameItemViewModel(_navigationService)
             {

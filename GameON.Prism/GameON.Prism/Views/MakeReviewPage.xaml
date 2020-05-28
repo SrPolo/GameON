@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com" xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="GameON.Prism.Views.MakeReviewPage">
+
+    <ScrollView>
+        <Grid Padding="20,20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="250"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="70"/>
+            </Grid.RowDefinitions>
+
+            <Frame Grid.Column="0"
+                   Grid.Row="0"
+                   Margin="0,0,5,10">
+            </Frame>
+
+            <StackLayout Grid.Column="1"
+                     Grid.Row="0"
+                     Margin="5,0,0,10">
+
+                <Label Text="Video game name extra large#"
+                   FontSize="Medium"
+                   FontAttributes="Bold"
+                   HorizontalTextAlignment="Center"/>
+
+                <StackLayout VerticalOptions="FillAndExpand"
+                         HorizontalOptions="Center"
+                         Orientation="Horizontal">
+                    <Label Text="Score"
+                           FontSize="Medium"
+                           VerticalOptions="Center"/>
+                    <Label Text="8#"
+                           VerticalOptions="Center"
+                           FontSize="Medium"/>
+                </StackLayout>
+
+            </StackLayout>
+
+            <!--<StackLayout Grid.Row="1"
+                     Grid.ColumnSpan="2"
+                     Margin="20,0">
+            <Label Text="Review:"
+                       FontSize="Large"
+                       FontAttributes="Bold"/>
+            
+                <Editor Text="I am an Editor" 
+                    FontSize="Medium"/>
+        </StackLayout>-->
+            <inputLayout:SfTextInputLayout 
+                    Grid.Row="1"
+                    Hint="Review"
+                    Grid.ColumnSpan="2"
+                    ShowCharCount="true"
+                    CharMaxLength="1500">
+                <Editor AutoSize="TextChanges" />
+            </inputLayout:SfTextInputLayout>
+
+            <StackLayout Grid.Row="2"
+                     Grid.ColumnSpan="2"
+                     Margin="0,20,0,0">
+
+                <StackLayout Orientation="Horizontal">
+                    <Button Command="{Binding CancelCommand}"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="End"
+                        BorderRadius="30"
+                        Margin="10,0,5,20"
+            	        Text="Cancel"/>
+
+                    <Button Command="{Binding RecoverCommand}"
+            	        IsEnabled="{Binding IsEnabled}"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="End"
+                        BorderRadius="30"
+                        Margin="5,0,10,20"
+            	        Text="Save"/>
+                </StackLayout>
+
+            </StackLayout>
+        </Grid>
+    </ScrollView>
+</ContentPage>

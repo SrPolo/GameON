@@ -7,6 +7,7 @@ using Xamarin.Essentials.Implementation;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using GameON.Common.Services;
+using Syncfusion.Licensing;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace GameON.Prism
@@ -24,9 +25,11 @@ namespace GameON.Prism
 
         protected override async void OnInitialized()
         {
+            SyncfusionLicenseProvider.RegisterLicense("MjYzNzQ0QDMxMzgyZTMxMmUzMGxjVkQxOWpvb3lMQ2d2U1ZXTUN5UmQrc3dadWx0SUJGQ05WS3pxV1hJWk09");
+
             InitializeComponent();
 
-            await NavigationService.NavigateAsync("NavigationPage/LoginPage");
+            await NavigationService.NavigateAsync("/GameONMasterDetailPage/NavigationPage/VideoGamesPage");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -39,6 +42,12 @@ namespace GameON.Prism
             containerRegistry.RegisterForNavigation<LoginPage, LoginPageViewModel>();
             containerRegistry.RegisterForNavigation<RegisterPage, RegisterPageViewModel>();
             containerRegistry.RegisterForNavigation<RecoverPasswordPage, RecoverPasswordPageViewModel>();
+            containerRegistry.RegisterForNavigation<ChangePasswordPage, ChangePasswordPageViewModel>();
+            containerRegistry.RegisterForNavigation<MakeReviewPage, MakeReviewPageViewModel>();
+            containerRegistry.RegisterForNavigation<GameONMasterDetailPage, GameONMasterDetailPageViewModel>();
+            containerRegistry.RegisterForNavigation<MyReviewsPage, MyReviewsPageViewModel>();
+            containerRegistry.RegisterForNavigation<MyGameListPage, MyGameListPageViewModel>();
+            containerRegistry.RegisterForNavigation<ModifyUserPage, ModifyUserPageViewModel>();
         }
     }
 }

@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="http://prismlibrary.com"
+             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="GameON.Prism.Views.LoginPage">
 
@@ -30,26 +31,36 @@
                    HorizontalOptions="Center"
                    Margin="0,30,0,20"/>
 
-            <Entry Grid.Row="1"
-                   Grid.ColumnSpan="2"
-                   Keyboard="Email"
-                   Placeholder="Email"
-                   Margin="0,0,0,10"/>
+            <inputLayout:SfTextInputLayout Hint="Email"
+                                           Grid.Row="1"
+                                           Grid.ColumnSpan="2"
+                                           ContainerType="Outlined"
+                                           Margin="0,0,0,10"
+                                           FocusedColor="#00AFA0">
+                <Entry Keyboard="Email"/>
+            </inputLayout:SfTextInputLayout>
 
-            <Entry Grid.Row="2"
-                   Grid.ColumnSpan="2"
-                   IsPassword="True"
-                   Placeholder="Password"
-                   Margin="0,0,0,0"/>
+
+            <inputLayout:SfTextInputLayout Hint="Password"
+                                           Grid.Row="2"
+                                           Grid.ColumnSpan="2"
+                                           ContainerType="Outlined"
+                                           Margin="0,0,0,0"
+                                           EnablePasswordVisibilityToggle="true">
+                <Entry IsPassword="True"/>
+            </inputLayout:SfTextInputLayout>
+
+        
+            
             <Label Grid.Row="3"
                    Grid.Column="0"
                    FontAttributes="Bold"
                    HorizontalOptions="StartAndExpand"
                    Text="Forgot your Password?"
                    Margin="5,5,0,0">
-                <!--<Label.GestureRecognizers>
+                <Label.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}"/>
-                </Label.GestureRecognizers>-->
+                </Label.GestureRecognizers>
             </Label>
             <Label Grid.Row="3"
                    Grid.Column="1"
@@ -61,12 +72,14 @@
                     <TapGestureRecognizer Command="{Binding RegisterCommand}"/>
                 </Label.GestureRecognizers>
             </Label>
-            
+
             <Button Grid.ColumnSpan="2"
                     Grid.Row="4"
                     Text="Login"
-                    BorderRadius="30"/>
-            
+                    BorderRadius="30"
+                    Command="{Binding LoginCommand}">
+            </Button>
+
             <Label Grid.Row="5"
                    Grid.ColumnSpan="2"
                    FontSize="Medium"
@@ -80,9 +93,9 @@
                    Source="logo"
                    HorizontalOptions="Center"
                    Margin="0,0,0,20">
-                <!--<Image.GestureRecognizers>
-                    
-                </Image.GestureRecognizers>-->
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding LoginFacebookCommand}"/>
+                </Image.GestureRecognizers>
             </Image>
         </Grid>
 </ContentPage>

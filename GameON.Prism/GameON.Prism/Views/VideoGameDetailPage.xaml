@@ -8,7 +8,7 @@
              Title="{Binding Title}">
 
 
-    <ScrollView Margin="10">
+    <ScrollView Padding="10">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -21,7 +21,7 @@
             </Grid.RowDefinitions>
             <Frame Grid.Column="0"
                    Grid.Row="0"
-                   Margin="20,0,0,10">
+                   Margin="5,0,0,10">
                 <ffimageloading:CachedImage Aspect="AspectFill"
                                             Source="{Binding VideoGame.PictureFullPath}"
                                             CacheDuration= "50"
@@ -30,7 +30,7 @@
             </Frame>
             <StackLayout Grid.Column="1"
                          Grid.Row="0"
-                         Margin="10,0">
+                         Margin="5,0,5,10">
 
                 <StackLayout
                     Orientation="Horizontal">
@@ -60,11 +60,11 @@
                     </Picker.ItemsSource>
                 </Picker>
             </StackLayout>
-            
+
             <StackLayout
                 Grid.Row="1"
                 Grid.ColumnSpan="2"
-                Margin="20,0">
+                Margin="10,0">
                 <Label Text="Synopsis:"
                        FontSize="Large"
                        FontAttributes="Bold"/>
@@ -72,10 +72,10 @@
                     <Label Text="{Binding VideoGame.Synopsis}"/>
                 </ScrollView>
             </StackLayout>
-            
+
             <StackLayout Grid.Row="2"
                      Grid.ColumnSpan="2"
-                         Margin="20,0">
+                         Margin="10,0">
                 <Label Text="Genres"
                FontAttributes="Bold"/>
                 <StackLayout BindableLayout.ItemsSource="{Binding Genres}">
@@ -114,4 +114,5 @@
             </StackLayout>
         </Grid>
     </ScrollView>
+
 </ContentPage>
