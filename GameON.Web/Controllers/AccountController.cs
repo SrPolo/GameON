@@ -132,6 +132,7 @@ namespace GameON.Web.Controllers
             UserEntity model = new UserEntity
             {
                 
+                Document = user.Document,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 Email = user.Email
@@ -178,7 +179,7 @@ namespace GameON.Web.Controllers
             if (ModelState.IsValid)
             {
 
-                UserEntity user = await _userHelper.AddUserAsync(model, UserType.Admin);
+                UserEntity user = await _userHelper.AddUserAsync(model, UserType.User);
                 if (user == null)
                 {
                     ModelState.AddModelError(string.Empty, "This email is already used.");
