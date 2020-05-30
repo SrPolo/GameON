@@ -1,45 +1,58 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:prism="http://prismlibrary.com" xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+             xmlns:prism="http://prismlibrary.com" 
+             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+             xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms" xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
-             x:Class="GameON.Prism.Views.MakeReviewPage">
+             x:Class="GameON.Prism.Views.MakeReviewPage"
+             Title="{Binding Title}">
 
     <ScrollView>
-        <Grid Padding="20,20">
+        <Grid Padding="10,10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="250"/>
+                <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="70"/>
             </Grid.RowDefinitions>
 
-            <Frame Grid.Column="0"
+            <Frame Grid.ColumnSpan="2"
                    Grid.Row="0"
-                   Margin="0,0,5,10">
+                   Margin="0,0,5,10"
+                   HorizontalOptions="CenterAndExpand"
+                   WidthRequest="150">
+                <ffimageloading:CachedImage Aspect="AspectFill"
+                                            Source="{Binding VideoGame.PictureFullPath}"
+                                            CacheDuration= "50"
+                                            RetryCount= "3"
+                                            RetryDelay= "600"/>
             </Frame>
 
-            <StackLayout Grid.Column="1"
-                     Grid.Row="0"
+            <StackLayout Grid.ColumnSpan="2"
+                     Grid.Row="1"
                      Margin="5,0,0,10">
 
-                <Label Text="Video game name extra large#"
-                   FontSize="Medium"
+                <Label Text="{Binding VideoGame.Name}"
+                   FontSize="Large"
                    FontAttributes="Bold"
                    HorizontalTextAlignment="Center"/>
 
                 <StackLayout VerticalOptions="FillAndExpand"
                          HorizontalOptions="Center"
-                         Orientation="Horizontal">
+                         Orientation="Vertical">
                     <Label Text="Score"
                            FontSize="Medium"
                            VerticalOptions="Center"/>
-                    <Label Text="8#"
-                           VerticalOptions="Center"
-                           FontSize="Medium"/>
+                    <rating:SfRating ItemCount="5"
+                                     Precision="Standard"
+                                     TooltipPlacement="TopLeft"
+                                     ItemSize="28"
+                                     Value="{Binding Score}"/>
                 </StackLayout>
 
             </StackLayout>
@@ -55,15 +68,16 @@
                     FontSize="Medium"/>
         </StackLayout>-->
             <inputLayout:SfTextInputLayout 
-                    Grid.Row="1"
+                    Grid.Row="2"
                     Hint="Review"
                     Grid.ColumnSpan="2"
                     ShowCharCount="true"
                     CharMaxLength="1500">
-                <Editor AutoSize="TextChanges" />
+                <Editor AutoSize="TextChanges" 
+                        Text="{Binding Review}"/>
             </inputLayout:SfTextInputLayout>
 
-            <StackLayout Grid.Row="2"
+            <StackLayout Grid.Row="3"
                      Grid.ColumnSpan="2"
                      Margin="0,20,0,0">
 
@@ -75,7 +89,7 @@
                         Margin="10,0,5,20"
             	        Text="Cancel"/>
 
-                    <Button Command="{Binding RecoverCommand}"
+                    <Button Command="{Binding SaveCommand}"
             	        IsEnabled="{Binding IsEnabled}"
                         HorizontalOptions="FillAndExpand"
                         VerticalOptions="End"

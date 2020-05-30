@@ -1,0 +1,22 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Text;
+
+namespace GameON.Common.Models
+{
+    public class ReviewRequest
+    {
+        public UserResponse User { get; set; }
+
+        [Display(Name ="Review")]
+        [Required(ErrorMessage =("You must enter your {0}"))]
+        public string Review { get; set; }
+
+        [Display(Name = "Score")]
+        [Required(ErrorMessage = ("You must enter and {0}"))]
+        public float Score { get; set; }
+
+        public VideoGameResponse VideoGame { get; set; }
+    }
+}

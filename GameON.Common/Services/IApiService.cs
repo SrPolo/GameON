@@ -9,5 +9,7 @@ namespace GameON.Common.Services
     public interface IApiService
     {
         Task<Response> GetListAsync<T>(string urlBase, string servicePrefix, string controller);
+
+        Task<Response> GetVideoGame(string urlBase, string servicePrefix, string controller);
     }
 }

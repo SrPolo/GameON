@@ -1,5 +1,6 @@
 ﻿using GameON.Common.Models;
 using GameON.Common.Services;
+using Prism.Commands;
 using Prism.Navigation;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,8 @@ namespace GameON.Prism.ViewModels
         private readonly IApiService _apiService;
         private List<VideoGameItemViewModel> _videoGames;
         private bool _isRunning;
+        private bool _isRefreshing;
+        private DelegateCommand _refreshCommand;
 
         public VideoGamesPageViewModel(INavigationService navigationService, IApiService apiService) : base(navigationService)
         {
@@ -19,6 +22,14 @@ namespace GameON.Prism.ViewModels
             _navigationService = navigationService;
             _apiService = apiService;
             LoadVideoGamesAsync();
+        }
+
+        public DelegateCommand RefreshCommand => _refreshCommand ?? (_refreshCommand = new DelegateCommand(LoadVideoGamesAsync));
+
+        public bool IsRefreshing
+        {
+            get => _isRefreshing;
+            set => SetProperty(ref _isRefreshing, value);
         }
 
         public List<VideoGameItemViewModel> VideoGames
@@ -37,11 +48,13 @@ namespace GameON.Prism.ViewModels
         private async void LoadVideoGamesAsync()
         {
             IsRunning = true;
+            IsRefreshing = true;
             string url = App.Current.Resources["UrlAPI"].ToString();
 
             Response response = await _apiService.GetListAsync<VideoGameResponse>(url, "/api", "/videogames");
-            IsRunning = false;  
-            
+            IsRunning = false;
+            IsRefreshing = false;
+
             if (!response.IsSuccess)
             {
                 await App.Current.MainPage.DisplayAlert("Error", response.Message, "Accept");

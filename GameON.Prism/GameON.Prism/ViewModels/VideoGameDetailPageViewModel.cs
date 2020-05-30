@@ -1,4 +1,6 @@
 ﻿using GameON.Common.Models;
+using GameON.Common.Services;
+using GameON.Prism.Views;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
@@ -10,15 +12,32 @@ namespace GameON.Prism.ViewModels
 {
     public class VideoGameDetailPageViewModel : ViewModelBase
     {
+        private readonly INavigationService _navigationService;
+        private readonly IApiService _apiService;
         private VideoGameResponse _videoGame;
         private List<VGGenreResponse> _genres;
         private List<VGPlatformResponse> _platforms;
         private List<VGDeveloperResponse> _developers;
+        private DelegateCommand _makeReviewCommand;
+        private DelegateCommand _refreshCommand;
+        private bool _isRefreshing;
 
-        public VideoGameDetailPageViewModel(INavigationService navigationService):base (navigationService)
+        public VideoGameDetailPageViewModel(INavigationService navigationService,IApiService apiService):base (navigationService)
         {
             Title = "VideoGame";
+            _navigationService = navigationService;
+            _apiService = apiService;
         }
+
+        public DelegateCommand MakeReviewCommand => _makeReviewCommand ?? (_makeReviewCommand = new DelegateCommand(MakeReviewAsync));
+        public DelegateCommand RefreshCommand => _refreshCommand ?? (_refreshCommand = new DelegateCommand(RefreshAsync));
+
+        public bool IsRefreshing
+        {
+            get => _isRefreshing;
+            set => SetProperty(ref _isRefreshing, value);
+        }
+
 
         public VideoGameResponse VideoGame
         {
@@ -45,13 +64,45 @@ namespace GameON.Prism.ViewModels
         public override void OnNavigatedTo(INavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
-            VideoGame = parameters.GetValue<VideoGameResponse>("videogame");
-            Title = _videoGame.Name;
-            Genres = VideoGame.Genres.ToList();
-            Platforms = VideoGame.Platforms.ToList();
-            Developers = VideoGame.Developers.ToList();
+            if (parameters.GetValue<VideoGameResponse>("videogame")!=null)
+            {
+                VideoGame = parameters.GetValue<VideoGameResponse>("videogame");
+                Title = VideoGame.Name;
+                Genres = VideoGame.Genres.ToList();
+                Platforms = VideoGame.Platforms.ToList();
+                Developers = VideoGame.Developers.ToList();
+            }
         }
 
-        
+        private async void RefreshAsync()
+        {
+            IsRefreshing = true;
+            string url = App.Current.Resources["UrlAPI"].ToString();
+
+            Response response = await _apiService.GetVideoGame(url, "/api", $"/videogames/{VideoGame.Id}");
+            IsRefreshing = false;
+
+            if (!response.IsSuccess)
+            {
+                await App.Current.MainPage.DisplayAlert("Error", response.Message, "Accept");
+                return;
+            }
+
+
+            VideoGame = (VideoGameResponse)response.Result;
+        }
+
+        private async void MakeReviewAsync()
+        {
+            NavigationParameters parameters = new NavigationParameters
+            {
+                { "videogame", VideoGame }
+            };
+
+            await _navigationService.NavigateAsync(nameof(MakeReviewPage),parameters);
+        }
+
+
+
     }
 }
