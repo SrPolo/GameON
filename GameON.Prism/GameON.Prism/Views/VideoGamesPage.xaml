@@ -11,7 +11,7 @@
     <AbsoluteLayout>
         <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1"
                  AbsoluteLayout.LayoutFlags="All"
-                 Padding="5">
+                 Padding="5,0">
         <CollectionView ItemsSource="{Binding VideoGames}">
             <CollectionView.ItemsLayout>
                 <GridItemsLayout Orientation="Vertical"/>

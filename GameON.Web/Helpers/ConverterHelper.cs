@@ -20,6 +20,19 @@ namespace GameON.Web.Helpers
             _combosHelper = combosHelper;
         }
 
+        public UserResponse ToUserResponse(UserEntity user)
+        {
+            return new UserResponse
+            {
+                Document = user.Document,
+                Email = user.Email,
+                FirstName = user.FirstName,
+                Id = user.Id,
+                LastName = user.LastName,
+                UserType = user.UserType
+            };
+        }
+
         public List<VideoGameResponse> ToVideoGameResponse(List<VideoGameEntity> videoGameEntities)
         {
             List<VideoGameResponse> list = new List<VideoGameResponse>();

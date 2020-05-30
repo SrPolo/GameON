@@ -18,6 +18,7 @@ namespace GameON.Web.Data.Entities
 
         [Display(Name = "Score")]
         [Required(ErrorMessage = "The field {0} is mandatory.")]
+        [Range(1, 5, ErrorMessage = "The {0} must be between 1-5.")]
         public float Score { get; set; }
 
         public VideoGameEntity VideoGame { get; set; }

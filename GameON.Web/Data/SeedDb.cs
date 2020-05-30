@@ -3,25 +3,38 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using GameON.Web.Helpers;
+using GameON.Common.Enums;
 
 namespace GameON.Web.Data
 {
     public class SeedDb
     {
         private readonly DataContext _context;
+        private readonly IUserHelper _userHelper;
 
-        public SeedDb(DataContext context)
+        public SeedDb(DataContext context, IUserHelper userHelper)
         {
             _context = context;
+
+            _userHelper = userHelper;   
         }
 
         public async Task SeedAsync()
         {
             await _context.Database.EnsureCreatedAsync();
+            await CheckRoleAsync();
             await CheckPlatformsAsync();
             await CheckGenresAsync();
             await CheckDevelopersAsync();
             await CheckVideoGamesAsync();
+        }
+
+        private async Task CheckRoleAsync()
+        {
+            await _userHelper.CheckRoleAsync(UserType.Admin.ToString());
+            await _userHelper.CheckRoleAsync(UserType.User.ToString());
+
         }
 
         private async Task CheckDevelopersAsync()

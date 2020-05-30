@@ -7,6 +7,8 @@ namespace GameON.Web.Helpers
 {
     public interface IConverterHelper
     {
+        UserResponse ToUserResponse(UserEntity userEntity);
+
         VideoGameEntity ToVideoGameEntity(VideoGameViewModel model, string path, bool isNew);
 
         VideoGameViewModel ToVideoGameViewModel(VideoGameEntity videoGameEntity);

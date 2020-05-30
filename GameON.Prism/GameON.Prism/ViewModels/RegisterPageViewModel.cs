@@ -21,7 +21,7 @@ namespace GameON.Prism.ViewModels
 
         private async void GoBackAsync()
         {
-            await App.Current.MainPage.Navigation.PopAsync();
+            await _navigationService.GoBackAsync();
         }
     }
 }
