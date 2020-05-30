@@ -14,5 +14,7 @@ namespace GameON.Common.Models
 
         public VideoGameResponse VideoGame { get; set; }
 
+        public UserResponse User { get; set; }
+
     }
 }

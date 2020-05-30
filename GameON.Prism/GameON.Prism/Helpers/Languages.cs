@@ -17,23 +17,36 @@ namespace GameON.Prism.Helpers
 
 
         public static string Culture { get; set; }
+
+
+        public static string ReviewError => Resource.ReviewError;
+
+        public static string ScoreError => Resource.ScoreError;
+
         public static string EmailError => Resource.EmailError;
+
         public static string PasswordError => Resource.PasswordError;
 
         public static string LoginError => Resource.LoginError;
+
         public static string DocumentError => Resource.DocumentError;
+
         public static string FirstNameError => Resource.FirstNameError;
+       
         public static string LastNameError => Resource.LastNameError;
 
         public static string PictureSource => Resource.PictureSource;
+        
         public static string FromGallery => Resource.FromGallery;
+        
         public static string FromCamera => Resource.FromCamera;
 
-
-
-        public static string Error => Resource.Error; 
+        public static string Error => Resource.Error;
+        
         public static string ConnectionError => Resource.ConnectionError;
+        
         public static string Accept => Resource.Accept;
+        
         public static string AddtoList => Resource.AddtoList;
 
         public static string Cancel => Resource.Cancel;
@@ -45,32 +58,59 @@ namespace GameON.Prism.Helpers
         public static string Search => Resource.Search;
 
         public static string Explore => Resource.Explore;
+        
         public static string MyGameList => Resource.MyGameList;
+        
         public static string MyReviews => Resource.MyReviews;
+        
         public static string ModifyUser => Resource.ModifyUser;
+        
         public static string Login => Resource.Login;
+        
         public static string Logout => Resource.Logout;
+        
         public static string OrLoginLabel => Resource.OrLoginLabel;
+        
         public static string Password => Resource.Password;
+        
         public static string Email => Resource.Email;
+        
         public static string ForgotPassword => Resource.ForgotPassword;
+        
         public static string SignupLabel => Resource.SignupLabel;
+        
         public static string Firstname => Resource.Firstname;
+        
         public static string Lastname => Resource.Lastname;
+        
         public static string Document => Resource.Document;
-        public static string Register => Resource.Register; 
+        
+        public static string Register => Resource.Register;
+        
         public static string Playing => Resource.Playing;
+        
         public static string PlantoPlay => Resource.PlantoPlay;
+        
         public static string Played => Resource.Played;
+        
         public static string Score => Resource.Score;
+        
         public static string ReleaseDate => Resource.ReleaseDate;
+        
         public static string MakeReview => Resource.MakeReview;
+        
         public static string Synopsis => Resource.Synopsis;
+        
         public static string Genres => Resource.Genres;
+        
         public static string Platforms => Resource.Platforms;
+
         public static string Review => Resource.Review;
+        
         public static string Save => Resource.Save;
+        
         public static string EnterEmail => Resource.EnterEmail;
+        
         public static string RecoverPassword => Resource.RecoverPassword;
     }
 }

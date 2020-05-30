@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+﻿using GameON.Common.Models;
+using GameON.Web.Helpers;
 using GameON.Web.Data;
 using GameON.Web.Data.Entities;
+using GameON.Web.Resources;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace GameON.Web.Controllers.API
 {
@@ -15,33 +17,54 @@ namespace GameON.Web.Controllers.API
     public class ReviewController : ControllerBase
     {
         private readonly DataContext _context;
+        private readonly IConverterHelper _converterHelper;
+        private readonly IUserHelper _userHelper;
 
-        public ReviewController(DataContext context)
+        public ReviewController(DataContext context, IConverterHelper converterHelper,IUserHelper userHelper)
         {
             _context = context;
+            _converterHelper = converterHelper;
+            _userHelper = userHelper;
         }
 
-        // GET: api/Review
-        [HttpGet("{id}")]
-        [Route("GetReviewsForGame")]
-        public IEnumerable<ReviewEntity> GetReviewsForGame([FromRoute] int id)
-        {
-            return _context.Reviews.Where(r=>r.VideoGame.Id==id);
-        }
-
-        // GET: api/Review/5
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetReviewEntity([FromRoute] int id)
+        // GET: api/Review/GetReviewsForGame/5
+        [HttpGet("GetReviewsForGame/{id}")]
+        public async Task<IActionResult> GetReviewsForGame([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var reviewEntity = await _context.Reviews
+            VideoGameEntity videoGameEntity = await _context.VideoGames
+                .Include(v => v.Reviews)
+                .ThenInclude(r => r.User)
+                .FirstOrDefaultAsync(t => t.Id == id);
+
+            if (videoGameEntity == null)
+            {
+                return BadRequest(Resource.VideoGameDoesntExists);
+            }
+
+            List<ReviewResponse> reviewResponses = _converterHelper.ToReviewResponse(videoGameEntity.Reviews.ToList());
+
+
+            return Ok(reviewResponses);
+        }
+
+        // GET: api/Review/5
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetReview([FromRoute] int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            ReviewEntity reviewEntity = await _context.Reviews
                 .Include(r => r.User)
-                .Include(r=>r.VideoGame)
-                .Where(r=>r.Id==id)
+                .Include(r => r.VideoGame)
+                .Where(r => r.Id == id)
                 .FirstOrDefaultAsync();
 
             if (reviewEntity == null)
@@ -49,63 +72,82 @@ namespace GameON.Web.Controllers.API
                 return NotFound();
             }
 
-            return Ok(reviewEntity);
+            return Ok(_converterHelper.ToReviewResponse(reviewEntity));
         }
 
-        // PUT: api/Review/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutReviewEntity([FromRoute] int id, [FromBody] ReviewEntity reviewEntity)
+
+        [HttpPost]
+        public async Task<IActionResult> PostReview([FromBody] ReviewRequest request)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != reviewEntity.Id)
+            CultureInfo cultureInfo = new CultureInfo(request.CultureInfo);
+            Resource.Culture = cultureInfo;
+
+            VideoGameEntity videoGameEntity = await _context.VideoGames.FindAsync(request.VideoGameId);
+            if (videoGameEntity == null)
             {
-                return BadRequest();
+                return BadRequest(Resource.VideoGameDoesntExists);
             }
 
-            _context.Entry(reviewEntity).State = EntityState.Modified;
-
-            try
+            UserEntity userEntity = await _userHelper.GetUserAsync(request.UserId);
+            if (userEntity == null)
             {
-                await _context.SaveChangesAsync();
+                return BadRequest(Resource.UserDoesntExists);
             }
-            catch (DbUpdateConcurrencyException)
+
+
+            ReviewEntity reviewEntity = await _context.Reviews
+                .FirstOrDefaultAsync(p => p.User.Id == request.UserId.ToString() && p.VideoGame.Id == request.VideoGameId);
+
+            if (reviewEntity == null)
             {
-                if (!ReviewEntityExists(id))
+                reviewEntity = new ReviewEntity
                 {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                    Score = request.Score,
+                    Review = request.Review,
+                    VideoGame = videoGameEntity,
+                    User = userEntity
+                };
+
+                _context.Reviews.Add(reviewEntity);
+            }
+            else
+            {
+                reviewEntity.Score = request.Score;
+                reviewEntity.Review = request.Review;
+                _context.Reviews.Update(reviewEntity);
             }
 
+            await _context.SaveChangesAsync();
             return NoContent();
         }
 
-        // POST: api/Review
-        [HttpPost]
-        public async Task<IActionResult> PostReviewEntity([FromBody] ReviewEntity reviewEntity)
+
+        // GET: api/Review/
+        [HttpGet]
+        public async Task<IActionResult> GetReviews()
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            _context.Reviews.Add(reviewEntity);
-            await _context.SaveChangesAsync();
+            List<ReviewEntity> reviewEntity = await _context.Reviews
+                .Include(r => r.User)
+                .Include(r => r.VideoGame)
+                .ToListAsync();
 
-            return CreatedAtAction("GetReviewEntity", new { id = reviewEntity.Id }, reviewEntity);
+            if (reviewEntity == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(_converterHelper.ToReviewResponse(reviewEntity));
         }
 
-        
-        private bool ReviewEntityExists(int id)
-        {
-            return _context.Reviews.Any(e => e.Id == id);
-        }
     }
 }

@@ -149,5 +149,14 @@ namespace GameON.Web.Resources {
                 return ResourceManager.GetString("UserDoesntExists", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Videogame doesn&apos;t exists..
+        /// </summary>
+        public static string VideoGameDoesntExists {
+            get {
+                return ResourceManager.GetString("VideoGameDoesntExists", resourceCulture);
+            }
+        }
     }
 }

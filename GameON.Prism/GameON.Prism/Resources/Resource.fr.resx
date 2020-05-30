@@ -208,7 +208,7 @@
     <value>Score</value>
   </data>
   <data name="Search" xml:space="preserve">
-    <value>Rechercher...</value>
+    <value>Rechercher…</value>
   </data>
   <data name="SignupLabel" xml:space="preserve">
     <value>Inscription d'un nouvel utilisateur</value>
@@ -220,22 +220,22 @@
     <value>Jeux vidéo</value>
   </data>
   <data name="FavoriteVideogame" xml:space="preserve">
-    <value>Jeu vidéo préféré!</value>
+    <value>Jeu vidéo préféré</value>
   </data>
   <data name="FavoriteTeamPlaceHolder" xml:space="preserve">
-    <value>Sélectionnez un jeu vidéo!</value>
+    <value>Sélectionnez un jeu vidéo</value>
   </data>
   <data name="ChangePassword" xml:space="preserve">
     <value>Modifier le mot de passe</value>
   </data>
   <data name="Error" xml:space="preserve">
-    <value>Erreur (error)</value>
+    <value>Erreur</value>
   </data>
   <data name="ConnectionError" xml:space="preserve">
-    <value>Impossible de se connecter à internet.</value>
+    <value>Impossible de se connecter à internet</value>
   </data>
   <data name="PictureSource" xml:space="preserve">
-    <value>Où voulez-vous prendre la photo?!</value>
+    <value>Où voulez-vous prendre la photo?</value>
   </data>
   <data name="FromCamera" xml:space="preserve">
     <value>De l'appareil photo</value>
@@ -243,17 +243,14 @@
   <data name="FromGallery" xml:space="preserve">
     <value>À partir de la galerie</value>
   </data>
-  <data name="Cancel_Duplicate[1]" xml:space="preserve">
-    <value>Annuler</value>
-  </data>
   <data name="DocumentError" xml:space="preserve">
-    <value>Vous devez saisir un document.!</value>
+    <value>Vous devez saisir un document.</value>
   </data>
   <data name="FirstNameError" xml:space="preserve">
-    <value>- Vous devez entrer un prénom</value>
+    <value>Vous devez entrer un prénom.</value>
   </data>
   <data name="LastNameError" xml:space="preserve">
-    <value>- Vous devez entrer un nom</value>
+    <value>Vous devez entrer un nom.</value>
   </data>
   <data name="EmailError" xml:space="preserve">
     <value>Vous devez entrer un email.</value>
@@ -263,5 +260,11 @@
   </data>
   <data name="LoginError" xml:space="preserve">
     <value>Erreur formulaire de connexion</value>
+  </data>
+  <data name="ReviewError" xml:space="preserve">
+    <value>Vous devez entrer votre avis</value>
+  </data>
+  <data name="ScoreError" xml:space="preserve">
+    <value>Vous devez entrer un score</value>
   </data>
 </root>

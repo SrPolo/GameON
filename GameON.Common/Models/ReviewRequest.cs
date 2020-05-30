@@ -7,7 +7,8 @@ namespace GameON.Common.Models
 {
     public class ReviewRequest
     {
-        public UserResponse User { get; set; }
+        [Required(ErrorMessage = "The field {0} is mandatory.")]
+        public Guid UserId { get; set; }
 
         [Display(Name ="Review")]
         [Required(ErrorMessage =("You must enter your {0}"))]
@@ -17,6 +18,10 @@ namespace GameON.Common.Models
         [Required(ErrorMessage = ("You must enter and {0}"))]
         public float Score { get; set; }
 
-        public VideoGameResponse VideoGame { get; set; }
+        [Required(ErrorMessage = "The field {0} is mandatory.")]
+        public int VideoGameId { get; set; }
+
+        [Required]
+        public string CultureInfo { get; set; }
     }
 }

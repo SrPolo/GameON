@@ -78,6 +78,7 @@
     <PackageReference Include="Prism.DryIoc.Forms" Version="7.2.0.1422" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Implementations\Localize.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <LinkDescription Include="LinkerSettings.xml" />
@@ -104,6 +105,10 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\GameON.Common\GameON.Common.csproj">
+      <Project>{BAE62011-8D4F-4A37-8DEB-E45F8E144346}</Project>
+      <Name>GameON.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GameON.Prism\GameON.Prism.csproj">
       <Project>{A682884C-CB44-4A89-B752-27BB634E0ABE}</Project>
       <Name>GameON.Prism</Name>

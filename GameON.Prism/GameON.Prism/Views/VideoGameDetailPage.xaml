@@ -62,9 +62,9 @@
                         </Picker.ItemsSource>
                     </Picker>
 
-                    <Button Text="Make a review"
+                    <Button Text="Reviews"
                             BorderRadius="30"
-                            Command="{Binding MakeReviewCommand}"/>
+                            Command="{Binding ReviewsCommand}"/>
                 </StackLayout>
 
                 <StackLayout
@@ -79,45 +79,61 @@
                     </ScrollView>
                 </StackLayout>
 
-                <StackLayout Grid.Row="2"
-                         Grid.ColumnSpan="2"
-                             Margin="10,0">
-                    <Label Text="Genres"
-                   FontAttributes="Bold"/>
-                    <StackLayout BindableLayout.ItemsSource="{Binding Genres}">
-                        <BindableLayout.ItemTemplate>
-                            <DataTemplate>
-                                <StackLayout>
-                                    <Label Text="{Binding Genre.Genre}"/>
-                                </StackLayout>
-                            </DataTemplate>
-                        </BindableLayout.ItemTemplate>
+                <Grid Grid.Row="2"
+                      Grid.ColumnSpan="2"
+                      Margin="10,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackLayout Grid.Column="0">
+                        <Label Text="Genres"
+                                    FontAttributes="Bold"/>
+                        <StackLayout BindableLayout.ItemsSource="{Binding Genres}"
+                                     Orientation="Vertical">                        
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <StackLayout>
+                                        <Label Text="{Binding Genre.Genre}"/>
+                                    </StackLayout>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </StackLayout>
                     </StackLayout>
 
-                    <Label Text="Platforms"
-                   FontAttributes="Bold"/>
-                    <StackLayout BindableLayout.ItemsSource="{Binding Platforms}">
-                        <BindableLayout.ItemTemplate>
-                            <DataTemplate>
-                                <StackLayout>
-                                    <Label Text="{Binding Platform.Name}"/>
-                                </StackLayout>
-                            </DataTemplate>
-                        </BindableLayout.ItemTemplate>
+                    <StackLayout Grid.Column="1">
+                        <Label Text="Platforms"
+                               FontAttributes="Bold"/>
+                        <StackLayout BindableLayout.ItemsSource="{Binding Platforms}"
+                                 Orientation="Vertical">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <StackLayout>
+                                        <Label Text="{Binding Platform.Name}"/>
+                                    </StackLayout>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </StackLayout>
                     </StackLayout>
 
-                    <Label Text="Developers"
-                   FontAttributes="Bold"/>
-                    <StackLayout BindableLayout.ItemsSource="{Binding Developers}">
-                        <BindableLayout.ItemTemplate>
-                            <DataTemplate>
-                                <StackLayout>
-                                    <Label Text="{Binding Developer.Name}"/>
-                                </StackLayout>
-                            </DataTemplate>
-                        </BindableLayout.ItemTemplate>
+                    <StackLayout Grid.Column="2">
+                        <Label Text="Developers"
+                               FontAttributes="Bold"/>
+                        <StackLayout BindableLayout.ItemsSource="{Binding Developers}"
+                                 Orientation="Vertical">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <StackLayout>
+                                        <Label Text="{Binding Developer.Name}"/>
+                                    </StackLayout>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </StackLayout>
                     </StackLayout>
-                </StackLayout>
+                    
+                </Grid>
             </Grid>
         </ScrollView>
     </RefreshView>

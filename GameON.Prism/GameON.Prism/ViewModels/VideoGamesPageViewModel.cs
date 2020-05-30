@@ -2,6 +2,7 @@
 using GameON.Common.Services;
 using Prism.Commands;
 using Prism.Navigation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -12,9 +13,12 @@ namespace GameON.Prism.ViewModels
         private readonly INavigationService _navigationService;
         private readonly IApiService _apiService;
         private List<VideoGameItemViewModel> _videoGames;
+        private List<VideoGameItemViewModel> videoGamesList;
         private bool _isRunning;
         private bool _isRefreshing;
         private DelegateCommand _refreshCommand;
+        private DelegateCommand _searchCommand;
+        private string _filter;
 
         public VideoGamesPageViewModel(INavigationService navigationService, IApiService apiService) : base(navigationService)
         {
@@ -26,10 +30,23 @@ namespace GameON.Prism.ViewModels
 
         public DelegateCommand RefreshCommand => _refreshCommand ?? (_refreshCommand = new DelegateCommand(LoadVideoGamesAsync));
 
+        public DelegateCommand SearchCommand => _searchCommand ?? (_searchCommand = new DelegateCommand(Search));
+
+        
+
         public bool IsRefreshing
         {
             get => _isRefreshing;
             set => SetProperty(ref _isRefreshing, value);
+        }
+
+        public string Filter
+        {
+            get => _filter;
+            set {
+                SetProperty(ref _filter, value);
+                Search();
+            }
         }
 
         public List<VideoGameItemViewModel> VideoGames
@@ -44,11 +61,16 @@ namespace GameON.Prism.ViewModels
             set => SetProperty(ref _isRunning, value);
         }
 
+        private void Search()
+        {
+            IsRunning = true;
+            VideoGames = videoGamesList.Where(v => v.Name.ToLower().Contains(Filter.ToLower())).OrderBy(v => v.Name).ToList();
+            IsRunning = false;
+        }
 
         private async void LoadVideoGamesAsync()
         {
             IsRunning = true;
-            IsRefreshing = true;
             string url = App.Current.Resources["UrlAPI"].ToString();
 
             Response response = await _apiService.GetListAsync<VideoGameResponse>(url, "/api", "/videogames");
@@ -63,7 +85,7 @@ namespace GameON.Prism.ViewModels
 
             
             List<VideoGameResponse> videoGames = (List<VideoGameResponse>)response.Result;
-            VideoGames = videoGames.Select(v => new VideoGameItemViewModel(_navigationService)
+            videoGamesList = videoGames.Select(v => new VideoGameItemViewModel(_navigationService)
             {
                 Developers = v.Developers,
                 Genres = v.Genres,
@@ -74,7 +96,8 @@ namespace GameON.Prism.ViewModels
                 ReleaseDate = v.ReleaseDate,
                 Score = v.Score,
                 Synopsis = v.Synopsis
-            }).ToList();
+            }).OrderBy(v=>v.Name).ToList();
+            VideoGames = videoGamesList;
         }
     }
 }

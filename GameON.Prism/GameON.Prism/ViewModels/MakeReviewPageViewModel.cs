@@ -73,7 +73,7 @@ namespace GameON.Prism.ViewModels
                 {
                     Score=Score,
                     Review=Review,
-                    VideoGame=VideoGame,
+                    VideoGameId=VideoGame.Id,
                     //User= user
                 };
                 await App.Current.MainPage.DisplayAlert("Melo", reviewRequest.Score+"--" + reviewRequest.Review, "Aceptar");
@@ -84,13 +84,13 @@ namespace GameON.Prism.ViewModels
         {
             if (Score==0)
             {
-                await App.Current.MainPage.DisplayAlert("Complete", "Languages.ScoreError", "Accept");
+                await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.ScoreError, Languages.Accept);
                 return false;
             }
 
             if (string.IsNullOrEmpty(Review))
             {
-                await App.Current.MainPage.DisplayAlert("Complete", "Languages.ReviewError", "Accept");
+                await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.ReviewError, Languages.Accept);
                 return false;
             }
 

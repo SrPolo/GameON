@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,14 +18,14 @@ namespace GameON.Common.Services
         {
             try
             {
-                var client = new HttpClient
+                HttpClient client = new HttpClient
                 {
                     BaseAddress = new Uri(urlBase),
                 };
 
-                var url = $"{servicePrefix}{controller}";
-                var response = await client.GetAsync(url);
-                var result = await response.Content.ReadAsStringAsync();
+                string url = $"{servicePrefix}{controller}";
+                HttpResponseMessage response = await client.GetAsync(url);
+                string result = await response.Content.ReadAsStringAsync();
 
                 if (!response.IsSuccessStatusCode)
                 {
@@ -35,11 +36,50 @@ namespace GameON.Common.Services
                     };
                 }
 
-                var list = JsonConvert.DeserializeObject<List<T>>(result);
+                List<T> list = JsonConvert.DeserializeObject<List<T>>(result);
                 return new Response
                 {
                     IsSuccess = true,
                     Result = list
+                };
+            }
+            catch (Exception ex)
+            {
+                return new Response
+                {
+                    IsSuccess = false,
+                    Message = ex.Message
+                };
+            }
+        }
+
+        public async Task<Response> GetReview(string urlBase, string servicePrefix, string controller)
+        {
+            try
+            {
+                HttpClient client = new HttpClient
+                {
+                    BaseAddress = new Uri(urlBase)
+                };
+
+                string url = $"{servicePrefix}{controller}";
+                HttpResponseMessage response = await client.GetAsync(url);
+                string result = await response.Content.ReadAsStringAsync();
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    return new Response
+                    {
+                        IsSuccess = false,
+                        Message = result,
+                    };
+                }
+
+                ReviewResponse reviewResponse = JsonConvert.DeserializeObject<ReviewResponse>(result);
+                return new Response
+                {
+                    IsSuccess = true,
+                    Result = reviewResponse
                 };
             }
             catch (Exception ex)
@@ -79,6 +119,46 @@ namespace GameON.Common.Services
                 {
                     IsSuccess = true,
                     Result = videoGameResponse
+                };
+            }
+            catch (Exception ex)
+            {
+                return new Response
+                {
+                    IsSuccess = false,
+                    Message = ex.Message
+                };
+            }
+        }
+
+        public async Task<Response> MakeReviewAsync<ReviewRequest>(string urlBase, string servicePrefix, string controller, ReviewRequest reviewRequest, string tokenType, string accessToken)
+        {
+            try
+            {
+                string request = JsonConvert.SerializeObject(reviewRequest);
+                StringContent content = new StringContent(request, Encoding.UTF8, "application/json");
+                HttpClient client = new HttpClient
+                {
+                    BaseAddress = new Uri(urlBase)
+                };
+
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(tokenType, accessToken);
+                string url = $"{servicePrefix}{controller}";
+                HttpResponseMessage response = await client.PostAsync(url, content);
+                string result = await response.Content.ReadAsStringAsync();
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    return new Response
+                    {
+                        IsSuccess = false,
+                        Message = result,
+                    };
+                }
+
+                return new Response
+                {
+                    IsSuccess = true
                 };
             }
             catch (Exception ex)

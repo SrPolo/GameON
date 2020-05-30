@@ -18,7 +18,7 @@ namespace GameON.Prism.ViewModels
         private List<VGGenreResponse> _genres;
         private List<VGPlatformResponse> _platforms;
         private List<VGDeveloperResponse> _developers;
-        private DelegateCommand _makeReviewCommand;
+        private DelegateCommand _reviewCommand;
         private DelegateCommand _refreshCommand;
         private bool _isRefreshing;
 
@@ -29,7 +29,7 @@ namespace GameON.Prism.ViewModels
             _apiService = apiService;
         }
 
-        public DelegateCommand MakeReviewCommand => _makeReviewCommand ?? (_makeReviewCommand = new DelegateCommand(MakeReviewAsync));
+        public DelegateCommand ReviewsCommand => _reviewCommand ?? (_reviewCommand = new DelegateCommand(ViewReviewsAsync));
         public DelegateCommand RefreshCommand => _refreshCommand ?? (_refreshCommand = new DelegateCommand(RefreshAsync));
 
         public bool IsRefreshing
@@ -92,14 +92,14 @@ namespace GameON.Prism.ViewModels
             VideoGame = (VideoGameResponse)response.Result;
         }
 
-        private async void MakeReviewAsync()
+        private async void ViewReviewsAsync()
         {
             NavigationParameters parameters = new NavigationParameters
             {
                 { "videogame", VideoGame }
             };
 
-            await _navigationService.NavigateAsync(nameof(MakeReviewPage),parameters);
+            await _navigationService.NavigateAsync(nameof(GameReviewsPage),parameters);
         }
 
 

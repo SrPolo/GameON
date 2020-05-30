@@ -43,6 +43,7 @@ namespace GameON.Web.Helpers
 
             return list;
         }
+
         public VideoGameResponse ToVideoGameResponse(VideoGameEntity videoGameEntity)
         {
             return new VideoGameResponse
@@ -123,12 +124,38 @@ namespace GameON.Web.Helpers
 
         public ReviewResponse ToReviewResponse(ReviewEntity reviewEntity)
         {
-            throw new NotImplementedException();
+            return new ReviewResponse
+            {
+                Id = reviewEntity.Id,
+                Review = reviewEntity.Review,
+                VideoGame = new VideoGameResponse
+                {
+                    Id=reviewEntity.VideoGame.Id,
+                    Name = reviewEntity.VideoGame.Name,
+                    PicturePath = reviewEntity.VideoGame.PicturePath,
+                    ReleaseDate =reviewEntity.VideoGame.ReleaseDate,
+                    Score = reviewEntity.VideoGame.Score,
+                    Synopsis= reviewEntity.VideoGame.Synopsis
+                },
+                Score = reviewEntity.Score,
+                User = new UserResponse
+                {
+                    FirstName=reviewEntity.User.FirstName,
+                    LastName = reviewEntity.User.LastName,
+                    PicturePath = reviewEntity.User.PicturePath                    
+                }
+            };
         }
 
         public List<ReviewResponse> ToReviewResponse(List<ReviewEntity> reviewEntities)
         {
-            throw new NotImplementedException();
+            List<ReviewResponse> list = new List<ReviewResponse>();
+            foreach (ReviewEntity reviewEntity in reviewEntities)
+            {
+                list.Add(ToReviewResponse(reviewEntity));
+            }
+
+            return list;
         }
     }
 }

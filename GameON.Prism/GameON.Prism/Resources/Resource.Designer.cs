@@ -223,7 +223,7 @@ namespace GameON.Prism.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to From camera .
+        ///   Looks up a localized string similar to From camera.
         /// </summary>
         public static string FromCamera {
             get {
@@ -439,6 +439,15 @@ namespace GameON.Prism.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You must enter your review.
+        /// </summary>
+        public static string ReviewError {
+            get {
+                return ResourceManager.GetString("ReviewError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
         public static string Save {
@@ -453,6 +462,15 @@ namespace GameON.Prism.Resources {
         public static string Score {
             get {
                 return ResourceManager.GetString("Score", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You must enter an score.
+        /// </summary>
+        public static string ScoreError {
+            get {
+                return ResourceManager.GetString("ScoreError", resourceCulture);
             }
         }
         

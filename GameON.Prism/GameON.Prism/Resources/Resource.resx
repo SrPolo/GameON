@@ -117,19 +117,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  
-  
   <data name="Accept" xml:space="preserve">
     <value>Accept</value>
   </data>
-
   <data name="EmailError" xml:space="preserve">
     <value>You must enter an email.</value>
   </data>
   <data name="PasswordError" xml:space="preserve">
     <value>You must enter a password.</value>
   </data>
-
   <data name="PictureSource" xml:space="preserve">
     <value>Where do you want to take the picture?</value>
   </data>
@@ -137,7 +133,7 @@
     <value>Cancel</value>
   </data>
   <data name="FromCamera" xml:space="preserve">
-    <value>From camera </value>
+    <value>From camera</value>
   </data>
   <data name="FromGallery" xml:space="preserve">
     <value>From gallery</value>
@@ -148,14 +144,11 @@
   <data name="DocumentError" xml:space="preserve">
     <value>You must enter a document.</value>
   </data>
-   <data name="FirstNameError" xml:space="preserve">
+  <data name="FirstNameError" xml:space="preserve">
     <value>You must enter a first name.</value>
   </data>
-   <data name="LastNameError" xml:space="preserve">
+  <data name="LastNameError" xml:space="preserve">
     <value>You must enter a last name.</value>
-  </data>
-  <data name="Cancel" xml:space="preserve">
-    <value>Cancel</value>
   </data>
   <data name="Developers" xml:space="preserve">
     <value>Developers:</value>
@@ -166,7 +159,6 @@
   <data name="Email" xml:space="preserve">
     <value>Email</value>
   </data>
-
   <data name="LoginError" xml:space="preserve">
     <value>Error on login</value>
   </data>
@@ -268,5 +260,11 @@
   </data>
   <data name="ConnectionError" xml:space="preserve">
     <value>Could not connect to the internet</value>
+  </data>
+  <data name="ReviewError" xml:space="preserve">
+    <value>You must enter your review</value>
+  </data>
+  <data name="ScoreError" xml:space="preserve">
+    <value>You must enter an score</value>
   </data>
 </root>

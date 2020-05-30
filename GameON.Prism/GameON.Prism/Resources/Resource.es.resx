@@ -208,7 +208,7 @@
     <value>Puntuación</value>
   </data>
   <data name="Search" xml:space="preserve">
-    <value>Buscar...</value>
+    <value>Buscar…</value>
   </data>
   <data name="SignupLabel" xml:space="preserve">
     <value>Nuevo usuario? Registrate</value>
@@ -232,7 +232,7 @@
     <value>Error</value>
   </data>
   <data name="ConnectionError" xml:space="preserve">
-    <value>No se pudo conectar a Internet.</value>
+    <value>No se pudo conectar a Internet</value>
   </data>
   <data name="PictureSource" xml:space="preserve">
     <value>¿Dónde quieres tomar la foto?</value>
@@ -243,17 +243,14 @@
   <data name="FromGallery" xml:space="preserve">
     <value>De la galería</value>
   </data>
-  <data name="Cancel_Duplicate[1]" xml:space="preserve">
-    <value>Cancelar</value>
-  </data>
   <data name="DocumentError" xml:space="preserve">
-    <value>Debe ingresar un documento.!</value>
+    <value>Debe ingresar un documento.</value>
   </data>
   <data name="FirstNameError" xml:space="preserve">
-    <value>Debe escribir un nombre</value>
+    <value>Debe escribir un nombre.</value>
   </data>
   <data name="LastNameError" xml:space="preserve">
-    <value>Debe escribir apellidos</value>
+    <value>Debe escribir apellidos.</value>
   </data>
   <data name="EmailError" xml:space="preserve">
     <value>Debes ingresar un correo electrónico.</value>
@@ -262,6 +259,12 @@
     <value>Debe especificar una contraseña.</value>
   </data>
   <data name="LoginError" xml:space="preserve">
-    <value>¡Error al iniciar sesión!</value>
+    <value>Error al iniciar sesión</value>
+  </data>
+  <data name="ReviewError" xml:space="preserve">
+    <value>Debes ingresar tu reseña</value>
+  </data>
+  <data name="ScoreError" xml:space="preserve">
+    <value>Debes ingresar un puntaje</value>
   </data>
 </root>

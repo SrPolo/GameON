@@ -147,4 +147,7 @@
   <data name="PasswordChangedSuccess" xml:space="preserve">
     <value>The password was changed successfully!</value>
   </data>
+  <data name="VideoGameDoesntExists" xml:space="preserve">
+    <value>Videogame doesn't exists.</value>
+  </data>
 </root>

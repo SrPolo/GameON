@@ -17,8 +17,6 @@ namespace GameON.Common.Models
 
         public string LastName { get; set; }
 
-        public string Address { get; set; }
-
         public string PicturePath { get; set; }
 
         public UserType UserType { get; set; }
