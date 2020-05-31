@@ -50,6 +50,8 @@ namespace GameON.Prism
             containerRegistry.RegisterForNavigation<ModifyUserPage, ModifyUserPageViewModel>();
             containerRegistry.RegisterForNavigation<GameReviewsPage, GameReviewsPageViewModel>();
             containerRegistry.RegisterForNavigation<ReviewDetailsPage, ReviewDetailsPageViewModel>();
+            containerRegistry.RegisterForNavigation<UsersPage, UsersPageViewModel>();
+            containerRegistry.RegisterForNavigation<UserProfilePage, UserProfilePageViewModel>();
         }
     }
 }

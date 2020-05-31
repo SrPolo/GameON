@@ -14,6 +14,8 @@ namespace GameON.Common.Services
 
         Task<Response> GetVideoGame(string urlBase, string servicePrefix, string controller);
 
+        Task<Response> GetUserProfile(string urlBase, string servicePrefix, string controller);
+
         Task<Response> GetReview(string urlBase, string servicePrefix, string controller);
     }
 }

@@ -41,6 +41,12 @@ namespace GameON.Prism.ViewModels
                 new Menu
                 {
                     Icon = "ic_rate_review",
+                    PageName = nameof(UsersPage),
+                    Title = "Search users"
+                },
+                new Menu
+                {
+                    Icon = "ic_rate_review",
                     PageName = nameof(MyReviewsPage),
                     Title = "My reviews"
                 },

@@ -12,6 +12,7 @@ namespace GameON.Common.Models
 
         [Display(Name ="Review")]
         [Required(ErrorMessage =("You must enter your {0}"))]
+        [MaxLength(1500, ErrorMessage = "The {0} field can not have more than {1} characters.")]
         public string Review { get; set; }
 
         [Display(Name = "Score")]

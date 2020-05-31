@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
+using System;
 
 namespace GameON.Web.Controllers.API
 {
@@ -47,6 +48,32 @@ namespace GameON.Web.Controllers.API
             }
 
             List<ReviewResponse> reviewResponses = _converterHelper.ToReviewResponse(videoGameEntity.Reviews.ToList());
+
+
+            return Ok(reviewResponses);
+        }
+
+        // GET: api/Review/GetUserReviews/5
+        [HttpGet("GetUserReviews/{id}")]
+        public async Task<IActionResult> GetUserReviews([FromRoute] Guid id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            List<ReviewEntity> reviewEntities = await _context.Reviews
+                .Include(r => r.VideoGame)
+                .Include(r=>r.User)
+                .Where(r=>r.User.Id==id.ToString())
+                .ToListAsync();
+
+            if (reviewEntities == null)
+            {
+                return BadRequest("El usuario no tiene reviews");
+            }
+
+            List<ReviewResponse> reviewResponses = _converterHelper.ToReviewResponse(reviewEntities);
 
 
             return Ok(reviewResponses);

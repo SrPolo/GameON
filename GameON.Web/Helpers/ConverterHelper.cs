@@ -33,6 +33,40 @@ namespace GameON.Web.Helpers
             };
         }
 
+        public UserResponse ToUserResponseProfile(UserEntity user)
+        {
+            UserResponse userResponse = new UserResponse
+            {
+                FirstName = user.FirstName,
+                Id = user.Id,
+                PicturePath = user.PicturePath,
+                VideoGame = null
+            };
+
+            if (user.VideoGame != null)
+            {
+                userResponse.VideoGame = new VideoGameResponse
+                {
+                    Id = user.VideoGame.Id,
+                    Name = user.VideoGame.Name,
+                    PicturePath = user.VideoGame.PicturePath
+                };
+            }
+
+            return userResponse;
+        }
+
+        public List<UserResponse> ToUserResponseProfile(List<UserEntity> userEntities)
+        {
+            List<UserResponse> list = new List<UserResponse>();
+            foreach (UserEntity userEntity in userEntities)
+            {
+                list.Add(ToUserResponseProfile(userEntity));
+            }
+
+            return list;
+        }
+
         public List<VideoGameResponse> ToVideoGameResponse(List<VideoGameEntity> videoGameEntities)
         {
             List<VideoGameResponse> list = new List<VideoGameResponse>();

@@ -9,6 +9,10 @@ namespace GameON.Web.Helpers
     {
         UserResponse ToUserResponse(UserEntity userEntity);
 
+        UserResponse ToUserResponseProfile(UserEntity userEntity);
+
+        List<UserResponse> ToUserResponseProfile(List<UserEntity> userEntities);
+
         VideoGameEntity ToVideoGameEntity(VideoGameViewModel model, string path, bool isNew);
 
         VideoGameViewModel ToVideoGameViewModel(VideoGameEntity videoGameEntity);
