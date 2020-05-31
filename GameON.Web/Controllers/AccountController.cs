@@ -132,7 +132,7 @@ namespace GameON.Web.Controllers
             UserEntity model = new UserEntity
             {
                 
-                Document = user.Document,
+                
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 Email = user.Email
@@ -149,7 +149,7 @@ namespace GameON.Web.Controllers
 
                 UserEntity user = await _userHelper.GetUserAsync(User.Identity.Name);
 
-                user.Document = model.Document;
+               
                 user.FirstName = model.FirstName;
                 user.LastName = model.LastName;
                 

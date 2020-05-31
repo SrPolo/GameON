@@ -4,9 +4,7 @@ namespace GameON.Common.Models
 {
     public class UserRequest
     {
-        [Required]
-        public string Document { get; set; }
-
+       
         [Required]
         public string FirstName { get; set; }
 

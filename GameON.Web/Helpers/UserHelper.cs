@@ -64,7 +64,7 @@ namespace GameON.Web.Helpers
         {
             UserEntity userEntity = new UserEntity
             {
-                
+
                 Email = model.Username,
                 FirstName = model.FirstName,
                 LastName = model.LastName,
