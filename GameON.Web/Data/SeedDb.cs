@@ -49,6 +49,7 @@ namespace GameON.Web.Data
                 {
                     FirstName = firstName,
                     LastName = lastName,
+                    //VideoGame = _context.VideoGames.FirstOrDefault(),
                     Email = email,
                     UserName = email,
                     Document = document,

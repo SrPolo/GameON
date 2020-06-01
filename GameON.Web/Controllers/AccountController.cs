@@ -100,7 +100,7 @@ namespace GameON.Web.Controllers
                     "ResetPassword",
                     "Account",
                     new { token = myToken }, protocol: HttpContext.Request.Scheme);
-                _mailHelper.SendMail(model.Email, "Gastos Password Reset", $"<h1>Gastos Password Reset</h1>" +
+                _mailHelper.SendMail(model.Email, "GameON Password Reset", $"<h1>Gastos Password Reset</h1>" +
                     $"To reset the password click in this link:</br></br>" +
                     $"<a href = \"{link}\">Reset Password</a>");
                 ViewBag.Message = "The instructions to recover your password has been sent to email.";
@@ -197,7 +197,6 @@ namespace GameON.Web.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(AddUserViewModel model)
         {
             if (ModelState.IsValid)
@@ -225,14 +224,8 @@ namespace GameON.Web.Controllers
                     ViewBag.Message = "The instructions to allow your user has been sent to email.";
                     return View(model);
                 }
-
-                ModelState.AddModelError(string.Empty, response.Message);
-
-            }
-
-
+            }             
             return View(model);
-
         }
 
 
