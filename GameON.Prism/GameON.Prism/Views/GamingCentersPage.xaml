@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"   
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="GameON.Prism.Views.GamingCentersPage"
+             Title="{Binding Title}">
+
+    <StackLayout>
+        <maps:Map x:Name="MyMap"
+                  MapType="Street">
+            <maps:Map.Pins>
+                <maps:Pin Label="Gaming Center GameON-San Javier"
+                       Address="Cra. 98-47f#20"
+                       Type="Place">
+                    <maps:Pin.Position>
+                        <maps:Position>
+                            <x:Arguments>
+                                <x:Double>6.257804</x:Double>
+                                <x:Double>-75.613141</x:Double>
+                            </x:Arguments>
+                        </maps:Position>
+                    </maps:Pin.Position>
+                </maps:Pin>
+
+                <maps:Pin Label="Gaming Center GameON-Unicentro"
+                       Address="Cra. 66B ##34A-76"
+                       Type="Place">
+                    <maps:Pin.Position>
+                        <maps:Position>
+                            <x:Arguments>
+                                <x:Double>6.2408299</x:Double>
+                                <x:Double>-75.5873715</x:Double>
+                            </x:Arguments>
+                        </maps:Position>
+                    </maps:Pin.Position>
+                </maps:Pin>
+
+                <maps:Pin Label="Gaming Center GameON-San antonio"
+                       Address="Cl. 46 #50-11"
+                       Type="Place">
+                    <maps:Pin.Position>
+                        <maps:Position>
+                            <x:Arguments>
+                                <x:Double>6.2467567</x:Double>
+                                <x:Double>-75.569945</x:Double>
+                            </x:Arguments>
+                        </maps:Position>
+                    </maps:Pin.Position>
+                </maps:Pin>
+            </maps:Map.Pins>
+        </maps:Map>
+    </StackLayout>
+
+</ContentPage>

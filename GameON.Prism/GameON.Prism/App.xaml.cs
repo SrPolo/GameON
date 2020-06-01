@@ -34,6 +34,7 @@ namespace GameON.Prism
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            containerRegistry.Register<IGeolocatorService, GeolocatorService>();
             containerRegistry.Register<IApiService, ApiService>();
             containerRegistry.RegisterSingleton<IAppInfo, AppInfoImplementation>();
             containerRegistry.RegisterForNavigation<NavigationPage>();
@@ -52,6 +53,7 @@ namespace GameON.Prism
             containerRegistry.RegisterForNavigation<ReviewDetailsPage, ReviewDetailsPageViewModel>();
             containerRegistry.RegisterForNavigation<UsersPage, UsersPageViewModel>();
             containerRegistry.RegisterForNavigation<UserProfilePage, UserProfilePageViewModel>();
+            containerRegistry.RegisterForNavigation<GamingCentersPage, GamingCentersPageViewModel>();
         }
     }
 }

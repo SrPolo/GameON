@@ -34,13 +34,13 @@ namespace GameON.Prism.ViewModels
                 },
                 new Menu
                 {
-                    Icon = "ic_format_list_bulleted",
-                    PageName = nameof(MyGameListPage),
-                    Title = "My game list"
+                    Icon = "ic_format_list_bulleted", //Cambiar
+                    PageName = nameof(GamingCentersPage),
+                    Title = "Gaming centers"
                 },
                 new Menu
                 {
-                    Icon = "ic_rate_review",
+                    Icon = "ic_rate_review", //Cambiar
                     PageName = nameof(UsersPage),
                     Title = "Search users"
                 },
