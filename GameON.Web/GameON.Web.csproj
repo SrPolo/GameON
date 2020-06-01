@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <Folder Include="Views\Account\" />
+    <Folder Include="wwwroot\images\Users\" />
     <Folder Include="wwwroot\images\VideoGames\" />
   </ItemGroup>
 

@@ -64,7 +64,7 @@ namespace GameON.Web.Helpers
         {
             UserEntity userEntity = new UserEntity
             {
-
+                Document =model.Document,
                 Email = model.Username,
                 FirstName = model.FirstName,
                 LastName = model.LastName,
@@ -106,12 +106,15 @@ namespace GameON.Web.Helpers
 
         public async Task<UserEntity> GetUserAsync(string email)
         {
-            return await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
+            return await _context.Users.Include(u=>u.VideoGame)
+                .FirstOrDefaultAsync(u => u.Email == email);
         }
 
         public async Task<UserEntity> GetUserAsync(Guid userId)
         {
-            return await _context.Users.FirstOrDefaultAsync(u => u.Id == userId.ToString());
+            return await _context.Users
+                .Include(u => u.VideoGame)
+                .FirstOrDefaultAsync(u => u.Id == userId.ToString());
         }
 
 

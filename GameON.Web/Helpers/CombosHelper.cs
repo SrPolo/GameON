@@ -68,5 +68,23 @@ namespace GameON.Web.Helpers
             list.FirstOrDefault().Disabled = true;
             return list;
         }
+
+        public IEnumerable<SelectListItem> GetComboVideoGames()
+        {
+            List<SelectListItem> list = _context.VideoGames.Select(t => new SelectListItem
+            {
+                Text = t.Name,
+                Value = $"{t.Id}"
+            }).OrderBy(t => t.Text)
+                .ToList();
+
+            list.Insert(0, new SelectListItem
+            {
+                Text = "[Select videogame...]",
+                Value = "0"
+            });
+            list.FirstOrDefault().Disabled = true;
+            return list;
+        }
     }
 }

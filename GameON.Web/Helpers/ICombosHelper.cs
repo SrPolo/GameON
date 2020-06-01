@@ -12,5 +12,7 @@ namespace GameON.Web.Helpers
         IEnumerable<SelectListItem> GetComboDevelopers();
         IEnumerable<SelectListItem> GetComboGenres();
 
+        IEnumerable<SelectListItem> GetComboVideoGames();
+
     }
 }

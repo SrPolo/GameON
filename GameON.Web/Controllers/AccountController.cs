@@ -1,5 +1,6 @@
 ﻿using GameON.Common.Enums;
 using GameON.Common.Models;
+using GameON.Web.Data;
 using GameON.Web.Data.Entities;
 using GameON.Web.Helpers;
 using GameON.Web.Models;
@@ -8,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
+using System.Diagnostics;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
@@ -22,12 +24,23 @@ namespace GameON.Web.Controllers
         private readonly IUserHelper _userHelper;
         private readonly IConfiguration _configuration;
         private readonly IMailHelper _mailHelper;
+        private readonly ICombosHelper _combosHelper;
+        private readonly IImageHelper _imageHelper;
+        private readonly DataContext _context;
 
-        public AccountController(IUserHelper userHelper, IConfiguration configuration, IMailHelper mailHelper)
+        public AccountController(IUserHelper userHelper,
+            IConfiguration configuration,
+            IMailHelper mailHelper,
+            ICombosHelper combosHelper,
+            IImageHelper imageHelper,
+            DataContext context)
         {
             _userHelper = userHelper;
             _configuration = configuration;
             _mailHelper = mailHelper;
+            _combosHelper = combosHelper;
+            _imageHelper = imageHelper;
+            _context = context;
         }
 
         public IActionResult Login()
@@ -129,29 +142,39 @@ namespace GameON.Web.Controllers
         {
             UserEntity user = await _userHelper.GetUserAsync(User.Identity.Name);
 
-            UserEntity model = new UserEntity
+            EditUserViewModel model = new EditUserViewModel
             {
-                
-                
+                Document = user.Document,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
-                Email = user.Email
+                PicturePath = user.PicturePath,
+                VideoGames = _combosHelper.GetComboVideoGames(),
+                VideoGameId = user.VideoGame.Id
             };
             return View(model);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> ChangeUser(UserEntity model)
+        public async Task<IActionResult> ChangeUser(EditUserViewModel model)
         {
             if (ModelState.IsValid)
             {
+                string path = model.PicturePath;
+
+                if (model.PictureFile != null)
+                {
+                    path = await _imageHelper.UploadImageAsync(model.PictureFile, "Users");
+                }
 
                 UserEntity user = await _userHelper.GetUserAsync(User.Identity.Name);
 
                
                 user.FirstName = model.FirstName;
                 user.LastName = model.LastName;
+                user.Document = model.Document;
+                user.PicturePath = path;
+                user.VideoGame = await _context.VideoGames.FindAsync(model.VideoGameId);
                 
 
                 await _userHelper.UpdateUserAsync(user);
@@ -159,6 +182,7 @@ namespace GameON.Web.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
+            model.VideoGames = _combosHelper.GetComboVideoGames();
             return View(model);
         }
 
@@ -283,6 +307,7 @@ namespace GameON.Web.Controllers
         {
             return View();
         }
+
 
         [HttpPost]
         public async Task<IActionResult> ChangePasswordMVC(ChangePasswordViewModel model)

@@ -33,13 +33,12 @@
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
-                    <li><a asp-area="" asp-controller="VideoGame" asp-action="Index">VideoGames</a></li>
-                    <li><a asp-area="" asp-controller="Developer" asp-action="Index">Developers</a></li>
-                    <li><a asp-area="" asp-controller="Platforms" asp-action="Index">Platforms</a></li>
+
                     @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                     {
-                        <li><a asp-area="" asp-controller="Trips" asp-action="Index">Trips  Sumary</a></li>
-                        <li><a asp-area="" asp-controller="ExpenseType" asp-action="Index">Expense Types</a></li>
+                        <li><a asp-area="" asp-controller="VideoGame" asp-action="Index">VideoGames</a></li>
+                        <li><a asp-area="" asp-controller="Developer" asp-action="Index">Developers</a></li>
+                        <li><a asp-area="" asp-controller="Platforms" asp-action="Index">Platforms</a></li>
                     }
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
