@@ -17,14 +17,13 @@ namespace GameON.Web.Data
         {
             _context = context;
             _userHelper = userHelper;
-
         }
 
         public async Task SeedAsync()
         {
             await _context.Database.EnsureCreatedAsync();
             await CheckRoleAsync();
-            await CheckUserAsync("Hector", "Masso", "hectormasso@hotmail.com", UserType.Admin);
+            await CheckUserAsync("Hector", "Masso", "hectormasso@hotmail.com", "123456", UserType.Admin);
           
 
         }
@@ -40,7 +39,7 @@ namespace GameON.Web.Data
           string firstName,
           string lastName,
           string email,
-         
+          string document,
           UserType userType)
         {
             UserEntity user = await _userHelper.GetUserAsync(email);
@@ -52,6 +51,7 @@ namespace GameON.Web.Data
                     LastName = lastName,
                     Email = email,
                     UserName = email,
+                    Document = document,
                     UserType = userType
                 };
 

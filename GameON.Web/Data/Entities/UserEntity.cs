@@ -10,7 +10,10 @@ namespace GameON.Web.Data.Entities
 {
     public class UserEntity : IdentityUser
     {
-      
+        [Display(Name = "Document")]
+        [MaxLength(20, ErrorMessage = "The {0} field can not have more than {1} characters.")]
+        [Required(ErrorMessage = "The field {0} is mandatory.")]
+        public string Document { get; set; }
 
         [Display(Name = "First Name")]
         [MaxLength(50, ErrorMessage = "The {0} field can not have more than {1} characters.")]
