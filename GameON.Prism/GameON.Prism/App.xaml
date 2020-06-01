@@ -4,8 +4,15 @@
              xmlns:prism="http://prismlibrary.com"
              x:Class="GameON.Prism.App">
   <Application.Resources>
-
     <!-- Application resource dictionary -->
-
+        <ResourceDictionary>
+            <x:String x:Key="UrlAPI">https://gameonweb.azurewebsites.net/</x:String>
+            
+            <Style TargetType="Frame">
+                <Setter Property="CornerRadius" Value="10"/>
+                <Setter Property="Padding" Value="0"/>
+            </Style>
+            
+        </ResourceDictionary>
   </Application.Resources>
 </prism:PrismApplication>

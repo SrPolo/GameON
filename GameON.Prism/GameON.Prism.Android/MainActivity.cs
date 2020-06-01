@@ -1,6 +1,9 @@
 ﻿using Android.App;
 using Android.Content.PM;
 using Android.OS;
+using Android.Views;
+using Plugin.CurrentActivity;
+using Plugin.Permissions;
 using Prism;
 using Prism.Ioc;
 
@@ -16,15 +19,22 @@ namespace GameON.Prism.Droid
 
             base.OnCreate(savedInstanceState);
 
+
+            CrossCurrentActivity.Current.Init(this, savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            FFImageLoading.Forms.Platform.CachedImageRenderer.Init(true);
+            Window.AddFlags(WindowManagerFlags.Fullscreen);
+            Window.ClearFlags(WindowManagerFlags.ForceNotFullscreen);
             LoadApplication(new App(new AndroidInitializer()));
         }
 
+
+
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Android.Content.PM.Permission[] grantResults)
         {
-            Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
-
+            //Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+            PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }

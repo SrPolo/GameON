@@ -22,11 +22,16 @@ namespace GameON.Web.Data.Entities
         public string Synopsis { get; set; }        
 
         [Display(Name = "Score")]
-        [Range(1, 10, ErrorMessage = "The field {0} must be in range 1-10.")]
+        [Range(1, 5, ErrorMessage = "The  {0} must be between 1-5.")]
         public float Score { get; set; }
 
         [Display(Name = "Picture")]
         public string PicturePath { get; set; }
+
+        [Display(Name = "Picture")]
+        public string PictureFullPath => string.IsNullOrEmpty(PicturePath)
+            ? "https://gameonweb.azurewebsites.net/images/noimage.png"
+            : $"https://gameonweb.azurewebsites.net{PicturePath}";
 
         [Display(Name = "Release date")]
         [DataType(DataType.DateTime)]

@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com" 
+             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+             xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms" xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="GameON.Prism.Views.MakeReviewPage"
+             Title="{Binding Title}">
+
+    <ScrollView>
+        <Grid Padding="10,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="250"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="70"/>
+            </Grid.RowDefinitions>
+
+            <Frame Grid.ColumnSpan="2"
+                   Grid.Row="0"
+                   Margin="0,0,5,10"
+                   HorizontalOptions="CenterAndExpand"
+                   WidthRequest="180">
+                <ffimageloading:CachedImage Aspect="AspectFill"
+                                            Source="{Binding VideoGame.PictureFullPath}"
+                                            CacheDuration= "50"
+                                            RetryCount= "3"
+                                            RetryDelay= "600"/>
+            </Frame>
+
+            <StackLayout Grid.ColumnSpan="2"
+                     Grid.Row="1"
+                     Margin="5,0,0,10">
+
+                <Label Text="{Binding VideoGame.Name}"
+                   FontSize="Large"
+                   FontAttributes="Bold"
+                   HorizontalTextAlignment="Center"/>
+
+                <StackLayout VerticalOptions="FillAndExpand"
+                         HorizontalOptions="Center"
+                         Orientation="Vertical">
+                    <Label Text="Score"
+                           FontSize="Medium"
+                           VerticalOptions="Center"/>
+                    <rating:SfRating ItemCount="5"
+                                     Precision="Standard"
+                                     TooltipPlacement="TopLeft"
+                                     ItemSize="28"
+                                     Value="{Binding Score}"/>
+                </StackLayout>
+
+            </StackLayout>
+
+            <!--<StackLayout Grid.Row="1"
+                     Grid.ColumnSpan="2"
+                     Margin="20,0">
+            <Label Text="Review:"
+                       FontSize="Large"
+                       FontAttributes="Bold"/>
+            
+                <Editor Text="I am an Editor" 
+                    FontSize="Medium"/>
+        </StackLayout>-->
+            <inputLayout:SfTextInputLayout 
+                    Grid.Row="2"
+                    Hint="Review"
+                    Grid.ColumnSpan="2"
+                    ShowCharCount="true"
+                    CharMaxLength="1500">
+                <Editor AutoSize="TextChanges" 
+                        Text="{Binding Review}"/>
+            </inputLayout:SfTextInputLayout>
+
+            <StackLayout Grid.Row="3"
+                     Grid.ColumnSpan="2"
+                     Margin="0,20,0,0">
+
+                <StackLayout Orientation="Horizontal">
+                    <Button Command="{Binding CancelCommand}"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="End"
+                        BorderRadius="30"
+                        Margin="10,0,5,20"
+            	        Text="Cancel"/>
+
+                    <Button Command="{Binding SaveCommand}"
+            	        IsEnabled="{Binding IsEnabled}"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="End"
+                        BorderRadius="30"
+                        Margin="5,0,10,20"
+            	        Text="Save"/>
+                </StackLayout>
+
+            </StackLayout>
+        </Grid>
+    </ScrollView>
+</ContentPage>
