@@ -5,7 +5,6 @@ using GameON.Prism.Helpers;
 using GameON.Prism.Views;
 using Newtonsoft.Json;
 using Prism.Commands;
-using Prism.Mvvm;
 using Prism.Navigation;
 using System;
 using System.Collections.Generic;
@@ -24,7 +23,7 @@ namespace GameON.Prism.ViewModels
         private DelegateCommand _myGameListCommand;
         private bool _isRunning;
 
-        public UserProfilePageViewModel(INavigationService navigationService, IApiService apiService) : base (navigationService)
+        public UserProfilePageViewModel(INavigationService navigationService, IApiService apiService) : base(navigationService)
         {
             Title = "User profile";
             _navigationService = navigationService;
@@ -98,7 +97,7 @@ namespace GameON.Prism.ViewModels
 
         private async void MyGameListAsync()
         {
-            List<GameListResponse> gamelist= await LoadList();
+            List<GameListResponse> gamelist = await LoadList();
 
             if (gamelist != null)
             {

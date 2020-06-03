@@ -20,17 +20,36 @@ namespace GameON.Prism.ViewModels
         public GameONMasterDetailPageViewModel(INavigationService navigationService) : base(navigationService)
         {
             _navigationService = navigationService;
+            LoadUser();
             LoadMenus();
             LoadUser();
         }
 
         public DelegateCommand MyProfileCommand => _myProfileCommand ?? (_myProfileCommand = new DelegateCommand(MyProfileAsync));
 
-
         public ObservableCollection<MenuItemViewModel> Menus { get; set; }
+
+        public UserResponse User
+        {
+            get => _user;
+            set => SetProperty(ref _user, value);
+        }
+
         private async void MyProfileAsync()
         {
-            await _navigationService.NavigateAsync(nameof(UserProfilePage));
+            NavigationParameters parameters = new NavigationParameters
+            {
+                { "user", User }
+            };
+            await _navigationService.NavigateAsync($"/GameONMasterDetailPage/NavigationPage/{nameof(UserProfilePage)}", parameters);
+        }
+
+        private void LoadUser()
+        {
+            if (Settings.IsLogin)
+            {
+                User = JsonConvert.DeserializeObject<UserResponse>(Settings.User);
+            }
         }
 
         public UserResponse User

@@ -2,10 +2,7 @@
 using GameON.Common.Enums;
 using GameON.Common.Models;
 using Newtonsoft.Json;
-using Prism.Commands;
-using Prism.Mvvm;
 using Prism.Navigation;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using GameON.Prism.Helpers;

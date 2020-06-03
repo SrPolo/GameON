@@ -35,7 +35,7 @@ namespace GameON.Web.Helpers
                     Synopsis = user.VideoGame.Synopsis,
                     Score = user.VideoGame.Score
                 },
-                Id = user.Id,
+                Id = new Guid(user.Id),
                 LastName = user.LastName,
                 UserType = user.UserType
             };
@@ -46,7 +46,7 @@ namespace GameON.Web.Helpers
             UserResponse userResponse = new UserResponse
             {
                 FirstName = user.FirstName,
-                Id = user.Id,
+                Id = new Guid(user.Id),
                 PicturePath = user.PicturePath,
                 VideoGame = null
             };

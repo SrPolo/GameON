@@ -1,14 +1,12 @@
-﻿using GameON.Common.Helpers;
-using GameON.Common.Enums;
+﻿using GameON.Common.Enums;
+using GameON.Common.Helpers;
 using GameON.Common.Models;
 using GameON.Common.Services;
 using GameON.Prism.Helpers;
 using GameON.Prism.Views;
 using Newtonsoft.Json;
 using Prism.Commands;
-using Prism.Mvvm;
 using Prism.Navigation;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Xamarin.Essentials;
@@ -34,7 +32,7 @@ namespace GameON.Prism.ViewModels
 
 
 
-        public VideoGameDetailPageViewModel(INavigationService navigationService,IApiService apiService):base (navigationService)
+        public VideoGameDetailPageViewModel(INavigationService navigationService, IApiService apiService) : base(navigationService)
         {
             Title = "VideoGame";
             _navigationService = navigationService;
@@ -44,8 +42,8 @@ namespace GameON.Prism.ViewModels
         public DelegateCommand ReviewsCommand => _reviewCommand ?? (_reviewCommand = new DelegateCommand(ViewReviewsAsync));
         public DelegateCommand RefreshCommand => _refreshCommand ?? (_refreshCommand = new DelegateCommand(RefreshAsync));
         public DelegateCommand AddPlayingCommand => _addPlaying ?? (_addPlaying = new DelegateCommand(AddToPlay));
-        public DelegateCommand PlantoPlayCommand => _planToPlayCommand ?? (_addPlaying = new DelegateCommand(PlantoPlay));
-        public DelegateCommand AddPlayedCommand => _addPlayedCommand ?? (_addPlaying = new DelegateCommand(AddPlayed));
+        public DelegateCommand PlantoPlayCommand => _planToPlayCommand ?? (_planToPlayCommand = new DelegateCommand(PlantoPlay));
+        public DelegateCommand AddPlayedCommand => _addPlayedCommand ?? (_addPlayedCommand = new DelegateCommand(AddPlayed));
         public DelegateCommand OpenPopupCommand => _mySelectedItem ?? (_mySelectedItem = new DelegateCommand(Open));
 
 
@@ -66,8 +64,9 @@ namespace GameON.Prism.ViewModels
             get => _videoGame;
             set => SetProperty(ref _videoGame, value);
         }
-        public List<VGGenreResponse> Genres { 
-            get => _genres; 
+        public List<VGGenreResponse> Genres
+        {
+            get => _genres;
             set => SetProperty(ref _genres, value);
         }
 
@@ -86,7 +85,7 @@ namespace GameON.Prism.ViewModels
         public override void OnNavigatedTo(INavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
-            if (parameters.GetValue<VideoGameResponse>("videogame")!=null)
+            if (parameters.GetValue<VideoGameResponse>("videogame") != null)
             {
                 VideoGame = parameters.GetValue<VideoGameResponse>("videogame");
                 Title = VideoGame.Name;
@@ -121,7 +120,7 @@ namespace GameON.Prism.ViewModels
                 { "videogame", VideoGame }
             };
 
-            await _navigationService.NavigateAsync(nameof(GameReviewsPage),parameters);
+            await _navigationService.NavigateAsync(nameof(GameReviewsPage), parameters);
         }
 
         private async void AddToList(VgStatus status)
@@ -159,7 +158,7 @@ namespace GameON.Prism.ViewModels
         {
             AddToList(VgStatus.Playing);
         }
-       
+
         private void PlantoPlay()
         {
             AddToList(VgStatus.PlantoPlay);

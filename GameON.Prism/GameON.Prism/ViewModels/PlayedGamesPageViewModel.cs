@@ -1,5 +1,5 @@
-﻿using GameON.Common.Helpers;
-using GameON.Common.Enums;
+﻿using GameON.Common.Enums;
+using GameON.Common.Helpers;
 using GameON.Common.Models;
 using Newtonsoft.Json;
 using Prism.Navigation;

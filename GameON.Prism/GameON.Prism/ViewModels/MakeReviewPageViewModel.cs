@@ -78,10 +78,10 @@ namespace GameON.Prism.ViewModels
 
                 ReviewRequest reviewRequest = new ReviewRequest
                 {
-                    Score=Score,
-                    Review=Review,
-                    VideoGameId=VideoGame.Id,
-                    UserId=user.Id
+                    Score = Score,
+                    Review = Review,
+                    VideoGameId = VideoGame.Id,
+                    UserId = user.Id
                 };
 
                 TokenResponse token = JsonConvert.DeserializeObject<TokenResponse>(Settings.Token);
