@@ -1,4 +1,4 @@
-﻿using Game.Common.Helpers;
+﻿using GameON.Common.Helpers;
 using GameON.Common.Models;
 using GameON.Prism.Views;
 using Prism.Commands;
@@ -35,11 +35,11 @@ namespace GameON.Prism.ViewModels
 
             if (IsLoginRequired && !Settings.IsLogin)
             {
-                await _navigationService.NavigateAsync($"/SoccerMasterDetailPage/NavigationPage/LoginPage");
+                await _navigationService.NavigateAsync($"/GameONMasterDetailPage/NavigationPage/LoginPage");
             }
             else
             {
-                await _navigationService.NavigateAsync($"/SoccerMasterDetailPage/NavigationPage/{PageName}");
+                await _navigationService.NavigateAsync($"/GameONMasterDetailPage/NavigationPage/{PageName}");
             }
         }
 

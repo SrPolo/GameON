@@ -1,4 +1,4 @@
-﻿using Game.Common.Helpers;
+﻿using GameON.Common.Helpers;
 using GameON.Common.Models;
 using GameON.Prism.Helpers;
 using GameON.Prism.Views;
