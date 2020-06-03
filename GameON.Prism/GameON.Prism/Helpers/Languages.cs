@@ -18,6 +18,7 @@ namespace GameON.Prism.Helpers
 
         public static string Culture { get; set; }
 
+        public static string GameListEmpty => Resource.GameListEmpty;
 
         public static string ReviewError => Resource.ReviewError;
 

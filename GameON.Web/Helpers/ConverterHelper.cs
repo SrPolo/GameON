@@ -200,5 +200,16 @@ namespace GameON.Web.Helpers
 
             return list;
         }
+
+        public GameListResponse ToGameListResponse(GameListEntity gameListEntity)
+        {
+            return new GameListResponse
+            {
+                Id=gameListEntity.Id,
+                status=gameListEntity.status,
+                VideoGame = ToVideoGameResponse(gameListEntity.VideoGame),
+                User = ToUserResponse(gameListEntity.User)                
+            };
+        }
     }
 }

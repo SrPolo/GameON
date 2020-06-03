@@ -8,6 +8,7 @@ namespace GameON.Common.Helpers
         private const string _user = "user";
         private const string _token = "token";
         private const string _isLogin = "isLogin";
+        private const string _gamelist = "gamelist";
         private static readonly string _stringDefault = string.Empty;
         private static readonly bool _boolDefault = false;
 
@@ -24,6 +25,13 @@ namespace GameON.Common.Helpers
         {
             get => AppSettings.GetValueOrDefault(_token, _stringDefault);
             set => AppSettings.AddOrUpdateValue(_token, value);
+        }
+
+
+        public static string GameList
+        {
+            get => AppSettings.GetValueOrDefault(_gamelist, _stringDefault);
+            set => AppSettings.AddOrUpdateValue(_gamelist, value);
         }
 
         public static bool IsLogin

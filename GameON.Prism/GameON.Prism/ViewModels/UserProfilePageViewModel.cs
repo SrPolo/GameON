@@ -1,11 +1,16 @@
-﻿using GameON.Common.Models;
+﻿using Game.Common.Helpers;
+using GameON.Common.Models;
 using GameON.Common.Services;
+using GameON.Prism.Helpers;
+using GameON.Prism.Views;
+using Newtonsoft.Json;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace GameON.Prism.ViewModels
 {
@@ -27,6 +32,7 @@ namespace GameON.Prism.ViewModels
         }
 
         public DelegateCommand MyGameListCommand => _myGameListCommand ?? (_myGameListCommand = new DelegateCommand(MyGameListAsync));
+        public DelegateCommand ReviewCommand => _revieCommand ?? (_revieCommand = new DelegateCommand(ViewReviewAsync));
 
         public List<ReviewItemViewModel> Reviews
         {
@@ -47,7 +53,6 @@ namespace GameON.Prism.ViewModels
         }
 
 
-        public DelegateCommand ReviewCommand => _revieCommand ?? (_revieCommand = new DelegateCommand(ViewReviewAsync));
 
         private async void ViewReviewAsync()
         {
@@ -93,7 +98,42 @@ namespace GameON.Prism.ViewModels
 
         private async void MyGameListAsync()
         {
-            await _navigationService.NavigateAsync(nameof(MyGameListAsync));
+            List<GameListResponse> gamelist= await LoadList();
+
+            if (gamelist != null)
+            {
+                NavigationParameters parameters = new NavigationParameters
+                {
+                    { "gamelist", gamelist }
+                };
+                Settings.GameList = JsonConvert.SerializeObject(gamelist);
+                await _navigationService.NavigateAsync(nameof(MyGameListPage), parameters);
+            }
+        }
+
+        private async Task<List<GameListResponse>> LoadList()
+        {
+            IsRunning = true;
+            string url = App.Current.Resources["UrlAPI"].ToString();
+
+
+            GameListForUserRequest request = new GameListForUserRequest
+            {
+                UserId = User.Id,
+                CultureInfo = Languages.Culture
+            };
+
+            Response response = await _apiService.GetGameListForUser(url, "/api", $"/GameList/GetGameListForUser/", request);
+            IsRunning = false;
+
+            if (!response.IsSuccess)
+            {
+                await App.Current.MainPage.DisplayAlert("Error", response.Message, "Accept");
+                return null;
+            }
+
+
+            return (List<GameListResponse>)response.Result;
         }
     }
 }

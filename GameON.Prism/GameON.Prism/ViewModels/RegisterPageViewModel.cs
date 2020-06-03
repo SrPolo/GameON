@@ -15,6 +15,7 @@ namespace GameON.Prism.ViewModels
         public RegisterPageViewModel(INavigationService navigationService):base(navigationService)
         {
             _navigationService = navigationService;
+            Title = "Register";
         }
 
         public DelegateCommand GoBackCommand => _goBackCommand ?? (_goBackCommand = new DelegateCommand(GoBackAsync));

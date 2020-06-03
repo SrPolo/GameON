@@ -6,13 +6,11 @@
   <Application.Resources>
     <!-- Application resource dictionary -->
         <ResourceDictionary>
-            <x:String x:Key="UrlAPI">https://gameonweb.azurewebsites.net/</x:String>
-            
+            <x:String x:Key="UrlAPI">https://gameonweb.azurewebsites.net/</x:String>            
             <Style TargetType="Frame">
                 <Setter Property="CornerRadius" Value="10"/>
                 <Setter Property="Padding" Value="0"/>
-            </Style>
-            
+            </Style>            
         </ResourceDictionary>
   </Application.Resources>
 </prism:PrismApplication>

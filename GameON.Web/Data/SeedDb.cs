@@ -448,7 +448,7 @@ namespace GameON.Web.Data
                 {
                     FirstName = firstName,
                     LastName = lastName,
-                    //VideoGame = _context.VideoGames.FirstOrDefault(),
+                    VideoGame = _context.VideoGames.FirstOrDefault(),
                     Email = email,
                     UserName = email,
                     Document = document,
@@ -458,7 +458,7 @@ namespace GameON.Web.Data
                 await _userHelper.AddUserAsync(user, "123456");
                 await _userHelper.AddUserToRoleAsync(user, userType.ToString());
 
-                var token = await _userHelper.GenerateEmailConfirmationTokenAsync(user);
+                string token = await _userHelper.GenerateEmailConfirmationTokenAsync(user);
                 await _userHelper.ConfirmEmailAsync(user, token);
 
             }

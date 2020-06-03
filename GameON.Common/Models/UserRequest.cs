@@ -20,6 +20,9 @@ namespace GameON.Common.Models
         [Required]
         public string Email { get; set; }
 
+        public int VideogameId { get; set; }
+
+        public byte[] PictureArray { get; set; }
 
         [Required]
         [StringLength(20, MinimumLength = 6)]

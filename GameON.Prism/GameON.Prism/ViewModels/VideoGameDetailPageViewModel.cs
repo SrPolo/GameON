@@ -1,12 +1,17 @@
-﻿using GameON.Common.Models;
+﻿using Game.Common.Helpers;
+using GameON.Common.Enums;
+using GameON.Common.Models;
 using GameON.Common.Services;
+using GameON.Prism.Helpers;
 using GameON.Prism.Views;
+using Newtonsoft.Json;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Xamarin.Essentials;
 
 namespace GameON.Prism.ViewModels
 {
@@ -21,6 +26,13 @@ namespace GameON.Prism.ViewModels
         private DelegateCommand _reviewCommand;
         private DelegateCommand _refreshCommand;
         private bool _isRefreshing;
+        private bool _isOpen;
+        private DelegateCommand _mySelectedItem;
+        private DelegateCommand _addPlaying;
+        private DelegateCommand _planToPlayCommand;
+        private DelegateCommand _addPlayedCommand;
+
+
 
         public VideoGameDetailPageViewModel(INavigationService navigationService,IApiService apiService):base (navigationService)
         {
@@ -31,13 +43,23 @@ namespace GameON.Prism.ViewModels
 
         public DelegateCommand ReviewsCommand => _reviewCommand ?? (_reviewCommand = new DelegateCommand(ViewReviewsAsync));
         public DelegateCommand RefreshCommand => _refreshCommand ?? (_refreshCommand = new DelegateCommand(RefreshAsync));
+        public DelegateCommand AddPlayingCommand => _addPlaying ?? (_addPlaying = new DelegateCommand(AddToPlay));
+        public DelegateCommand PlantoPlayCommand => _planToPlayCommand ?? (_addPlaying = new DelegateCommand(PlantoPlay));
+        public DelegateCommand AddPlayedCommand => _addPlayedCommand ?? (_addPlaying = new DelegateCommand(AddPlayed));
+        public DelegateCommand OpenPopupCommand => _mySelectedItem ?? (_mySelectedItem = new DelegateCommand(Open));
+
+
 
         public bool IsRefreshing
         {
             get => _isRefreshing;
             set => SetProperty(ref _isRefreshing, value);
         }
-
+        public bool IsOpen
+        {
+            get => _isOpen;
+            set => SetProperty(ref _isOpen, value);
+        }
 
         public VideoGameResponse VideoGame
         {
@@ -102,7 +124,56 @@ namespace GameON.Prism.ViewModels
             await _navigationService.NavigateAsync(nameof(GameReviewsPage),parameters);
         }
 
+        private async void AddToList(VgStatus status)
+        {
+            string url = App.Current.Resources["UrlAPI"].ToString();
 
+            if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+            {
+                //IsRunning = false;
+                await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.ConnectionError, Languages.Accept);
+                return;
+            }
+
+            UserResponse user = JsonConvert.DeserializeObject<UserResponse>(Settings.User);
+            TokenResponse token = JsonConvert.DeserializeObject<TokenResponse>(Settings.Token);
+
+            GameListRequest request = new GameListRequest
+            {
+                status = status,
+                VideoGameId = VideoGame.Id,
+                Userid = user.Id,
+                CultureInfo = Languages.Culture
+            };
+
+            Response response = await _apiService.AddEditGameList(url, "/api", "/GameList", request, "bearer", token.Token);
+
+            if (!response.IsSuccess)
+            {
+                await App.Current.MainPage.DisplayAlert(Languages.Error, response.Message, Languages.Accept);
+            }
+        }
+
+
+        private void AddToPlay()
+        {
+            AddToList(VgStatus.Playing);
+        }
+       
+        private void PlantoPlay()
+        {
+            AddToList(VgStatus.PlantoPlay);
+        }
+
+        private void AddPlayed()
+        {
+            AddToList(VgStatus.Played);
+        }
+
+        private void Open()
+        {
+            IsOpen = true;
+        }
 
     }
 }

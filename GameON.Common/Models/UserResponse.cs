@@ -7,7 +7,7 @@ namespace GameON.Common.Models
 {
     public class UserResponse
     {
-        public string Id { get; set; }
+        public Guid Id { get; set; }
 
         public string Email { get; set; }
 
@@ -22,6 +22,8 @@ namespace GameON.Common.Models
         public UserType UserType { get; set; }
 
         public VideoGameResponse VideoGame { get; set; }
+
+        public ICollection<GameListResponse> GameList { get; set; }
 
         public string FullName => $"{FirstName} {LastName}";
 

@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="http://prismlibrary.com" xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
              prism:ViewModelLocator.AutowireViewModel="True"
-             x:Class="GameON.Prism.Views.RegisterPage">
+             x:Class="GameON.Prism.Views.RegisterPage"
+             Title="{Binding Title}">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>

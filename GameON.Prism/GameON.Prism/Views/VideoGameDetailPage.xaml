@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="http://prismlibrary.com" 
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
-             xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
+             xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms" xmlns:sfpopup="clr-namespace:Syncfusion.XForms.PopupLayout;assembly=Syncfusion.SfPopupLayout.XForms"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="GameON.Prism.Views.VideoGameDetailPage"
              Title="{Binding Title}">
@@ -49,18 +49,29 @@
                     <Label Text="{Binding VideoGame.ReleaseDate, StringFormat='{0:MMMM dd, yyyy}'}"
                            FontSize="Medium"/>
 
-                    <Picker x:Name="picker"
-                            Title="Add to list"
-                            FontAttributes="Bold"
-                            Margin="0, 0, 0, 0">
-                        <Picker.ItemsSource>
-                            <x:Array Type="{x:Type x:String}">
-                                <x:String>Plan to play</x:String>
-                                <x:String>Playing</x:String>
-                                <x:String>Played</x:String>
-                            </x:Array>
-                        </Picker.ItemsSource>
-                    </Picker>
+                    <Button Text="Add to list"
+                            BorderRadius="30"
+                            Command="{Binding OpenPopupCommand}"/>
+
+                    <sfpopup:SfPopupLayout x:Name="popup" IsOpen="{Binding IsOpen}">
+                        <sfpopup:SfPopupLayout.PopupView>
+                            <sfpopup:PopupView>
+                                <sfpopup:PopupView.ContentTemplate>
+                                    <DataTemplate>
+                                        <StackLayout>
+                                            <Button Text="Playing"
+                                                Command="{Binding AddPlayingCommand}"/>
+                                            <Button Text="PtP"
+                                                Command="{Binding PlantoPlayCommand}"/>
+                                            <Button Text="Played"
+                                                Command="{Binding AddPlayedCommand}"/>
+                                        </StackLayout>
+                                    </DataTemplate>
+                                </sfpopup:PopupView.ContentTemplate>                                
+                            </sfpopup:PopupView>
+                            
+                        </sfpopup:SfPopupLayout.PopupView>
+                    </sfpopup:SfPopupLayout>
 
                     <Button Text="Reviews"
                             BorderRadius="30"

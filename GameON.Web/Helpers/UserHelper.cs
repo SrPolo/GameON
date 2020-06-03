@@ -5,6 +5,7 @@ using GameON.Web.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace GameON.Web.Helpers
@@ -69,6 +70,7 @@ namespace GameON.Web.Helpers
                 FirstName = model.FirstName,
                 LastName = model.LastName,
                 UserName = model.Username,
+                VideoGame = _context.VideoGames.FirstOrDefault(),
                 UserType = userType
             };
 

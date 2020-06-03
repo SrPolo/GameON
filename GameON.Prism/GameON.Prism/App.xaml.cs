@@ -54,6 +54,9 @@ namespace GameON.Prism
             containerRegistry.RegisterForNavigation<UsersPage, UsersPageViewModel>();
             containerRegistry.RegisterForNavigation<UserProfilePage, UserProfilePageViewModel>();
             containerRegistry.RegisterForNavigation<GamingCentersPage, GamingCentersPageViewModel>();
+            containerRegistry.RegisterForNavigation<PlayingGamesPage, PlayingGamesPageViewModel>();
+            containerRegistry.RegisterForNavigation<PlayedGamesPage, PlayedGamesPageViewModel>();
+            containerRegistry.RegisterForNavigation<PlantoPlayGamesPage, PlantoPlayGamesPageViewModel>();
         }
     }
 }

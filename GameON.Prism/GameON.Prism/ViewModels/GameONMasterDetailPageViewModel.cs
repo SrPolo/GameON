@@ -3,9 +3,7 @@ using GameON.Common.Models;
 using GameON.Prism.Views;
 using Newtonsoft.Json;
 using Prism.Commands;
-using Prism.Mvvm;
 using Prism.Navigation;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -15,6 +13,7 @@ namespace GameON.Prism.ViewModels
     public class GameONMasterDetailPageViewModel : ViewModelBase
     {
         private readonly INavigationService _navigationService;
+        private DelegateCommand _myProfileCommand;
         private UserResponse _user;
 
         public GameONMasterDetailPageViewModel(INavigationService navigationService) : base(navigationService)
@@ -24,7 +23,14 @@ namespace GameON.Prism.ViewModels
             LoadUser();
         }
 
+        public DelegateCommand MyProfileCommand => _myProfileCommand ?? (_myProfileCommand = new DelegateCommand(MyProfileAsync));
+
+
         public ObservableCollection<MenuItemViewModel> Menus { get; set; }
+        private async void MyProfileAsync()
+        {
+            await _navigationService.NavigateAsync(nameof(UserProfilePage));
+        }
 
         public UserResponse User
         {
@@ -39,33 +45,28 @@ namespace GameON.Prism.ViewModels
             {
                 new Menu
                 {
-                    Icon = "ic_search",
+                    Icon = "ic_videogame_asset",
                     PageName = nameof(VideoGamesPage),
-                    Title = "Explore"
+                    Title = "Videogames"
                 },
                 new Menu
                 {
-                    Icon = "ic_format_list_bulleted", //Cambiar
+                    Icon = "ic_local_activity",
                     PageName = nameof(GamingCentersPage),
                     Title = "Gaming centers"
                 },
                 new Menu
                 {
-                    Icon = "ic_rate_review", //Cambiar
+                    Icon = "ic_search",
                     PageName = nameof(UsersPage),
                     Title = "Search users"
                 },
                 new Menu
                 {
-                    Icon = "ic_rate_review",
-                    PageName = nameof(MyReviewsPage),
-                    Title = "My reviews"
-                },
-                new Menu
-                {
                     Icon = "ic_person",
                     PageName = nameof(ModifyUserPage),
-                    Title = "Modify User"
+                    Title = "Modify User",
+                    IsLoginRequired = true
                 },
                 new Menu
                 {

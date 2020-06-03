@@ -3,12 +3,12 @@ using GameON.Common.Models;
 using GameON.Web.Data;
 using GameON.Web.Data.Entities;
 using GameON.Web.Helpers;
+using GameON.Web.Resources;
+using Gastos.Common.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using GameON.Web.Resources;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
@@ -22,12 +22,18 @@ namespace GameON.Web.Controllers.API
         private readonly IUserHelper _userHelper;
         private readonly IConverterHelper _converterHelper;
         private readonly IMailHelper _mailHelper;
+        private readonly IImageHelper _imageHelper;
+        private readonly DataContext _context;
 
-        public AccountController(IUserHelper userHelper, IConverterHelper converterHelper, IMailHelper mailHelper)
+        public AccountController(IUserHelper userHelper, IConverterHelper converterHelper, IMailHelper mailHelper,
+            DataContext context,
+            IImageHelper imageHelper)
         {
             _userHelper = userHelper;
             _converterHelper = converterHelper;
             _mailHelper = mailHelper;
+            _context = context;
+            _imageHelper = imageHelper;
         }
 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
@@ -169,10 +175,17 @@ namespace GameON.Web.Controllers.API
                 return BadRequest(Resource.UserDoesntExists);
             }
 
+            string picturePath = userEntity.PicturePath;
+            if (request.PictureArray != null && request.PictureArray.Length > 0)
+            {
+                picturePath =  _imageHelper.UploadImage(request.PictureArray, "Users");
+            }
 
             userEntity.FirstName = request.FirstName;
             userEntity.LastName = request.LastName;
             userEntity.Document = request.Document;
+            userEntity.VideoGame = await _context.VideoGames.FindAsync(request.VideogameId);
+            userEntity.PicturePath = picturePath;
 
             IdentityResult respose = await _userHelper.UpdateUserAsync(userEntity);
             if (!respose.Succeeded)
@@ -215,7 +228,7 @@ namespace GameON.Web.Controllers.API
             IdentityResult result = await _userHelper.ChangePasswordAsync(user, request.OldPassword, request.NewPassword);
             if (!result.Succeeded)
             {
-                var message = result.Errors.FirstOrDefault().Description;
+                string message = result.Errors.FirstOrDefault().Description;
                 return BadRequest(new Response
                 {
                     IsSuccess = false,
