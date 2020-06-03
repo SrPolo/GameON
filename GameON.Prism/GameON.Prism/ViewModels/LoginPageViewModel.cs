@@ -42,11 +42,7 @@ namespace GameON.Prism.ViewModels
             set => SetProperty(ref _isRunning, value);
         }
 
-        private async void ForgotPasswordAsync()
-        {
-            await _navigationService.NavigateAsync(nameof(RecoverPasswordPage));
-        }
-
+       
         public bool IsEnabled
         {
             get => _isEnabled;
@@ -60,6 +56,17 @@ namespace GameON.Prism.ViewModels
             get => _password;
             set => SetProperty(ref _password, value);
         }
+
+        private async void ForgotPasswordAsync()
+        {
+            await _navigationService.NavigateAsync(nameof(RecoverPasswordPage));
+        }
+
+        private async void RegisterAsync()
+        {
+            await _navigationService.NavigateAsync(nameof(RegisterPage));
+        }
+
 
         private async void LoginAsync()
         {
@@ -135,9 +142,5 @@ namespace GameON.Prism.ViewModels
         }
 
 
-        private async void RegisterAsync()
-        {
-            await _navigationService.NavigateAsync(nameof(RegisterPage));
-        }
     }
 }
