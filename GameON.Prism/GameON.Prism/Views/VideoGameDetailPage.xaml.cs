@@ -7,6 +7,9 @@ namespace GameON.Prism.Views
         public VideoGameDetailPage()
         {
             InitializeComponent();
+            popup.PopupView.ShowFooter = false;
+            popup.PopupView.HeaderTitle = "";
         }
+
     }
 }

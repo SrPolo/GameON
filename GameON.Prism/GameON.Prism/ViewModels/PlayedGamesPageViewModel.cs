@@ -1,9 +1,8 @@
-﻿using GameON.Common.Enums;
+﻿using Game.Common.Helpers;
+using GameON.Common.Enums;
 using GameON.Common.Models;
-using Prism.Commands;
-using Prism.Mvvm;
+using Newtonsoft.Json;
 using Prism.Navigation;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -16,6 +15,7 @@ namespace GameON.Prism.ViewModels
         public PlayedGamesPageViewModel(INavigationService navigationService) : base(navigationService)
         {
             Title = "Played";
+            LoadGames();
         }
 
         public List<VideoGameResponse> VideoGames
@@ -24,17 +24,14 @@ namespace GameON.Prism.ViewModels
             set => SetProperty(ref _videoGames, value);
         }
 
-        public override void OnNavigatedTo(INavigationParameters parameters)
+
+        private void LoadGames()
         {
-            base.OnNavigatedTo(parameters);
+            List<GameListResponse> _gameList = JsonConvert.DeserializeObject<List<GameListResponse>>(Settings.GameList);
+            List<GameListResponse> mylist = _gameList.Where(g => g.status == VgStatus.Played).ToList();
+            VideoGames = mylist.Select(m => m.VideoGame).ToList();
 
-            if (parameters.ContainsKey("gamelist"))
-            {
-                List<GameListResponse> _gameList = parameters.GetValue<List<GameListResponse>>("gamelist");
-
-                List<GameListResponse> mylist = _gameList.Where(g => g.status == VgStatus.Played).ToList();
-                VideoGames = mylist.Select(m => m.VideoGame).ToList();
-            }
         }
+
     }
 }

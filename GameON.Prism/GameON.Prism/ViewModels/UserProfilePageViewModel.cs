@@ -1,7 +1,9 @@
-﻿using GameON.Common.Models;
+﻿using Game.Common.Helpers;
+using GameON.Common.Models;
 using GameON.Common.Services;
 using GameON.Prism.Helpers;
 using GameON.Prism.Views;
+using Newtonsoft.Json;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
@@ -104,7 +106,7 @@ namespace GameON.Prism.ViewModels
                 {
                     { "gamelist", gamelist }
                 };
-
+                Settings.GameList = JsonConvert.SerializeObject(gamelist);
                 await _navigationService.NavigateAsync(nameof(MyGameListPage), parameters);
             }
         }

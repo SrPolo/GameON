@@ -26,6 +26,7 @@ namespace GameON.Prism.Droid
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init(true);
             Window.AddFlags(WindowManagerFlags.Fullscreen);
             Window.ClearFlags(WindowManagerFlags.ForceNotFullscreen);
+            Syncfusion.XForms.Android.PopupLayout.SfPopupLayoutRenderer.Init();
             LoadApplication(new App(new AndroidInitializer()));
         }
 
