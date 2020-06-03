@@ -1,7 +1,7 @@
 ﻿using Plugin.Settings;
 using Plugin.Settings.Abstractions;
 
-namespace Game.Common.Helpers
+namespace GameON.Common.Helpers
 {
     public static class Settings
     {

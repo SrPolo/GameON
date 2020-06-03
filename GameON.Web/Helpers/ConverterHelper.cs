@@ -27,6 +27,16 @@ namespace GameON.Web.Helpers
                 Document = user.Document,
                 Email = user.Email,
                 FirstName = user.FirstName,
+                PicturePath = user.PicturePath,
+                VideoGame = new VideoGameResponse
+                {
+                    Id = user.VideoGame.Id,
+                    Name = user.VideoGame.Name,
+                    PicturePath = user.VideoGame.PicturePath,
+                    ReleaseDate = user.VideoGame.ReleaseDate,
+                    Synopsis = user.VideoGame.Synopsis,
+                    Score = user.VideoGame.Score
+                },
                 Id = new Guid(user.Id),
                 LastName = user.LastName,
                 UserType = user.UserType

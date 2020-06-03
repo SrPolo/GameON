@@ -1,15 +1,10 @@
-﻿using Game.Common.Helpers;
+﻿using GameON.Common.Helpers;
 using GameON.Common.Models;
 using GameON.Common.Services;
 using GameON.Prism.Helpers;
-using ImTools;
 using Newtonsoft.Json;
 using Prism.Commands;
-using Prism.Mvvm;
 using Prism.Navigation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 
@@ -37,7 +32,7 @@ namespace GameON.Prism.ViewModels
 
         public DelegateCommand SaveCommand => _saveCommand ?? (_saveCommand = new DelegateCommand(SaveReviewAsync));
 
-    
+
         public string Review
         {
             get => _review;
@@ -83,10 +78,10 @@ namespace GameON.Prism.ViewModels
 
                 ReviewRequest reviewRequest = new ReviewRequest
                 {
-                    Score=Score,
-                    Review=Review,
-                    VideoGameId=VideoGame.Id,
-                    UserId=user.Id
+                    Score = Score,
+                    Review = Review,
+                    VideoGameId = VideoGame.Id,
+                    UserId = user.Id
                 };
 
                 TokenResponse token = JsonConvert.DeserializeObject<TokenResponse>(Settings.Token);
@@ -102,7 +97,7 @@ namespace GameON.Prism.ViewModels
 
         private async Task<bool> ValidateDataAsync()
         {
-            if (Score==0)
+            if (Score == 0)
             {
                 await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.ScoreError, Languages.Accept);
                 return false;

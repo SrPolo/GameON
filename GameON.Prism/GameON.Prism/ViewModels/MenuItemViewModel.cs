@@ -1,11 +1,7 @@
-﻿using Game.Common.Helpers;
+﻿using GameON.Common.Helpers;
 using GameON.Common.Models;
-using GameON.Prism.Views;
 using Prism.Commands;
 using Prism.Navigation;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace GameON.Prism.ViewModels
 {

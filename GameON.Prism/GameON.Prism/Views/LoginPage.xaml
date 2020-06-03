@@ -38,7 +38,8 @@
                                            ContainerType="Outlined"
                                            Margin="0,0,0,10"
                                            FocusedColor="#00AFA0">
-                <Entry Keyboard="Email"/>
+                <Entry Keyboard="Email"
+                       Text="{Binding Email}"/>
             </inputLayout:SfTextInputLayout>
 
 
@@ -48,7 +49,8 @@
                                            ContainerType="Outlined"
                                            Margin="0,0,0,0"
                                            EnablePasswordVisibilityToggle="true">
-                <Entry IsPassword="True"/>
+                <Entry IsPassword="True"
+                       Text="{Binding Password}"/>
             </inputLayout:SfTextInputLayout>
 
         
