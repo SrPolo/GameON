@@ -36,7 +36,11 @@ namespace GameON.Prism.ViewModels
 
         private async void MyProfileAsync()
         {
-            await _navigationService.NavigateAsync(nameof(UserProfilePage));
+            NavigationParameters parameters = new NavigationParameters
+            {
+                { "user", User }
+            };
+            await _navigationService.NavigateAsync($"/GameONMasterDetailPage/NavigationPage/{nameof(UserProfilePage)}", parameters);
         }
 
         private void LoadUser()
