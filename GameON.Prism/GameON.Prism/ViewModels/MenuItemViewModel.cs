@@ -1,4 +1,5 @@
-﻿using GameON.Common.Models;
+﻿using Game.Common.Helpers;
+using GameON.Common.Models;
 using GameON.Prism.Views;
 using Prism.Commands;
 using Prism.Navigation;
@@ -24,12 +25,22 @@ namespace GameON.Prism.ViewModels
 
         private async void SelectMenuAsync()
         {
-            if (PageName == nameof(MyGameListPage))
+
+            if (PageName == "LoginPage" && Settings.IsLogin)
             {
-                await _navigationService.NavigateAsync(nameof(MyGameListPage));
+                Settings.IsLogin = false;
+                Settings.User = null;
+                Settings.Token = null;
             }
 
-            await _navigationService.NavigateAsync($"/GameONMasterDetailPage/NavigationPage/{PageName}");
+            if (IsLoginRequired && !Settings.IsLogin)
+            {
+                await _navigationService.NavigateAsync($"/SoccerMasterDetailPage/NavigationPage/LoginPage");
+            }
+            else
+            {
+                await _navigationService.NavigateAsync($"/SoccerMasterDetailPage/NavigationPage/{PageName}");
+            }
         }
 
     }

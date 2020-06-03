@@ -21,5 +21,10 @@ namespace GameON.Common.Services
         Task<Response> AddEditGameList<GameListRequest>(string urlBase, string servicePrefix, string controller, GameListRequest model, string tokenType, string accessToken);
 
         Task<Response> GetGameListForUser<GameListForUserRequest>(string urlBase, string servicePrefix, string controller, GameListForUserRequest model);
+
+        Task<Response> GetTokenAsync(string urlBase, string servicePrefix, string controller, TokenRequest request);
+
+        Task<Response> GetUserByEmail(string urlBase, string servicePrefix, string controller, string tokenType, string accessToken, EmailRequest request);
+
     }
 }
