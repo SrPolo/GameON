@@ -1,14 +1,7 @@
-﻿using Game.Common.Helpers;
-using GameON.Common.Models;
+﻿using GameON.Common.Models;
 using GameON.Prism.Helpers;
-using ImTools;
-using Newtonsoft.Json;
 using Prism.Commands;
-using Prism.Mvvm;
 using Prism.Navigation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace GameON.Prism.ViewModels
@@ -22,7 +15,7 @@ namespace GameON.Prism.ViewModels
         private string _review;
         private int _score;
 
-        public MakeReviewPageViewModel(INavigationService navigationService):base(navigationService)
+        public MakeReviewPageViewModel(INavigationService navigationService) : base(navigationService)
         {
             Title = "Make a review";
             _navigationService = navigationService;
@@ -33,7 +26,7 @@ namespace GameON.Prism.ViewModels
 
         public DelegateCommand SaveCommand => _saveCommand ?? (_saveCommand = new DelegateCommand(SaveReviewAsync));
 
-    
+
         public string Review
         {
             get => _review;
@@ -71,18 +64,18 @@ namespace GameON.Prism.ViewModels
 
                 ReviewRequest reviewRequest = new ReviewRequest
                 {
-                    Score=Score,
-                    Review=Review,
-                    VideoGameId=VideoGame.Id,
+                    Score = Score,
+                    Review = Review,
+                    VideoGameId = VideoGame.Id,
                     //User= user
                 };
-                await App.Current.MainPage.DisplayAlert("Melo", reviewRequest.Score+"--" + reviewRequest.Review, "Aceptar");
+                await App.Current.MainPage.DisplayAlert("Melo", reviewRequest.Score + "--" + reviewRequest.Review, "Aceptar");
             }
         }
 
         private async Task<bool> ValidateDataAsync()
         {
-            if (Score==0)
+            if (Score == 0)
             {
                 await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.ScoreError, Languages.Accept);
                 return false;

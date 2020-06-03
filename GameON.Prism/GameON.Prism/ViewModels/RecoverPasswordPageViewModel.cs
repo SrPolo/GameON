@@ -17,6 +17,7 @@ namespace GameON.Prism.ViewModels
         private bool _isRunning;
         private bool _isEnabled;
         private DelegateCommand _recoverCommand;
+        private DelegateCommand _goBackCommand;
 
 
         public RecoverPasswordPageViewModel(INavigationService navigationService, IApiService apiService, IRegexHelper regexHelper)
@@ -25,9 +26,12 @@ namespace GameON.Prism.ViewModels
             _navigationService = navigationService;
             _apiService = apiService;
             _regexHelper = regexHelper;
-            Title = Languages.PasswordRecover;
+            Title = Languages.RecoverPassword;
             IsEnabled = true;
+
         }
+
+        public DelegateCommand GoBackCommand => _goBackCommand ?? (_goBackCommand = new DelegateCommand(GoBackAsync));
 
         public DelegateCommand RecoverCommand => _recoverCommand ?? (_recoverCommand = new DelegateCommand(RecoverAsync));
 
@@ -44,6 +48,12 @@ namespace GameON.Prism.ViewModels
             get => _isEnabled;
             set => SetProperty(ref _isEnabled, value);
         }
+
+        private async void GoBackAsync()
+        {
+            await _navigationService.GoBackAsync();
+        }
+
 
         private async void RecoverAsync()
         {

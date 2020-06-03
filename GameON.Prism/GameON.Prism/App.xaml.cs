@@ -8,6 +8,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using GameON.Common.Services;
 using Syncfusion.Licensing;
+using GameON.Common.Helpers;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace GameON.Prism
@@ -34,6 +35,7 @@ namespace GameON.Prism
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            containerRegistry.Register<IRegexHelper, RegexHelper>();
             containerRegistry.Register<IGeolocatorService, GeolocatorService>();
             containerRegistry.Register<IApiService, ApiService>();
             containerRegistry.RegisterSingleton<IAppInfo, AppInfoImplementation>();
