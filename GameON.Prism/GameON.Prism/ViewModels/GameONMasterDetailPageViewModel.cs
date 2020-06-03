@@ -1,4 +1,6 @@
-﻿using GameON.Common.Models;
+﻿using Game.Common.Helpers;
+using GameON.Common.Models;
+using GameON.Prism.Helpers;
 using GameON.Prism.Views;
 using Prism.Commands;
 using Prism.Navigation;
@@ -36,7 +38,7 @@ namespace GameON.Prism.ViewModels
                 {
                     Icon = "ic_videogame_asset",
                     PageName = nameof(VideoGamesPage),
-                    Title = "Videogames"
+                    Title = Languages.VideoGamesLabel
                 },
                 new Menu
                 {
@@ -54,14 +56,14 @@ namespace GameON.Prism.ViewModels
                 {
                     Icon = "ic_person",
                     PageName = nameof(ModifyUserPage),
-                    Title = "Modify User",
+                    Title = Languages.ModifyUser,
                     IsLoginRequired = true
                 },
                 new Menu
                 {
                     Icon = "ic_exit_to_app",
                     PageName = nameof(LoginPage),
-                    Title = "Login"
+                    Title = Settings.IsLogin ? Languages.Logout : Languages.Login
                 }
             };
 
