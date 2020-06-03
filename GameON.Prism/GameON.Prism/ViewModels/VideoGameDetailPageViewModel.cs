@@ -44,8 +44,8 @@ namespace GameON.Prism.ViewModels
         public DelegateCommand ReviewsCommand => _reviewCommand ?? (_reviewCommand = new DelegateCommand(ViewReviewsAsync));
         public DelegateCommand RefreshCommand => _refreshCommand ?? (_refreshCommand = new DelegateCommand(RefreshAsync));
         public DelegateCommand AddPlayingCommand => _addPlaying ?? (_addPlaying = new DelegateCommand(AddToPlay));
-        public DelegateCommand PlantoPlayCommand => _planToPlayCommand ?? (_addPlaying = new DelegateCommand(PlantoPlay));
-        public DelegateCommand AddPlayedCommand => _addPlayedCommand ?? (_addPlaying = new DelegateCommand(AddPlayed));
+        public DelegateCommand PlantoPlayCommand => _planToPlayCommand ?? (_planToPlayCommand = new DelegateCommand(PlantoPlay));
+        public DelegateCommand AddPlayedCommand => _addPlayedCommand ?? (_addPlayedCommand = new DelegateCommand(AddPlayed));
         public DelegateCommand OpenPopupCommand => _mySelectedItem ?? (_mySelectedItem = new DelegateCommand(Open));
 
 

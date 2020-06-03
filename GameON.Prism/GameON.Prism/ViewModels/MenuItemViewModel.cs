@@ -35,11 +35,11 @@ namespace GameON.Prism.ViewModels
 
             if (IsLoginRequired && !Settings.IsLogin)
             {
-                await _navigationService.NavigateAsync($"/SoccerMasterDetailPage/NavigationPage/LoginPage");
+                await _navigationService.NavigateAsync($"/GameONMasterDetailPage/NavigationPage/LoginPage");
             }
             else
             {
-                await _navigationService.NavigateAsync($"/SoccerMasterDetailPage/NavigationPage/{PageName}");
+                await _navigationService.NavigateAsync($"/GameONMasterDetailPage/NavigationPage/{PageName}");
             }
         }
 

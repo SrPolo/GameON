@@ -2,6 +2,7 @@
 using GameON.Common.Models;
 using GameON.Prism.Helpers;
 using GameON.Prism.Views;
+using Newtonsoft.Json;
 using Prism.Commands;
 using Prism.Navigation;
 using System.Collections.Generic;
@@ -14,20 +15,36 @@ namespace GameON.Prism.ViewModels
     {
         private readonly INavigationService _navigationService;
         private DelegateCommand _myProfileCommand;
+        private UserResponse _user;
 
         public GameONMasterDetailPageViewModel(INavigationService navigationService) : base(navigationService)
         {
             _navigationService = navigationService;
+            LoadUser();
             LoadMenus();
         }
 
         public DelegateCommand MyProfileCommand => _myProfileCommand ?? (_myProfileCommand = new DelegateCommand(MyProfileAsync));
 
-
         public ObservableCollection<MenuItemViewModel> Menus { get; set; }
+        
+        public UserResponse User
+        {
+            get => _user;
+            set => SetProperty(ref _user, value);
+        }
+
         private async void MyProfileAsync()
         {
             await _navigationService.NavigateAsync(nameof(UserProfilePage));
+        }
+
+        private void LoadUser()
+        {
+            if (Settings.IsLogin)
+            {
+                User = JsonConvert.DeserializeObject<UserResponse>(Settings.User);
+            }
         }
 
         private void LoadMenus()

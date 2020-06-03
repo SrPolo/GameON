@@ -27,7 +27,7 @@ namespace GameON.Web.Helpers
                 Document = user.Document,
                 Email = user.Email,
                 FirstName = user.FirstName,
-                Id = user.Id,
+                Id = new Guid(user.Id),
                 LastName = user.LastName,
                 UserType = user.UserType
             };
@@ -38,7 +38,7 @@ namespace GameON.Web.Helpers
             UserResponse userResponse = new UserResponse
             {
                 FirstName = user.FirstName,
-                Id = user.Id,
+                Id = new Guid(user.Id),
                 PicturePath = user.PicturePath,
                 VideoGame = null
             };

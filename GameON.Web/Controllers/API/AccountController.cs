@@ -4,7 +4,6 @@ using GameON.Web.Data;
 using GameON.Web.Data.Entities;
 using GameON.Web.Helpers;
 using GameON.Web.Resources;
-using Gastos.Common.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -178,7 +177,7 @@ namespace GameON.Web.Controllers.API
             string picturePath = userEntity.PicturePath;
             if (request.PictureArray != null && request.PictureArray.Length > 0)
             {
-                picturePath =  _imageHelper.UploadImage(request.PictureArray, "Users");
+                picturePath = _imageHelper.UploadImage(request.PictureArray, "Users");
             }
 
             userEntity.FirstName = request.FirstName;
