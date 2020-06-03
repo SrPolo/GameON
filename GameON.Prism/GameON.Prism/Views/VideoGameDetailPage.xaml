@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com" 
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="GameON.Prism.Views.VideoGameDetailPage"
+             Title="{Binding Title}">
+
+    <RefreshView IsRefreshing="{Binding IsRefreshing}"
+           Command="{Binding RefreshCommand}">        
+        <ScrollView Padding="10">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="250"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Frame Grid.Column="0"
+                       Grid.Row="0"
+                       Margin="5,0,0,10">
+                    <ffimageloading:CachedImage Aspect="AspectFill"
+                                                Source="{Binding VideoGame.PictureFullPath}"
+                                                CacheDuration= "50"
+                                                RetryCount= "3"
+                                                RetryDelay= "600"/>
+                </Frame>
+                <StackLayout Grid.Column="1"
+                             Grid.Row="0"
+                             Margin="5,0,5,10">
+
+                    <Label Text="Score"
+                               FontSize="Medium"
+                               FontAttributes="Bold"/>
+                    <rating:SfRating ItemCount="5"
+                                         Precision="Half"
+                                         TooltipPlacement="TopLeft"
+                                         ItemSize="27"
+                                         ReadOnly="True"
+                                         Value="{Binding VideoGame.Score}"/>
+                    <Label Text="Release date:"
+                                   FontSize="Medium"
+                                   FontAttributes="Bold"/>
+                    <Label Text="{Binding VideoGame.ReleaseDate, StringFormat='{0:MMMM dd, yyyy}'}"
+                           FontSize="Medium"/>
+
+                    <Picker x:Name="picker"
+                            Title="Add to list"
+                            FontAttributes="Bold"
+                            Margin="0, 0, 0, 0">
+                        <Picker.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>Plan to play</x:String>
+                                <x:String>Playing</x:String>
+                                <x:String>Played</x:String>
+                            </x:Array>
+                        </Picker.ItemsSource>
+                    </Picker>
+
+                    <Button Text="Reviews"
+                            BorderRadius="30"
+                            Command="{Binding ReviewsCommand}"/>
+                </StackLayout>
+
+                <StackLayout
+                    Grid.Row="1"
+                    Grid.ColumnSpan="2"
+                    Margin="10,0">
+                    <Label Text="Synopsis:"
+                           FontSize="Large"
+                           FontAttributes="Bold"/>
+                    <ScrollView VerticalOptions="Fill">
+                        <Label Text="{Binding VideoGame.Synopsis}"/>
+                    </ScrollView>
+                </StackLayout>
+
+                <Grid Grid.Row="2"
+                      Grid.ColumnSpan="2"
+                      Margin="10,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackLayout Grid.Column="0">
+                        <Label Text="Genres"
+                                    FontAttributes="Bold"/>
+                        <StackLayout BindableLayout.ItemsSource="{Binding Genres}"
+                                     Orientation="Vertical">                        
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <StackLayout>
+                                        <Label Text="{Binding Genre.Genre}"/>
+                                    </StackLayout>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </StackLayout>
+                    </StackLayout>
+
+                    <StackLayout Grid.Column="1">
+                        <Label Text="Platforms"
+                               FontAttributes="Bold"/>
+                        <StackLayout BindableLayout.ItemsSource="{Binding Platforms}"
+                                 Orientation="Vertical">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <StackLayout>
+                                        <Label Text="{Binding Platform.Name}"/>
+                                    </StackLayout>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </StackLayout>
+                    </StackLayout>
+
+                    <StackLayout Grid.Column="2">
+                        <Label Text="Developers"
+                               FontAttributes="Bold"/>
+                        <StackLayout BindableLayout.ItemsSource="{Binding Developers}"
+                                 Orientation="Vertical">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <StackLayout>
+                                        <Label Text="{Binding Developer.Name}"/>
+                                    </StackLayout>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </StackLayout>
+                    </StackLayout>
+                    
+                </Grid>
+            </Grid>
+        </ScrollView>
+    </RefreshView>
+
+</ContentPage>

@@ -102,7 +102,7 @@ namespace GameON.Web.Migrations
 
                     b.Property<string>("Review")
                         .IsRequired()
-                        .HasMaxLength(300);
+                        .HasMaxLength(1500);
 
                     b.Property<float>("Score");
 

@@ -3,11 +3,12 @@ using GameON.Web.Data.Entities;
 using GameON.Web.Models;
 using Microsoft.AspNetCore.Identity;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace GameON.Web.Helpers
 {
-
     public interface IUserHelper
     {
         Task<string> GenerateEmailConfirmationTokenAsync(UserEntity user);
@@ -22,7 +23,7 @@ namespace GameON.Web.Helpers
 
         Task<UserEntity> GetUserAsync(Guid UserId);
 
-        Task<IdentityResult> AddUserAsync(UserEntity user, string password);
+        Task<IdentityResult> AddUserAsync(UserEntity user, string password);    
 
         Task CheckRoleAsync(string roleName);
 
@@ -42,5 +43,4 @@ namespace GameON.Web.Helpers
 
         Task LogoutAsync();
     }
-
 }

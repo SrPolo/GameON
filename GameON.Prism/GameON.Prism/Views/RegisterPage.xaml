@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com" xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="GameON.Prism.Views.RegisterPage">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <inputLayout:SfTextInputLayout Hint="Firstname"
+                                       Grid.Row="0"
+                                       Grid.ColumnSpan="2"
+                                       ContainerType="Outlined"
+                                       Margin="10,20,10,0">
+            <Entry Text="{Binding FirstName}"/>
+        </inputLayout:SfTextInputLayout>
+        
+        <inputLayout:SfTextInputLayout Hint="Lastname"
+                                       Grid.Row="1"
+                                       Grid.ColumnSpan="2"
+                                       ContainerType="Outlined"
+                                       Margin="10,10,10,0">
+            <Entry Text="{Binding LasttName}"/>
+        </inputLayout:SfTextInputLayout>
+        
+        <inputLayout:SfTextInputLayout Hint="Document"
+                                       Grid.Row="2"
+                                       Grid.ColumnSpan="2"
+                                       ContainerType="Outlined"
+                                       Margin="10,10,10,0">
+            <Entry Text="{Binding Document}"
+                   Keyboard="Numeric"/>
+        </inputLayout:SfTextInputLayout>
+        
+        <inputLayout:SfTextInputLayout Hint="Email"
+                                       Grid.Row="3"
+                                       Grid.ColumnSpan="2"
+                                       ContainerType="Outlined"
+                                       Margin="10,10,10,0">
+            <Entry Keyboard="Email"
+                   Text="{Binding Email}"/>
+        </inputLayout:SfTextInputLayout>
+        <inputLayout:SfTextInputLayout Hint="Password"
+                                           Grid.Row="4"
+                                           Grid.ColumnSpan="2"
+                                           ContainerType="Outlined"
+                                           Margin="10,10,10,0"
+                                           EnablePasswordVisibilityToggle="true">
+            <Entry IsPassword="True"
+                   Text="{Binding Password}"/>
+        </inputLayout:SfTextInputLayout>
+        
+        <Button Grid.Column="0"
+                Grid.Row="5"
+                Text="Cancel"
+                BorderRadius="30"
+                VerticalOptions="End"
+                Margin="10,0,5,20"
+                Command="{Binding GoBackCommand}">
+        </Button>
+        <Button Grid.Column="1"
+                Grid.Row="5"
+                Text="Register"
+                BorderRadius="30"
+                VerticalOptions="EndAndExpand"
+                Margin="5,0,10,20"/>
+    </Grid>
+</ContentPage>

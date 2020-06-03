@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:i18n="clr-namespace:GameON.Prism.Helpers"
+             x:Class="GameON.Prism.Views.LoginPage">
+
+
+    
+        
+        <Grid Margin="20, 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="180"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/> 
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="70"/>
+            </Grid.RowDefinitions>
+            <Image Grid.Row="0"
+                   Grid.ColumnSpan="2"
+                   Source="logo"
+                   MinimumHeightRequest="140"
+                   MinimumWidthRequest="140"
+                   HorizontalOptions="Center"
+                   Margin="0,30,0,20"/>
+
+        <inputLayout:SfTextInputLayout Hint="{i18n:Translate Email}"
+                                           Grid.Row="1"
+                                           Grid.ColumnSpan="2"
+                                           ContainerType="Outlined"
+                                           Margin="0,0,0,10"
+                                           FocusedColor="#00AFA0">
+                <Entry Keyboard="Email"/>
+            </inputLayout:SfTextInputLayout>
+
+
+        <inputLayout:SfTextInputLayout Hint="{i18n:Translate Password}"
+                                           Grid.Row="2"
+                                           Grid.ColumnSpan="2"
+                                           ContainerType="Outlined"
+                                           Margin="0,0,0,0"
+                                           EnablePasswordVisibilityToggle="true">
+                <Entry IsPassword="True"/>
+            </inputLayout:SfTextInputLayout>
+
+        
+            
+            <Label Grid.Row="3"
+                   Grid.Column="0"
+                   FontAttributes="Bold"
+                   HorizontalOptions="StartAndExpand"
+                   Text="{i18n:Translate ForgotPassword}"
+                   Margin="5,5,0,0">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}"/>
+                </Label.GestureRecognizers>
+            </Label>
+            <Label Grid.Row="3"
+                   Grid.Column="1"
+                   FontAttributes="Bold"
+                   HorizontalOptions="EndAndExpand"
+                   Text="{i18n:Translate SignupLabel}"
+                   Margin="0,5,5,0">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding RegisterCommand}"/>
+                </Label.GestureRecognizers>
+            </Label>
+
+        <Button Grid.ColumnSpan="2"
+                    Grid.Row="4"
+                    Text="{i18n:Translate Login}"
+                    BorderRadius="30"
+                    Command="{Binding LoginCommand}"/>
+
+
+        <Label Grid.Row="5"
+                   Grid.ColumnSpan="2"
+                   FontSize="Medium"
+                   HorizontalOptions="Center"
+                   VerticalOptions="End"
+                   Text="{i18n:Translate OrLoginLabel}">
+            </Label>
+
+            <Image Grid.Row="6"
+                   Grid.ColumnSpan="2"
+                   Source="logo"
+                   HorizontalOptions="Center"
+                   Margin="0,0,0,20">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding LoginFacebookCommand}"/>
+                </Image.GestureRecognizers>
+            </Image>
+        </Grid>
+</ContentPage>

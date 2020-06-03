@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com" xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms" xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="GameON.Prism.Views.GameReviewsPage"
+             Title="{Binding Title}">
+    <AbsoluteLayout>
+        <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1"
+                 AbsoluteLayout.LayoutFlags="All"
+                 Padding="5,0">
+            
+            <RefreshView IsRefreshing="{Binding IsRefreshing}"
+                         Command="{Binding RefreshCommand}">
+
+                <CollectionView ItemsSource="{Binding Reviews}">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical"/>
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding SelectReviewCommand}"></TapGestureRecognizer>
+                                </Grid.GestureRecognizers>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="120" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="190"/>
+                                </Grid.RowDefinitions>
+                                <Frame Margin="0,10">
+                                    <ffimageloading:CachedImage Grid.Column="0"
+                                                                    Aspect="AspectFill"
+                                                                    Source="{Binding VideoGame.PictureFullPath}" 
+                                                                    CacheDuration= "50"
+                                                                    RetryCount= "3"
+                                                                    RetryDelay= "600"/>
+                                </Frame>
+                                <StackLayout Padding="10,5"
+                                             Grid.Column="1">                                    
+                                    <Label  Text="Score"
+                                            FontAttributes="Bold"/>
+                                    <rating:SfRating ItemCount="5"
+                                                     Precision="Half"
+                                                     TooltipPlacement="TopLeft"
+                                                     ItemSize="20"
+                                                     ReadOnly="True"
+                                                     Value="{Binding Score}"/>
+                                    <Label  Text="Review:"
+                                             FontAttributes="Bold"/>
+                                    <Label Text="{Binding Review}"
+                                                   FontSize="Small"
+                                                   TextColor="Black"
+                                                   MaxLines="5"
+                                                    LineBreakMode="TailTruncation"/>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label  Text="By:"/>
+                                        <Label  Text="{Binding User.FirstName}"/>
+                                    </StackLayout>
+                                </StackLayout>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </RefreshView>
+        </StackLayout>
+        <Button AbsoluteLayout.LayoutBounds=".5,1,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                WidthRequest="150"
+                HeightRequest="60"
+                CornerRadius="30"
+                Margin="10"
+                IsEnabled="{Binding IsEnabled}"
+                Command="{Binding MakeReviewCommand}"
+                Text="Make a review"
+                VerticalOptions="End"
+                HorizontalOptions="CenterAndExpand"/>
+        <busyindicator:SfBusyIndicator AnimationType="Rectangle" 
+                                       AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
+                                       AbsoluteLayout.LayoutFlags="All"
+                                       BackgroundColor="Transparent"
+                                       HorizontalOptions="Center"
+                                       TextColor="Black"
+                                       IsBusy="{Binding IsRunning}"
+                                       Title="Loading..."
+                                       VerticalOptions="Center"
+                                       ViewBoxWidth="80"
+                                       ViewBoxHeight="80" />
+    </AbsoluteLayout>
+</ContentPage>

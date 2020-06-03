@@ -15,9 +15,22 @@
 
   <ItemGroup>
     <ProjectReference Include="..\GameON.Common\GameON.Common.csproj" />
+    <ProjectReference Include="..\GameON.Prism\GameON.Prism\GameON.Prism.csproj" />
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Resources\Resource.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\Resource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <Folder Include="Views\Account\" />
     <Folder Include="wwwroot\images\Users\" />
     <Folder Include="wwwroot\images\VideoGames\" />
