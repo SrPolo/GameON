@@ -23,6 +23,8 @@ namespace GameON.Web.Helpers
 
         ReviewResponse ToReviewResponse(ReviewEntity reviewEntity);
 
+        GameListResponse ToGameListResponse(GameListEntity gameListEntity);
+
         List<ReviewResponse> ToReviewResponse(List<ReviewEntity> reviewEntities);
 
     }

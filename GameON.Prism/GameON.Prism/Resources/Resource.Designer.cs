@@ -241,6 +241,15 @@ namespace GameON.Prism.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The user game list is empty!.
+        /// </summary>
+        public static string GameListEmpty {
+            get {
+                return ResourceManager.GetString("GameListEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Genres:.
         /// </summary>
         public static string Genres {

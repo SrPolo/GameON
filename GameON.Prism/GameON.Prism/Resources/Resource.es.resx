@@ -267,4 +267,7 @@
   <data name="ScoreError" xml:space="preserve">
     <value>Debes ingresar un puntaje</value>
   </data>
+  <data name="GameListEmpty" xml:space="preserve">
+    <value>¡La lista de juegos de usuario está vacía!</value>
+  </data>
 </root>

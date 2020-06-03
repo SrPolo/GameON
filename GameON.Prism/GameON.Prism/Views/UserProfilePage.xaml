@@ -14,6 +14,7 @@
                                     RetryDelay= "600"
                                     WidthRequest="150"
                                     HeightRequest="150"
+                                    Margin="0,20,0,0"
                                     HorizontalOptions="Center"/>
         <Label Text="{Binding User.FirstName}"
                FontSize="Large"
@@ -27,7 +28,9 @@
                FontSize="Medium"
                FontAttributes="Bold"
                HorizontalOptions="Center"/>
-        <Button Text="Game list"/>
+        <Button Text="Game list"
+                Command="{Binding MyGameListCommand}"/>
+        
         
         
         
