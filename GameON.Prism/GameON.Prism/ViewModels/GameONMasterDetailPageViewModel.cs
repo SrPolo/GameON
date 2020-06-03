@@ -1,5 +1,7 @@
-﻿using GameON.Common.Models;
+﻿using GameON.Common.Helpers;
+using GameON.Common.Models;
 using GameON.Prism.Views;
+using Newtonsoft.Json;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
@@ -13,14 +15,23 @@ namespace GameON.Prism.ViewModels
     public class GameONMasterDetailPageViewModel : ViewModelBase
     {
         private readonly INavigationService _navigationService;
+        private UserResponse _user;
 
         public GameONMasterDetailPageViewModel(INavigationService navigationService) : base(navigationService)
         {
             _navigationService = navigationService;
             LoadMenus();
+            LoadUser();
         }
 
         public ObservableCollection<MenuItemViewModel> Menus { get; set; }
+
+        public UserResponse User
+        {
+            get => _user;
+            set => SetProperty(ref _user, value);
+        }
+
 
         private void LoadMenus()
         {
@@ -73,5 +84,13 @@ namespace GameON.Prism.ViewModels
                 }).ToList());
         }
 
+        private void LoadUser()
+        {
+            if (Settings.IsLogin)
+            {
+                User = JsonConvert.DeserializeObject<UserResponse>(Settings.User);
+            }
+
+        }
     }
 }

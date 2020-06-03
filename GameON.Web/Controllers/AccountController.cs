@@ -260,6 +260,7 @@ namespace GameON.Web.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+
         [HttpPost]
         public async Task<IActionResult> CreateToken([FromBody] LoginViewModel model)
         {

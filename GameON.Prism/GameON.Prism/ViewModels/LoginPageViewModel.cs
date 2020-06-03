@@ -129,7 +129,7 @@ namespace GameON.Prism.ViewModels
             IsRunning = false;
             IsEnabled = true;
 
-           // await _navigationService.NavigateAsync("/GastosMasterDetailPage/NavigationPage/TripsPage"); Recordar corregir
+           await _navigationService.NavigateAsync("/GameONMasterDetailPage/NavigationPage/VideoGamesPage");
             Password = string.Empty;
 
         }

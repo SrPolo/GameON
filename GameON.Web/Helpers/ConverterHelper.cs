@@ -2,10 +2,8 @@
 using GameON.Web.Data;
 using GameON.Web.Data.Entities;
 using GameON.Web.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace GameON.Web.Helpers
 {
@@ -27,6 +25,16 @@ namespace GameON.Web.Helpers
                 Document = user.Document,
                 Email = user.Email,
                 FirstName = user.FirstName,
+                PicturePath = user.PicturePath,
+                VideoGame = new VideoGameResponse
+                {
+                    Id = user.VideoGame.Id,
+                    Name = user.VideoGame.Name,
+                    PicturePath = user.VideoGame.PicturePath,
+                    ReleaseDate = user.VideoGame.ReleaseDate,
+                    Synopsis = user.VideoGame.Synopsis,
+                    Score = user.VideoGame.Score
+                },
                 Id = user.Id,
                 LastName = user.LastName,
                 UserType = user.UserType
@@ -88,10 +96,11 @@ namespace GameON.Web.Helpers
                 Score = videoGameEntity.Score,
                 Synopsis = videoGameEntity.Synopsis,
                 ReleaseDate = videoGameEntity.ReleaseDate,
-                Developers = videoGameEntity.Developers.Select(d=> new VGDeveloperResponse
-                { 
+                Developers = videoGameEntity.Developers.Select(d => new VGDeveloperResponse
+                {
                     Id = d.Id,
-                    Developer = new DeveloperResponse { 
+                    Developer = new DeveloperResponse
+                    {
                         Id = d.Developer.Id,
                         Name = d.Developer.Name
                     }
@@ -129,7 +138,7 @@ namespace GameON.Web.Helpers
                 Reviews = model.Reviews,
                 Score = model.Score,
                 Synopsis = model.Synopsis
-            };            
+            };
 
             return videogame;
         }
@@ -152,7 +161,7 @@ namespace GameON.Web.Helpers
                 DeveloperList = _combosHelper.GetComboDevelopers(),
                 GenreList = _combosHelper.GetComboGenres(),
                 PlatformList = _combosHelper.GetComboPlatforms(),
-                
+
             };
         }
 
@@ -164,19 +173,19 @@ namespace GameON.Web.Helpers
                 Review = reviewEntity.Review,
                 VideoGame = new VideoGameResponse
                 {
-                    Id=reviewEntity.VideoGame.Id,
+                    Id = reviewEntity.VideoGame.Id,
                     Name = reviewEntity.VideoGame.Name,
                     PicturePath = reviewEntity.VideoGame.PicturePath,
-                    ReleaseDate =reviewEntity.VideoGame.ReleaseDate,
+                    ReleaseDate = reviewEntity.VideoGame.ReleaseDate,
                     Score = reviewEntity.VideoGame.Score,
-                    Synopsis= reviewEntity.VideoGame.Synopsis
+                    Synopsis = reviewEntity.VideoGame.Synopsis
                 },
                 Score = reviewEntity.Score,
                 User = new UserResponse
                 {
-                    FirstName=reviewEntity.User.FirstName,
+                    FirstName = reviewEntity.User.FirstName,
                     LastName = reviewEntity.User.LastName,
-                    PicturePath = reviewEntity.User.PicturePath                    
+                    PicturePath = reviewEntity.User.PicturePath
                 }
             };
         }
