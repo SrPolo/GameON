@@ -8,6 +8,8 @@ namespace GameON.Common.Services
 {
     public interface IApiService
     {
+        Task<Response> GetTokenAsync(string urlBase, string servicePrefix, string controller, FacebookProfile request);
+
         Task<Response> GetListAsync<T>(string urlBase, string servicePrefix, string controller);
 
         Task<Response> MakeReviewAsync<ReviewRequest>(string urlBase, string servicePrefix, string controller, ReviewRequest model, string tokenType, string accessToken);

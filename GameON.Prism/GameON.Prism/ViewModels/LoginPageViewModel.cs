@@ -4,14 +4,19 @@ using GameON.Common.Services;
 using GameON.Prism.Helpers;
 using GameON.Prism.Views;
 using Newtonsoft.Json;
+using Plugin.FacebookClient;
 using Prism.Commands;
 using Prism.Navigation;
+using System;
+using System.Diagnostics;
+using System.Threading.Tasks;
 using Xamarin.Essentials;
 
 namespace GameON.Prism.ViewModels
 {
     public class LoginPageViewModel : ViewModelBase
     {
+        private readonly IFacebookClient _facebookService = CrossFacebookClient.Current;
         private readonly INavigationService _navigationService;
         private readonly IApiService _apiService;
         private bool _isRunning;
@@ -20,6 +25,7 @@ namespace GameON.Prism.ViewModels
         private DelegateCommand _loginCommand;
         private DelegateCommand _registerCommand;
         private DelegateCommand _forgotPasswordCommand;
+        private DelegateCommand _loginFacebookCommand;
 
         public LoginPageViewModel(INavigationService navigationService, IApiService apiService) : base(navigationService)
         {
@@ -28,6 +34,7 @@ namespace GameON.Prism.ViewModels
             Title = Languages.Login;
             IsEnabled = true;
         }
+        public DelegateCommand LoginFacebookCommand => _loginFacebookCommand ?? (_loginFacebookCommand = new DelegateCommand(LoginFacebookAsync));
 
         public DelegateCommand LoginCommand => _loginCommand ?? (_loginCommand = new DelegateCommand(LoginAsync));
 
@@ -58,6 +65,89 @@ namespace GameON.Prism.ViewModels
         {
             get => _password;
             set => SetProperty(ref _password, value);
+        }
+
+        private async void LoginFacebookAsync()
+        {
+            try
+            {
+
+                if (_facebookService.IsLoggedIn)
+                {
+                    _facebookService.Logout();
+                }
+
+                async void userDataDelegate(object sender, FBEventArgs<string> e)
+                {
+                    switch (e.Status)
+                    {
+                        case FacebookActionStatus.Completed:
+                            FacebookProfile facebookProfile = await Task.Run(() => JsonConvert.DeserializeObject<FacebookProfile>(e.Data));
+                            await LoginFacebookAsync(facebookProfile);
+                            break;
+                        case FacebookActionStatus.Canceled:
+                            await App.Current.MainPage.DisplayAlert("Facebook Auth", "Canceled", "Ok");
+                            break;
+                        case FacebookActionStatus.Error:
+                            await App.Current.MainPage.DisplayAlert("Facebook Auth", "Error", "Ok");
+                            break;
+                        case FacebookActionStatus.Unauthorized:
+                            await App.Current.MainPage.DisplayAlert("Facebook Auth", "Unauthorized", "Ok");
+                            break;
+                    }
+
+                    _facebookService.OnUserData -= userDataDelegate;
+                }
+
+                _facebookService.OnUserData += userDataDelegate;
+
+                string[] fbRequestFields = { "email", "first_name", "picture.width(999)", "gender", "last_name" };
+                string[] fbPermisions = { "email" };
+                await _facebookService.RequestUserDataAsync(fbRequestFields, fbPermisions);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.ToString());
+            }
+        }
+
+        private async Task LoginFacebookAsync(FacebookProfile facebookProfile)
+        {
+            IsRunning = true;
+            IsEnabled = false;
+
+            string url = App.Current.Resources["UrlAPI"].ToString();
+
+            Response response = await _apiService.GetTokenAsync(url, "api", "/Account/LoginFacebook", facebookProfile);
+
+            if (!response.IsSuccess)
+            {
+                IsRunning = false;
+                IsEnabled = true;
+                await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.LoginError, Languages.Accept);
+                Password = string.Empty;
+                return;
+            }
+
+            TokenResponse token = (TokenResponse)response.Result;
+            EmailRequest request2 = new EmailRequest
+            {
+                CultureInfo = Languages.Culture,
+                Email = facebookProfile.Email
+            };
+
+            Response response2 = await _apiService.GetUserByEmail(url, "api", "/Account/GetUserByEmail", "bearer", token.Token, request2);
+            UserResponse userResponse = (UserResponse)response2.Result;
+
+            Settings.User = JsonConvert.SerializeObject(userResponse);
+            Settings.Token = JsonConvert.SerializeObject(token);
+            Settings.IsLogin = true;
+
+            IsRunning = false;
+            IsEnabled = true;
+
+            await _navigationService.NavigateAsync("/GameONMasterDetailPage/NavigationPage/VideoGamesPage");
+            Password = string.Empty;
         }
 
         private async void LoginAsync()

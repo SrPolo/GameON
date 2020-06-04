@@ -15,6 +15,7 @@ using System.Linq;
 using Xamarin.Essentials;
 using System;
 using GameON.Prism.Views;
+using GameON.Common.Enums;
 
 namespace GameON.Prism.ViewModels
 {
@@ -23,6 +24,7 @@ namespace GameON.Prism.ViewModels
         private readonly IApiService _apiService;
         private readonly INavigationService _navigationService;
         private readonly IFilesHelper _filesHelper;
+        private bool _isGameONUser;
         private bool _isRunning;
         private bool _isEnabled;
         private ImageSource _image;
@@ -43,8 +45,9 @@ namespace GameON.Prism.ViewModels
             Title = Languages.ModifyUser;
             IsEnabled = true;
             User = JsonConvert.DeserializeObject<UserResponse>(Settings.User);
+            IsGameONUser = User.LoginType == LoginType.GameON;
             Image = User.PictureFullPath;
-            LoadTeamsAsync();
+            LoadVideoGamesAsync();
         }
         
 
@@ -53,6 +56,12 @@ namespace GameON.Prism.ViewModels
         public DelegateCommand ChangeImageCommand => _changeImageCommand ?? (_changeImageCommand = new DelegateCommand(ChangeImageAsync));
 
         public DelegateCommand SaveCommand => _saveCommand ?? (_saveCommand = new DelegateCommand(SaveAsync));
+
+        public bool IsGameONUser
+        {
+            get => _isGameONUser;
+            set => SetProperty(ref _isGameONUser, value);
+        }
 
         public ImageSource Image
         {
@@ -164,6 +173,14 @@ namespace GameON.Prism.ViewModels
 
         private async void ChangeImageAsync()
         {
+
+            if (!IsGameONUser)
+            {
+                await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.ChangePhotoNoSoccerUser, Languages.Accept);
+                return;
+            }
+
+
             await CrossMedia.Current.Initialize();
 
             string source = await Application.Current.MainPage.DisplayActionSheet(
@@ -205,7 +222,7 @@ namespace GameON.Prism.ViewModels
             }
         }
 
-        private async void LoadTeamsAsync()
+        private async void LoadVideoGamesAsync()
         {
             IsRunning = true;
             IsEnabled = false;
@@ -237,6 +254,12 @@ namespace GameON.Prism.ViewModels
 
         private async void ChangePassword()
         {
+            if (!IsGameONUser)
+            {
+                await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.ChangePhotoNoSoccerUser, Languages.Accept);
+                return;
+            }
+
             await _navigationService.NavigateAsync(nameof(ChangePasswordPage));
         }
 

@@ -327,4 +327,7 @@
   <data name="UserUpdated" xml:space="preserve">
     <value>El usuario se ha actualizado</value>
   </data>
+  <data name="ChangePhotoNoSoccerUser" xml:space="preserve">
+    <value>Los usuarios creados por redes sociales, deben cambiar la foto o contraseña en la red social.</value>
+  </data>
 </root>

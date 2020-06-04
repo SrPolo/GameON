@@ -38,7 +38,8 @@ namespace GameON.Web.Helpers
                 },
                 Id = new Guid(user.Id),
                 LastName = user.LastName,
-                UserType = user.UserType
+                UserType = user.UserType,
+                LoginType = user.LoginType
             };
         }
 
@@ -208,8 +209,7 @@ namespace GameON.Web.Helpers
             {
                 Id=gameListEntity.Id,
                 status=gameListEntity.status,
-                VideoGame = ToVideoGameResponse(gameListEntity.VideoGame),
-                User = ToUserResponse(gameListEntity.User)                
+                VideoGame = ToVideoGameResponse(gameListEntity.VideoGame)      
             };
         }
     }

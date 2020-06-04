@@ -15,32 +15,29 @@
     <AbsoluteLayout>
         <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1"
                      AbsoluteLayout.LayoutFlags="All">
-            <ffimageloading:CachedImage Aspect="AspectFit"
-                                        Source="{Binding Image}" 
-                                        CacheDuration= "50"
-                                        HeightRequest="150"
-                                        WidthRequest="150"
-                                        Margin="5"
-                                        RetryCount= "3"
-                                        RetryDelay= "600">
-                <ffimageloading:CachedImage.GestureRecognizers>
+            <Image HeightRequest="150"
+                   WidthRequest="150"
+                       Source="{Binding Image}">
+                <Image.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding ChangeImageCommand}"/>
-                </ffimageloading:CachedImage.GestureRecognizers>
-            </ffimageloading:CachedImage>
+                </Image.GestureRecognizers>
+            </Image>
             
             <inputLayout:SfTextInputLayout Hint="{i18n:Translate Firstname}"
-                                       Grid.Row="0"
-                                       Grid.ColumnSpan="2"
-                                       ContainerType="Outlined"
-                                       Margin="10,20,10,0">
+                                           IsEnabled="{Binding IsGameONUser}"
+                                           Grid.Row="0"
+                                           Grid.ColumnSpan="2"
+                                           ContainerType="Outlined"
+                                           Margin="10,20,10,0">
                 <Entry Text="{Binding User.FirstName}"/>
             </inputLayout:SfTextInputLayout>
 
             <inputLayout:SfTextInputLayout Hint="{i18n:Translate Lastname}"
-                                       Grid.Row="1"
-                                       Grid.ColumnSpan="2"
-                                       ContainerType="Outlined"
-                                       Margin="10,10,10,0">
+                                           IsEnabled="{Binding IsGameONUser}"
+                                           Grid.Row="1"
+                                           Grid.ColumnSpan="2"
+                                           ContainerType="Outlined"
+                                           Margin="10,10,10,0">
                 <Entry Text="{Binding User.LastName}"/>
             </inputLayout:SfTextInputLayout>
 
@@ -59,30 +56,29 @@
                                 ItemsSource="{Binding VideoGames}"
                                 SelectedItem="{Binding VideoGame}"
                                 Title="{i18n:Translate FavoriteVideoGamePlaceHolder}"/>
- 
-            <StackLayout Orientation="Horizontal">
-                <Button Grid.ColumnSpan="2"
-                    Grid.Row="4"
+
+            <Grid VerticalOptions="EndAndExpand"
+                  Margin="5,0,5,10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0"
+                        Grid.Row="0"
+                    HorizontalOptions="FillAndExpand"
                     Text="{i18n:Translate ChangePassword}"
                     BorderRadius="30"
                     Command="{Binding ChangePasswordCommand}"/>
-                <Button Grid.ColumnSpan="2"
-                    Grid.Row="4"
+                <Button Grid.Column="1"
+                        Grid.Row="0"
+                    HorizontalOptions="FillAndExpand"
                     Text="{i18n:Translate Save}"
                     BorderRadius="30"
                     Command="{Binding SaveCommand}"/>
-            </StackLayout>
+            </Grid>
         </StackLayout>
-        <busyindicator:SfBusyIndicator AnimationType="Rectangle" 
-                                       AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
-                                       AbsoluteLayout.LayoutFlags="All"
-                                       BackgroundColor="Transparent"
-                                       HorizontalOptions="Center"
-                                       TextColor="Black"
-                                       IsBusy="{Binding IsRunning}"
-                                       Title="Loading..."
-                                       VerticalOptions="Center"
-                                       ViewBoxWidth="80"
-                                       ViewBoxHeight="80"/>
     </AbsoluteLayout>
 </ContentPage>

@@ -19,6 +19,8 @@ namespace GameON.Common.Models
 
         public string PicturePath { get; set; }
 
+        public LoginType LoginType { get; set; }
+
         public UserType UserType { get; set; }
 
         public VideoGameResponse VideoGame { get; set; }
@@ -29,6 +31,6 @@ namespace GameON.Common.Models
 
         public string PictureFullPath => string.IsNullOrEmpty(PicturePath)
             ? "https://gameonweb.azurewebsites.net/images/noimage.png"
-            : $"https://gameonweb.azurewebsites.net{PicturePath}";
+            : LoginType == LoginType.GameON ? $"https://gameonweb.azurewebsites.net{PicturePath}" : PicturePath;
     }
 }

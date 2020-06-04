@@ -1,4 +1,5 @@
 ﻿using GameON.Common.Enums;
+using GameON.Common.Models;
 using GameON.Web.Data.Entities;
 using GameON.Web.Models;
 using Microsoft.AspNetCore.Identity;
@@ -42,5 +43,8 @@ namespace GameON.Web.Helpers
         Task<IdentityResult> ResetPasswordAsync(UserEntity user, string token, string password);
 
         Task LogoutAsync();
+
+        Task<UserEntity> AddUserAsync(FacebookProfile model);
+
     }
 }

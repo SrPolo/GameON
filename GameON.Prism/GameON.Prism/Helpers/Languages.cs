@@ -18,7 +18,10 @@ namespace GameON.Prism.Helpers
         
         public static string Culture { get; set; }
 
+        public static string ChangePhotoNoSoccerUser => Resource.ChangePhotoNoSoccerUser;
+
         public static string UserUpdated => Resource.UserUpdated;
+
         public static string FavoriteVideoGamePlaceHolder => Resource.FavoriteVideoGamePlaceHolder;
 
         public static string AddedSuccess => Resource.AddedSuccess;
