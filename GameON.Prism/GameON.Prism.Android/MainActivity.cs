@@ -8,11 +8,12 @@ using Plugin.FacebookClient;
 using Plugin.Permissions;
 using Prism;
 using Prism.Ioc;
+using Android.Runtime;
 
 
 namespace GameON.Prism.Droid
 {
-    [Activity(Label = "GameON.Prism", Icon = "@mipmap/ic_launcher", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Label = "GameON.Prism", Icon = "@mipmap/ic_launcher", Theme = "@style/MainTheme", MainLauncher = false, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)
