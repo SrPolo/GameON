@@ -81,7 +81,8 @@ namespace GameON.Prism.ViewModels
                     Score = Score,
                     Review = Review,
                     VideoGameId = VideoGame.Id,
-                    UserId = user.Id
+                    UserId = user.Id,
+                    CultureInfo = Languages.Culture
                 };
 
                 TokenResponse token = JsonConvert.DeserializeObject<TokenResponse>(Settings.Token);
@@ -92,6 +93,11 @@ namespace GameON.Prism.ViewModels
                 {
                     await App.Current.MainPage.DisplayAlert(Languages.Error, response.Message, Languages.Accept);
                 }
+                else
+                {
+                    await App.Current.MainPage.DisplayAlert(Languages.Message, Languages.ReviewSuccess, Languages.Accept);
+                }
+                await _navigationService.GoBackAsync();
             }
         }
 

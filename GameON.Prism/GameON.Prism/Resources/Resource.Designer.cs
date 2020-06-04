@@ -70,6 +70,15 @@ namespace GameON.Prism.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The videogame was added to your list!.
+        /// </summary>
+        public static string AddedSuccess {
+            get {
+                return ResourceManager.GetString("AddedSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add to list.
         /// </summary>
         public static string AddtoList {
@@ -97,11 +106,74 @@ namespace GameON.Prism.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Confirm new password.
+        /// </summary>
+        public static string ConfirmNewPassword {
+            get {
+                return ResourceManager.GetString("ConfirmNewPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You must enter a confirmation for new password..
+        /// </summary>
+        public static string ConfirmNewPasswordError {
+            get {
+                return ResourceManager.GetString("ConfirmNewPasswordError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The confirmation and new password does not match..
+        /// </summary>
+        public static string ConfirmNewPasswordError2 {
+            get {
+                return ResourceManager.GetString("ConfirmNewPasswordError2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter the password confirmation....
+        /// </summary>
+        public static string ConfirmNewPasswordPlaceHolder {
+            get {
+                return ResourceManager.GetString("ConfirmNewPasswordPlaceHolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Could not connect to the internet.
         /// </summary>
         public static string ConnectionError {
             get {
                 return ResourceManager.GetString("ConnectionError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Current password.
+        /// </summary>
+        public static string CurrentPassword {
+            get {
+                return ResourceManager.GetString("CurrentPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You must enter your current password..
+        /// </summary>
+        public static string CurrentPasswordError {
+            get {
+                return ResourceManager.GetString("CurrentPasswordError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter your current password....
+        /// </summary>
+        public static string CurrentPasswordPlaceHolder {
+            get {
+                return ResourceManager.GetString("CurrentPasswordPlaceHolder", resourceCulture);
             }
         }
         
@@ -313,6 +385,15 @@ namespace GameON.Prism.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Message.
+        /// </summary>
+        public static string Message {
+            get {
+                return ResourceManager.GetString("Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Modify user.
         /// </summary>
         public static string ModifyUser {
@@ -340,6 +421,42 @@ namespace GameON.Prism.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New password.
+        /// </summary>
+        public static string NewPassword {
+            get {
+                return ResourceManager.GetString("NewPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You must enter a new password..
+        /// </summary>
+        public static string NewPasswordError {
+            get {
+                return ResourceManager.GetString("NewPasswordError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter the new password..
+        /// </summary>
+        public static string NewPasswordPlaceHolder {
+            get {
+                return ResourceManager.GetString("NewPasswordPlaceHolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ok.
+        /// </summary>
+        public static string Ok {
+            get {
+                return ResourceManager.GetString("Ok", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Or login with.
         /// </summary>
         public static string OrLoginLabel {
@@ -354,6 +471,42 @@ namespace GameON.Prism.Resources {
         public static string Password {
             get {
                 return ResourceManager.GetString("Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password confirm.
+        /// </summary>
+        public static string PasswordConfirm {
+            get {
+                return ResourceManager.GetString("PasswordConfirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You must enter a password confirm..
+        /// </summary>
+        public static string PasswordConfirmError1 {
+            get {
+                return ResourceManager.GetString("PasswordConfirmError1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The password and confirm does not match..
+        /// </summary>
+        public static string PasswordConfirmError2 {
+            get {
+                return ResourceManager.GetString("PasswordConfirmError2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter the password confirm....
+        /// </summary>
+        public static string PasswordConfirmPlaceHolder {
+            get {
+                return ResourceManager.GetString("PasswordConfirmPlaceHolder", resourceCulture);
             }
         }
         
@@ -457,6 +610,15 @@ namespace GameON.Prism.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your review have been posted!.
+        /// </summary>
+        public static string ReviewSuccess {
+            get {
+                return ResourceManager.GetString("ReviewSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
         public static string Save {
@@ -509,224 +671,11 @@ namespace GameON.Prism.Resources {
                 return ResourceManager.GetString("Synopsis", resourceCulture);
             }
         }
-
+        
         /// <summary>
-        ///   Looks up a localized string similar to Ok.
+        ///   Looks up a localized string similar to Video Games.
         /// </summary>
-        public static string Ok
-        {
-            get
-            {
-                return ResourceManager.GetString("Ok", resourceCulture);
-            }
-        }
-       
-
-        /// <summary>
-        ///   Looks up a localized string similar to Password confirm.
-        /// </summary>
-        public static string PasswordConfirm
-        {
-            get
-            {
-                return ResourceManager.GetString("PasswordConfirm", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to You must enter a password confirm..
-        /// </summary>
-        public static string PasswordConfirmError1
-        {
-            get
-            {
-                return ResourceManager.GetString("PasswordConfirmError1", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to The password and confirm does not match..
-        /// </summary>
-        public static string PasswordConfirmError2
-        {
-            get
-            {
-                return ResourceManager.GetString("PasswordConfirmError2", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Enter the password confirm....
-        /// </summary>
-        public static string PasswordConfirmPlaceHolder
-        {
-            get
-            {
-                return ResourceManager.GetString("PasswordConfirmPlaceHolder", resourceCulture);
-            }
-        }
-        /// <summary>
-        ///   Looks up a localized string similar to You must enter a password..
-        /// </summary>
-    
-
-        /// <summary>
-        ///   Looks up a localized string similar to Enter your password....
-        /// </summary>
-        public static string PasswordPlaceHolder
-        {
-            get
-            {
-                return ResourceManager.GetString("PasswordPlaceHolder", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Recover password.
-        /// </summary>
-        public static string PasswordRecover
-        {
-            get
-            {
-                return ResourceManager.GetString("PasswordRecover", resourceCulture);
-            }
-        }
-
-
-        /// <summary>
-        ///   Looks up a localized string similar to You must attach the receipt photo.
-        /// </summary>
-        public static string ReceiptError
-        {
-            get
-            {
-                return ResourceManager.GetString("ReceiptError", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Confirm new password.
-        /// </summary>
-        public static string ConfirmNewPassword
-        {
-            get
-            {
-                return ResourceManager.GetString("ConfirmNewPassword", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to You must enter a confirmation for new password..
-        /// </summary>
-        public static string ConfirmNewPasswordError
-        {
-            get
-            {
-                return ResourceManager.GetString("ConfirmNewPasswordError", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to The confirmation and new password does not match..
-        /// </summary>
-        public static string ConfirmNewPasswordError2
-        {
-            get
-            {
-                return ResourceManager.GetString("ConfirmNewPasswordError2", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Enter the password confirmation....
-        /// </summary>
-        public static string ConfirmNewPasswordPlaceHolder
-        {
-            get
-            {
-                return ResourceManager.GetString("ConfirmNewPasswordPlaceHolder", resourceCulture);
-            }
-        }
-        /// <summary>
-        ///   Looks up a localized string similar to Current password.
-        /// </summary>
-        public static string CurrentPassword
-        {
-            get
-            {
-                return ResourceManager.GetString("CurrentPassword", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to You must enter your current password..
-        /// </summary>
-        public static string CurrentPasswordError
-        {
-            get
-            {
-                return ResourceManager.GetString("CurrentPasswordError", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Enter your current password....
-        /// </summary>
-        public static string CurrentPasswordPlaceHolder
-        {
-            get
-            {
-                return ResourceManager.GetString("CurrentPasswordPlaceHolder", resourceCulture);
-            }
-        }
-        /// <summary>
-        ///   Looks up a localized string similar to New password.
-        /// </summary>
-        public static string NewPassword
-        {
-            get
-            {
-                return ResourceManager.GetString("NewPassword", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to You must enter a new password..
-        /// </summary>
-        public static string NewPasswordError
-        {
-            get
-            {
-                return ResourceManager.GetString("NewPasswordError", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Enter the new password..
-        /// </summary>
-        public static string NewPasswordPlaceHolder
-        {
-            get
-            {
-                return ResourceManager.GetString("NewPasswordPlaceHolder", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to User updated.
-        /// </summary>
-        public static string UserUpdated
-        {
-            get
-            {
-                return ResourceManager.GetString("UserUpdated", resourceCulture);
-            }
-        }
-    
-    /// <summary>
-    ///   Looks up a localized string similar to Video Games.
-    /// </summary>
-    public static string VideoGamesLabel {
+        public static string VideoGamesLabel {
             get {
                 return ResourceManager.GetString("VideoGamesLabel", resourceCulture);
             }

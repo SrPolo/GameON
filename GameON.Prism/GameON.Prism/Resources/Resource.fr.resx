@@ -270,4 +270,58 @@
   <data name="GameListEmpty" xml:space="preserve">
     <value>La liste des jeux d’utilisateurs est vide!</value>
   </data>
+  <data name="Message" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="ReviewSuccess" xml:space="preserve">
+    <value>Ton  avis a été publié!</value>
+  </data>
+  <data name="Ok" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="PasswordConfirm" xml:space="preserve">
+    <value>Confirmer le mot de passe</value>
+  </data>
+  <data name="PasswordConfirmError1" xml:space="preserve">
+    <value>Vous devez saisir un mot de passe.</value>
+  </data>
+  <data name="PasswordConfirmError2" xml:space="preserve">
+    <value>Le mot de passe et sa confirmation ne coïncident pas.</value>
+  </data>
+  <data name="PasswordConfirmPlaceHolder" xml:space="preserve">
+    <value>Saisir le mot de passe, puis valider...</value>
+  </data>
+  <data name="ConfirmNewPassword" xml:space="preserve">
+    <value>Confirmer le nouveau mot de passe</value>
+  </data>
+  <data name="ConfirmNewPasswordError" xml:space="preserve">
+    <value>Vous devez saisir une confirmation pour le nouveau mot de passe.</value>
+  </data>
+  <data name="ConfirmNewPasswordError2" xml:space="preserve">
+    <value>La confirmation et le nouveau mot de passe ne correspondent pas.</value>
+  </data>
+  <data name="CurrentPassword" xml:space="preserve">
+    <value>Mot de passe actuel</value>
+  </data>
+  <data name="CurrentPasswordError" xml:space="preserve">
+    <value>Veuillez saisir votre mot de passe actuel.</value>
+  </data>
+  <data name="CurrentPasswordPlaceHolder" xml:space="preserve">
+    <value>Saisissez votre mot de passe actuel...</value>
+  </data>
+  <data name="ConfirmNewPasswordPlaceHolder" xml:space="preserve">
+    <value>Veuillez saisir la confirmation de votre mot de passe...</value>
+  </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>Nouveau mot de passe</value>
+  </data>
+  <data name="NewPasswordError" xml:space="preserve">
+    <value>Vous devez entrer un nouveau mot de passe.</value>
+  </data>
+  <data name="NewPasswordPlaceHolder" xml:space="preserve">
+    <value>Entrer le nouveau mot de passe.</value>
+  </data>
+  <data name="AddedSuccess" xml:space="preserve">
+    <value>Le jeu vidéo a été ajouté à votre liste!</value>
+  </data>
 </root>
