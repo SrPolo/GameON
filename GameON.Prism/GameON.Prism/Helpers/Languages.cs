@@ -15,9 +15,12 @@ namespace GameON.Prism.Helpers
             DependencyService.Get<ILocalize>().SetLocale(ci);
         }
 
-
-        public static string Culture { get; set; }
         
+        public static string Culture { get; set; }
+
+        public static string UserUpdated => Resource.UserUpdated;
+        public static string FavoriteVideoGamePlaceHolder => Resource.FavoriteVideoGamePlaceHolder;
+
         public static string AddedSuccess => Resource.AddedSuccess;
 
         public static string GameListEmpty => Resource.GameListEmpty;

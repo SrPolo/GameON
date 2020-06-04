@@ -222,7 +222,7 @@
   <data name="FavoriteVideogame" xml:space="preserve">
     <value>Videojuego favorito</value>
   </data>
-  <data name="FavoriteTeamPlaceHolder" xml:space="preserve">
+  <data name="FavoriteVideoGamePlaceHolder" xml:space="preserve">
     <value>Elige un videojuego</value>
   </data>
   <data name="ChangePassword" xml:space="preserve">
@@ -323,5 +323,8 @@
   </data>
   <data name="AddedSuccess" xml:space="preserve">
     <value>¡El videojuego fue añadido a tu lista!</value>
+  </data>
+  <data name="UserUpdated" xml:space="preserve">
+    <value>El usuario se ha actualizado</value>
   </data>
 </root>

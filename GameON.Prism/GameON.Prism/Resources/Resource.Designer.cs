@@ -250,20 +250,20 @@ namespace GameON.Prism.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select a videogame.
-        /// </summary>
-        public static string FavoriteTeamPlaceHolder {
-            get {
-                return ResourceManager.GetString("FavoriteTeamPlaceHolder", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Favorite videogame.
         /// </summary>
         public static string FavoriteVideogame {
             get {
                 return ResourceManager.GetString("FavoriteVideogame", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a videogame.
+        /// </summary>
+        public static string FavoriteVideoGamePlaceHolder {
+            get {
+                return ResourceManager.GetString("FavoriteVideoGamePlaceHolder", resourceCulture);
             }
         }
         
@@ -669,6 +669,15 @@ namespace GameON.Prism.Resources {
         public static string Synopsis {
             get {
                 return ResourceManager.GetString("Synopsis", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The user has been updated.
+        /// </summary>
+        public static string UserUpdated {
+            get {
+                return ResourceManager.GetString("UserUpdated", resourceCulture);
             }
         }
         

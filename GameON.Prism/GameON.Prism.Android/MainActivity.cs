@@ -7,6 +7,7 @@ using Plugin.Permissions;
 using Prism;
 using Prism.Ioc;
 
+
 namespace GameON.Prism.Droid
 {
     [Activity(Label = "GameON.Prism", Icon = "@mipmap/ic_launcher", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]

@@ -35,7 +35,7 @@ namespace GameON.Web.Controllers.API
             _imageHelper = imageHelper;
         }
 
-        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost]
         [Route("GetUserByEmail")]
         public async Task<IActionResult> GetUserByEmail([FromBody] EmailRequest request)

@@ -5,6 +5,7 @@ using GameON.Prism.Helpers;
 using Newtonsoft.Json;
 using Prism.Commands;
 using Prism.Navigation;
+using System;
 using System.Threading.Tasks;
 namespace GameON.Prism.ViewModels
 {
@@ -15,6 +16,7 @@ namespace GameON.Prism.ViewModels
         private bool _isRunning;
         private bool _isEnabled;
         private DelegateCommand _changePasswordCommand;
+        private DelegateCommand _cancelCommand;
 
         public ChangePasswordPageViewModel(INavigationService navigationService, IApiService apiService)
             : base(navigationService)
@@ -24,6 +26,8 @@ namespace GameON.Prism.ViewModels
             IsEnabled = true;
             Title = Languages.ChangePassword;
         }
+
+        public DelegateCommand CancelCommand => _cancelCommand ?? (_cancelCommand = new DelegateCommand(CancelAsync));
 
         public DelegateCommand ChangePasswordCommand => _changePasswordCommand ?? (_changePasswordCommand = new DelegateCommand(ChangePasswordAsync));
 
@@ -82,6 +86,11 @@ namespace GameON.Prism.ViewModels
             await App.Current.MainPage.DisplayAlert(Languages.Ok, response.Message, Languages.Accept);
             await _navigationService.GoBackAsync();
 
+        }
+
+        private async void CancelAsync()
+        {
+            await _navigationService.GoBackAsync();
         }
 
         private async Task<bool> ValidateDataAsync()

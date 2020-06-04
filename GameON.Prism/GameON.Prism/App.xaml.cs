@@ -38,6 +38,7 @@ namespace GameON.Prism
             containerRegistry.Register<IRegexHelper, RegexHelper>();
             containerRegistry.Register<IGeolocatorService, GeolocatorService>();
             containerRegistry.Register<IApiService, ApiService>();
+            containerRegistry.Register<IFilesHelper, FilesHelper>();
             containerRegistry.RegisterSingleton<IAppInfo, AppInfoImplementation>();
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<VideoGamesPage, VideoGamesPageViewModel>();
