@@ -22,7 +22,6 @@ namespace GameON.Prism.ViewModels
             _navigationService = navigationService;
             LoadUser();
             LoadMenus();
-            LoadUser();
         }
 
         public DelegateCommand MyProfileCommand => _myProfileCommand ?? (_myProfileCommand = new DelegateCommand(MyProfileAsync));
@@ -37,11 +36,15 @@ namespace GameON.Prism.ViewModels
 
         private async void MyProfileAsync()
         {
-            NavigationParameters parameters = new NavigationParameters
+            if (Settings.IsLogin)
             {
-                { "user", User }
-            };
-            await _navigationService.NavigateAsync($"/GameONMasterDetailPage/NavigationPage/{nameof(UserProfilePage)}", parameters);
+                NavigationParameters parameters = new NavigationParameters
+                {
+                    { "user", User }
+                };
+                await _navigationService.NavigateAsync($"/GameONMasterDetailPage/NavigationPage/{nameof(UserProfilePage)}", parameters);
+            }
+
         }
 
         private void LoadMenus()

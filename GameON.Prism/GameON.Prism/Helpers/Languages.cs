@@ -23,6 +23,7 @@ namespace GameON.Prism.Helpers
         public static string GameListEmpty => Resource.GameListEmpty;
 
         public static string Message => Resource.Message;
+
         public static string ReviewSuccess => Resource.ReviewSuccess;
 
         public static string ReviewError => Resource.ReviewError;

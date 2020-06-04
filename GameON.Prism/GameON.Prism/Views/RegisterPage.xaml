@@ -1,79 +1,110 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:prism="http://prismlibrary.com" xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+             xmlns:prism="http://prismlibrary.com" 
+             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms" 
+              xmlns:i18n="clr-namespace:GameON.Prism.Helpers"
+             xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="GameON.Prism.Views.RegisterPage"
              Title="{Binding Title}">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="80"/>
-            <RowDefinition Height="70"/>
-            <RowDefinition Height="70"/>
-            <RowDefinition Height="70"/>
-            <RowDefinition Height="70"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <inputLayout:SfTextInputLayout Hint="Firstname"
+
+    <AbsoluteLayout>
+        <Grid AbsoluteLayout.LayoutBounds="0,0,1,1"
+                 AbsoluteLayout.LayoutFlags="All">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <inputLayout:SfTextInputLayout Hint="{i18n:Translate Firstname}"
                                        Grid.Row="0"
                                        Grid.ColumnSpan="2"
                                        ContainerType="Outlined"
                                        Margin="10,20,10,0">
-            <Entry Text="{Binding FirstName}"/>
-        </inputLayout:SfTextInputLayout>
-        
-        <inputLayout:SfTextInputLayout Hint="Lastname"
+                <Entry Text="{Binding User.FirstName}"/>
+            </inputLayout:SfTextInputLayout>
+
+            <inputLayout:SfTextInputLayout Hint="{i18n:Translate Lastname}"
                                        Grid.Row="1"
                                        Grid.ColumnSpan="2"
                                        ContainerType="Outlined"
                                        Margin="10,10,10,0">
-            <Entry Text="{Binding LasttName}"/>
-        </inputLayout:SfTextInputLayout>
-        
-        <inputLayout:SfTextInputLayout Hint="Document"
+                <Entry Text="{Binding User.LastName}"/>
+            </inputLayout:SfTextInputLayout>
+
+            <inputLayout:SfTextInputLayout Hint="{i18n:Translate Document}"
                                        Grid.Row="2"
                                        Grid.ColumnSpan="2"
                                        ContainerType="Outlined"
                                        Margin="10,10,10,0">
-            <Entry Text="{Binding Document}"
+                <Entry Text="{Binding User.Document}"
                    Keyboard="Numeric"/>
-        </inputLayout:SfTextInputLayout>
-        
-        <inputLayout:SfTextInputLayout Hint="Email"
+            </inputLayout:SfTextInputLayout>
+
+            <inputLayout:SfTextInputLayout Hint="{i18n:Translate Email}"
                                        Grid.Row="3"
                                        Grid.ColumnSpan="2"
                                        ContainerType="Outlined"
                                        Margin="10,10,10,0">
-            <Entry Keyboard="Email"
-                   Text="{Binding Email}"/>
-        </inputLayout:SfTextInputLayout>
-        <inputLayout:SfTextInputLayout Hint="Password"
+                <Entry Keyboard="Email"
+                   Text="{Binding User.Email}"/>
+            </inputLayout:SfTextInputLayout>
+            <inputLayout:SfTextInputLayout Hint="{i18n:Translate Password}"
                                            Grid.Row="4"
                                            Grid.ColumnSpan="2"
                                            ContainerType="Outlined"
                                            Margin="10,10,10,0"
                                            EnablePasswordVisibilityToggle="true">
-            <Entry IsPassword="True"
-                   Text="{Binding Password}"/>
-        </inputLayout:SfTextInputLayout>
-        
-        <Button Grid.Column="0"
-                Grid.Row="5"
-                Text="Cancel"
+                <Entry IsPassword="True"
+                   Text="{Binding User.Password}"/>
+            </inputLayout:SfTextInputLayout>
+
+            <inputLayout:SfTextInputLayout Hint="{i18n:Translate PasswordConfirm}"
+                                           Grid.Row="5"
+                                           Grid.ColumnSpan="2"
+                                           ContainerType="Outlined"
+                                           Margin="10,10,10,0"
+                                           EnablePasswordVisibilityToggle="true">
+                <Entry IsPassword="True"
+                   Text="{Binding User.PasswordConfirm}"/>
+            </inputLayout:SfTextInputLayout>
+
+            <Button Grid.Column="0"
+                Grid.Row="6"
+                Text="{i18n:Translate Cancel}"
                 BorderRadius="30"
                 VerticalOptions="End"
                 Margin="10,0,5,20"
                 Command="{Binding GoBackCommand}">
-        </Button>
-        <Button Grid.Column="1"
-                Grid.Row="5"
-                Text="Register"
-                BorderRadius="30"
-                VerticalOptions="EndAndExpand"
-                Margin="5,0,10,20"/>
-    </Grid>
+            </Button>
+            <Button Grid.Column="1"
+                    Grid.Row="6"
+                    Text="{i18n:Translate Register}"
+                    IsEnabled="{Binding IsEnabled}"
+                    Command="{Binding RegisterCommand}"
+                    BorderRadius="30"
+                    VerticalOptions="EndAndExpand"
+                    Margin="5,0,10,20"/>
+        </Grid>
+        <busyindicator:SfBusyIndicator AnimationType="Rectangle" 
+                                       AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
+                                       AbsoluteLayout.LayoutFlags="All"
+                                       BackgroundColor="Transparent"
+                                       HorizontalOptions="Center"
+                                       TextColor="Black"
+                                       IsBusy="{Binding IsRunning}"
+                                       Title="Loading..."
+                                       VerticalOptions="Center"
+                                       ViewBoxWidth="80"
+                                       ViewBoxHeight="80" />
+    </AbsoluteLayout>
 </ContentPage>

@@ -90,6 +90,7 @@ namespace GameON.Web.Controllers.API
                 Email = request.Email,
                 FirstName = request.FirstName,
                 LastName = request.LastName,
+                VideoGame = _context.VideoGames.FirstOrDefault(),
                 UserName = request.Email,
                 UserType = UserType.User,
             };
