@@ -44,21 +44,6 @@ namespace GameON.Prism.ViewModels
             await _navigationService.NavigateAsync($"/GameONMasterDetailPage/NavigationPage/{nameof(UserProfilePage)}", parameters);
         }
 
-        private void LoadUser()
-        {
-            if (Settings.IsLogin)
-            {
-                User = JsonConvert.DeserializeObject<UserResponse>(Settings.User);
-            }
-        }
-
-        public UserResponse User
-        {
-            get => _user;
-            set => SetProperty(ref _user, value);
-        }
-
-
         private void LoadMenus()
         {
             List<Menu> menus = new List<Menu>
