@@ -222,7 +222,7 @@
   <data name="FavoriteVideogame" xml:space="preserve">
     <value>Videojuego favorito</value>
   </data>
-  <data name="FavoriteTeamPlaceHolder" xml:space="preserve">
+  <data name="FavoriteVideoGamePlaceHolder" xml:space="preserve">
     <value>Elige un videojuego</value>
   </data>
   <data name="ChangePassword" xml:space="preserve">
@@ -269,5 +269,65 @@
   </data>
   <data name="GameListEmpty" xml:space="preserve">
     <value>¡La lista de juegos de usuario está vacía!</value>
+  </data>
+  <data name="Message" xml:space="preserve">
+    <value>Mensaje</value>
+  </data>
+  <data name="ReviewSuccess" xml:space="preserve">
+    <value>Tu reseña ha sido publicada!</value>
+  </data>
+  <data name="Ok" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="PasswordConfirm" xml:space="preserve">
+    <value>Confirmar contraseña</value>
+  </data>
+  <data name="PasswordConfirmError1" xml:space="preserve">
+    <value>Debes ingresar una contraseña.</value>
+  </data>
+  <data name="PasswordConfirmError2" xml:space="preserve">
+    <value>La contraseña y la confirmación de contraseña no coinciden.</value>
+  </data>
+  <data name="PasswordConfirmPlaceHolder" xml:space="preserve">
+    <value>Ingrese la contraseña para confirmar ...</value>
+  </data>
+  <data name="ConfirmNewPassword" xml:space="preserve">
+    <value>Confirmar nueva contraseña</value>
+  </data>
+  <data name="ConfirmNewPasswordError" xml:space="preserve">
+    <value>Debe ingresar una confirmación para la nueva contraseña.</value>
+  </data>
+  <data name="ConfirmNewPasswordError2" xml:space="preserve">
+    <value>La contraseñas no coincide.</value>
+  </data>
+  <data name="CurrentPassword" xml:space="preserve">
+    <value>Contraseña actual</value>
+  </data>
+  <data name="CurrentPasswordError" xml:space="preserve">
+    <value>Debe introducir su contraseña actual.</value>
+  </data>
+  <data name="CurrentPasswordPlaceHolder" xml:space="preserve">
+    <value>Escriba la contraseña actual...</value>
+  </data>
+  <data name="ConfirmNewPasswordPlaceHolder" xml:space="preserve">
+    <value>Escriba la confirmación de su contraseña...</value>
+  </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>Nueva contraseña</value>
+  </data>
+  <data name="NewPasswordError" xml:space="preserve">
+    <value>Debe especificar una nueva contraseña.</value>
+  </data>
+  <data name="NewPasswordPlaceHolder" xml:space="preserve">
+    <value>Escribe la nueva contraseña.</value>
+  </data>
+  <data name="AddedSuccess" xml:space="preserve">
+    <value>¡El videojuego fue añadido a tu lista!</value>
+  </data>
+  <data name="UserUpdated" xml:space="preserve">
+    <value>El usuario se ha actualizado</value>
+  </data>
+  <data name="ChangePhotoNoSoccerUser" xml:space="preserve">
+    <value>Los usuarios creados por redes sociales, deben cambiar la foto o contraseña en la red social.</value>
   </data>
 </root>

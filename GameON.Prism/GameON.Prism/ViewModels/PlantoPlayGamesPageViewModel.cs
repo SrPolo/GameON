@@ -15,7 +15,7 @@ namespace GameON.Prism.ViewModels
 
         public PlantoPlayGamesPageViewModel(INavigationService navigationService) : base(navigationService)
         {
-            Title = Languages.VideoGamesLabel;
+            Title = Languages.PlantoPlay;
             LoadGames();
         }
         public List<VideoGameResponse> VideoGames

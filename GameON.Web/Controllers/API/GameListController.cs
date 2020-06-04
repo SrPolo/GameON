@@ -3,6 +3,8 @@ using GameON.Web.Data;
 using GameON.Web.Data.Entities;
 using GameON.Web.Helpers;
 using GameON.Web.Resources;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -28,7 +30,7 @@ namespace GameON.Web.Controllers.API
             _converterHelper = converterHelper;
         }
 
-        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost]
         public async Task<IActionResult> AddGametoList([FromBody] GameListRequest request)
         {

@@ -2,6 +2,7 @@
 using GameON.Web.Data.Entities;
 using GameON.Web.Helpers;
 using GameON.Web.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -11,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace GameON.Web.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class VideoGameController : Controller
     {
         private readonly DataContext _context;

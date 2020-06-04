@@ -4,6 +4,81 @@
              xmlns:prism="http://prismlibrary.com"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="GameON.Prism.Views.ModifyUserPage"
+             xmlns:i18n="clr-namespace:GameON.Prism.Helpers" 
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
+             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms" 
+             xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
              Title="{Binding Title}">
-  
+
+
+
+    <AbsoluteLayout>
+        <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1"
+                     AbsoluteLayout.LayoutFlags="All">
+            <Image HeightRequest="150"
+                   WidthRequest="150"
+                       Source="{Binding Image}">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ChangeImageCommand}"/>
+                </Image.GestureRecognizers>
+            </Image>
+            
+            <inputLayout:SfTextInputLayout Hint="{i18n:Translate Firstname}"
+                                           IsEnabled="{Binding IsGameONUser}"
+                                           Grid.Row="0"
+                                           Grid.ColumnSpan="2"
+                                           ContainerType="Outlined"
+                                           Margin="10,20,10,0">
+                <Entry Text="{Binding User.FirstName}"/>
+            </inputLayout:SfTextInputLayout>
+
+            <inputLayout:SfTextInputLayout Hint="{i18n:Translate Lastname}"
+                                           IsEnabled="{Binding IsGameONUser}"
+                                           Grid.Row="1"
+                                           Grid.ColumnSpan="2"
+                                           ContainerType="Outlined"
+                                           Margin="10,10,10,0">
+                <Entry Text="{Binding User.LastName}"/>
+            </inputLayout:SfTextInputLayout>
+
+            <inputLayout:SfTextInputLayout Hint="{i18n:Translate Document}"
+                                       Grid.Row="2"
+                                       Grid.ColumnSpan="2"
+                                       ContainerType="Outlined"
+                                       Margin="10,10,10,0">
+                <Entry Text="{Binding User.Document}"
+                   Keyboard="Numeric"/>
+            </inputLayout:SfTextInputLayout>
+
+            <Picker Grid.Row="5"
+                                Grid.Column="1"
+                                ItemDisplayBinding="{Binding Name}"
+                                ItemsSource="{Binding VideoGames}"
+                                SelectedItem="{Binding VideoGame}"
+                                Title="{i18n:Translate FavoriteVideoGamePlaceHolder}"/>
+
+            <Grid VerticalOptions="EndAndExpand"
+                  Margin="5,0,5,10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0"
+                        Grid.Row="0"
+                    HorizontalOptions="FillAndExpand"
+                    Text="{i18n:Translate ChangePassword}"
+                    BorderRadius="30"
+                    Command="{Binding ChangePasswordCommand}"/>
+                <Button Grid.Column="1"
+                        Grid.Row="0"
+                    HorizontalOptions="FillAndExpand"
+                    Text="{i18n:Translate Save}"
+                    BorderRadius="30"
+                    Command="{Binding SaveCommand}"/>
+            </Grid>
+        </StackLayout>
+    </AbsoluteLayout>
 </ContentPage>

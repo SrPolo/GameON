@@ -10,6 +10,8 @@ using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using System;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace GameON.Web.Controllers.API
 {
@@ -102,7 +104,7 @@ namespace GameON.Web.Controllers.API
             return Ok(_converterHelper.ToReviewResponse(reviewEntity));
         }
 
-
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost]
         public async Task<IActionResult> PostReview([FromBody] ReviewRequest request)
         {

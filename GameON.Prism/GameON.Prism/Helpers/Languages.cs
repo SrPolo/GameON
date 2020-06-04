@@ -15,10 +15,22 @@ namespace GameON.Prism.Helpers
             DependencyService.Get<ILocalize>().SetLocale(ci);
         }
 
-
+        
         public static string Culture { get; set; }
 
+        public static string ChangePhotoNoSoccerUser => Resource.ChangePhotoNoSoccerUser;
+
+        public static string UserUpdated => Resource.UserUpdated;
+
+        public static string FavoriteVideoGamePlaceHolder => Resource.FavoriteVideoGamePlaceHolder;
+
+        public static string AddedSuccess => Resource.AddedSuccess;
+
         public static string GameListEmpty => Resource.GameListEmpty;
+
+        public static string Message => Resource.Message;
+
+        public static string ReviewSuccess => Resource.ReviewSuccess;
 
         public static string ReviewError => Resource.ReviewError;
 
@@ -113,8 +125,6 @@ namespace GameON.Prism.Helpers
         public static string EnterEmail => Resource.EnterEmail;
         
         public static string RecoverPassword => Resource.RecoverPassword;
-
-        public static string PasswordRecover => Resource.PasswordRecover;
 
         public static string ChangePassword => Resource.ChangePassword;
         public static string Ok => Resource.Ok;

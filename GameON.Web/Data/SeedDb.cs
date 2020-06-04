@@ -452,7 +452,8 @@ namespace GameON.Web.Data
                     Email = email,
                     UserName = email,
                     Document = document,
-                    UserType = userType
+                    UserType = userType,
+                    LoginType = LoginType.GameON
                 };
 
                 await _userHelper.AddUserAsync(user, "123456");

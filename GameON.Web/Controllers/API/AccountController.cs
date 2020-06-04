@@ -8,8 +8,14 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
+using System;
 using System.Globalization;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace GameON.Web.Controllers.API
@@ -20,22 +26,24 @@ namespace GameON.Web.Controllers.API
     {
         private readonly IUserHelper _userHelper;
         private readonly IConverterHelper _converterHelper;
+        private readonly IConfiguration _configuration;
         private readonly IMailHelper _mailHelper;
         private readonly IImageHelper _imageHelper;
         private readonly DataContext _context;
 
-        public AccountController(IUserHelper userHelper, IConverterHelper converterHelper, IMailHelper mailHelper,
+        public AccountController(IUserHelper userHelper, IConverterHelper converterHelper, IConfiguration configuration, IMailHelper mailHelper,
             DataContext context,
             IImageHelper imageHelper)
         {
             _userHelper = userHelper;
             _converterHelper = converterHelper;
+            _configuration = configuration;
             _mailHelper = mailHelper;
             _context = context;
             _imageHelper = imageHelper;
         }
 
-        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost]
         [Route("GetUserByEmail")]
         public async Task<IActionResult> GetUserByEmail([FromBody] EmailRequest request)
@@ -90,6 +98,7 @@ namespace GameON.Web.Controllers.API
                 Email = request.Email,
                 FirstName = request.FirstName,
                 LastName = request.LastName,
+                VideoGame = _context.VideoGames.FirstOrDefault(),
                 UserName = request.Email,
                 UserType = UserType.User,
             };
@@ -241,6 +250,56 @@ namespace GameON.Web.Controllers.API
                 Message = Resource.PasswordChangedSuccess
             });
         }
+
+        [Route("LoginFacebook")]
+        [HttpPost]
+        public async Task<IActionResult> LoginFacebook([FromBody] FacebookProfile model)
+        {
+            if (ModelState.IsValid)
+            {
+                UserEntity user = await _userHelper.GetUserAsync(model.Email);
+                if (user == null)
+                {
+                    await _userHelper.AddUserAsync(model);
+                }
+                else
+                {
+                    user.PicturePath = model.Picture.Data.Url;
+                    user.FirstName = model.FirstName;
+                    user.LastName = model.LastName;
+                    await _userHelper.UpdateUserAsync(user);
+                }
+
+                object results = GetToken(model.Email);
+                return Created(string.Empty, results);
+            }
+
+            return BadRequest();
+        }
+
+        private object GetToken(string email)
+        {
+            Claim[] claims = new[]
+            {
+                new Claim(JwtRegisteredClaimNames.Sub, email),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+            };
+
+            SymmetricSecurityKey key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Tokens:Key"]));
+            SigningCredentials credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+            JwtSecurityToken token = new JwtSecurityToken(
+                _configuration["Tokens:Issuer"],
+                _configuration["Tokens:Audience"],
+                claims,
+                expires: DateTime.UtcNow.AddDays(99),
+                signingCredentials: credentials);
+            return new
+            {
+                token = new JwtSecurityTokenHandler().WriteToken(token),
+                expiration = token.ValidTo
+            };
+        }
+
 
 
     }

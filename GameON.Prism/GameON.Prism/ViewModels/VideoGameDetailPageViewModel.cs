@@ -29,8 +29,7 @@ namespace GameON.Prism.ViewModels
         private DelegateCommand _addPlaying;
         private DelegateCommand _planToPlayCommand;
         private DelegateCommand _addPlayedCommand;
-
-
+        private bool _isRunning;
 
         public VideoGameDetailPageViewModel(INavigationService navigationService, IApiService apiService) : base(navigationService)
         {
@@ -82,6 +81,12 @@ namespace GameON.Prism.ViewModels
             set => SetProperty(ref _developers, value);
         }
 
+        public bool IsRunning
+        {
+            get => _isRunning;
+            set => SetProperty(ref _isRunning, value);
+        }
+
         public override void OnNavigatedTo(INavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
@@ -126,10 +131,10 @@ namespace GameON.Prism.ViewModels
         private async void AddToList(VgStatus status)
         {
             string url = App.Current.Resources["UrlAPI"].ToString();
-
+            IsRunning = true;
             if (Connectivity.NetworkAccess != NetworkAccess.Internet)
             {
-                //IsRunning = false;
+                IsRunning = false;
                 await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.ConnectionError, Languages.Accept);
                 return;
             }
@@ -146,10 +151,15 @@ namespace GameON.Prism.ViewModels
             };
 
             Response response = await _apiService.AddEditGameList(url, "/api", "/GameList", request, "bearer", token.Token);
+            IsRunning = false;
 
             if (!response.IsSuccess)
             {
                 await App.Current.MainPage.DisplayAlert(Languages.Error, response.Message, Languages.Accept);
+            }
+            else
+            {
+                await App.Current.MainPage.DisplayAlert(Languages.Message, Languages.AddedSuccess, Languages.Accept);
             }
         }
 
