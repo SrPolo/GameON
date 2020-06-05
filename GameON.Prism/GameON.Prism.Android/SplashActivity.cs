@@ -13,7 +13,7 @@ using Android.Widget;
 
 namespace GameON.Prism.Droid
 {
-    [Activity(Label = "SplashActivity",
+    [Activity(Label = "GameON",
                  Theme = "@style/SplashTheme",
                  MainLauncher = true,
                  NoHistory = true,
