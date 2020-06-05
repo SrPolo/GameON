@@ -330,4 +330,34 @@
   <data name="ChangePhotoNoSoccerUser" xml:space="preserve">
     <value>Users created by social networks, must change the photo or password on the social network.</value>
   </data>
+  <data name="GameCenters" xml:space="preserve">
+    <value>Game Centers</value>
+  </data>
+  <data name="SearchUsers" xml:space="preserve">
+    <value>Search users</value>
+  </data>
+  <data name="ReviewDetail" xml:space="preserve">
+    <value>Review detail</value>
+  </data>
+  <data name="UserProfile" xml:space="preserve">
+    <value>User profile</value>
+  </data>
+  <data name="Users" xml:space="preserve">
+    <value>Users</value>
+  </data>
+  <data name="VideoGame" xml:space="preserve">
+    <value>Videogame</value>
+  </data>
+  <data name="VideoGames" xml:space="preserve">
+    <value>Videogames</value>
+  </data>
+  <data name="By" xml:space="preserve">
+    <value>By:</value>
+  </data>
+  <data name="GameList" xml:space="preserve">
+    <value>Game list</value>
+  </data>
+  <data name="UserReviews" xml:space="preserve">
+    <value>User reviews:</value>
+  </data>
 </root>

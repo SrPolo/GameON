@@ -53,7 +53,7 @@
                                                     FontSize="Large"
                                                     TextColor="Black"
                                                     LineBreakMode="TailTruncation"/>
-                                    <Label  Text="Favorite videogame"
+                                    <Label  Text="{i18n:Translate FavoriteVideogame}"
                                             FontSize="Medium"
                                             TextColor="Gray"
                                             LineBreakMode="TailTruncation"/>

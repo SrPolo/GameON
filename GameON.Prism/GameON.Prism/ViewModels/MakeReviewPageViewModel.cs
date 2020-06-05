@@ -2,6 +2,7 @@
 using GameON.Common.Models;
 using GameON.Common.Services;
 using GameON.Prism.Helpers;
+using GameON.Prism.Views;
 using Newtonsoft.Json;
 using Prism.Commands;
 using Prism.Navigation;
@@ -22,7 +23,7 @@ namespace GameON.Prism.ViewModels
 
         public MakeReviewPageViewModel(INavigationService navigationService, IApiService apiService) : base(navigationService)
         {
-            Title = "Make a review";
+            Title = Languages.MakeReview;
             _navigationService = navigationService;
             _apiService = apiService;
             Score = 0;
@@ -64,41 +65,41 @@ namespace GameON.Prism.ViewModels
 
         private async void SaveReviewAsync()
         {
-            if (await ValidateDataAsync())
-            {
-                if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+                if (await ValidateDataAsync())
                 {
-                    //IsRunning = false;
-                    await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.ConnectionError, Languages.Accept);
-                    return;
-                }
+                    if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+                    {
+                        //IsRunning = false;
+                        await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.ConnectionError, Languages.Accept);
+                        return;
+                    }
 
-                string url = App.Current.Resources["UrlAPI"].ToString();
-                UserResponse user = JsonConvert.DeserializeObject<UserResponse>(Settings.User);
+                    string url = App.Current.Resources["UrlAPI"].ToString();
+                    UserResponse user = JsonConvert.DeserializeObject<UserResponse>(Settings.User);
 
-                ReviewRequest reviewRequest = new ReviewRequest
-                {
-                    Score = Score,
-                    Review = Review,
-                    VideoGameId = VideoGame.Id,
-                    UserId = user.Id,
-                    CultureInfo = Languages.Culture
-                };
+                    ReviewRequest reviewRequest = new ReviewRequest
+                    {
+                        Score = Score,
+                        Review = Review,
+                        VideoGameId = VideoGame.Id,
+                        UserId = user.Id,
+                        CultureInfo = Languages.Culture
+                    };
 
-                TokenResponse token = JsonConvert.DeserializeObject<TokenResponse>(Settings.Token);
+                    TokenResponse token = JsonConvert.DeserializeObject<TokenResponse>(Settings.Token);
 
-                Response response = await _apiService.MakeReviewAsync(url, "/api", "/Review", reviewRequest, "bearer", token.Token);
+                    Response response = await _apiService.MakeReviewAsync(url, "/api", "/Review", reviewRequest, "bearer", token.Token);
 
-                if (!response.IsSuccess)
-                {
-                    await App.Current.MainPage.DisplayAlert(Languages.Error, response.Message, Languages.Accept);
-                }
-                else
-                {
-                    await App.Current.MainPage.DisplayAlert(Languages.Message, Languages.ReviewSuccess, Languages.Accept);
-                }
-                await _navigationService.GoBackAsync();
-            }
+                    if (!response.IsSuccess)
+                    {
+                        await App.Current.MainPage.DisplayAlert(Languages.Error, response.Message, Languages.Accept);
+                    }
+                    else
+                    {
+                        await App.Current.MainPage.DisplayAlert(Languages.Message, Languages.ReviewSuccess, Languages.Accept);
+                    }
+                    await _navigationService.GoBackAsync();
+                }                    
         }
 
         private async Task<bool> ValidateDataAsync()

@@ -1,6 +1,7 @@
 ﻿using GameON.Common.Enums;
 using GameON.Common.Helpers;
 using GameON.Common.Models;
+using GameON.Prism.Helpers;
 using Newtonsoft.Json;
 using Prism.Navigation;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ namespace GameON.Prism.ViewModels
 
         public PlayedGamesPageViewModel(INavigationService navigationService) : base(navigationService)
         {
-            Title = "Played";
+            Title = Languages.Played;
             LoadGames();
         }
 

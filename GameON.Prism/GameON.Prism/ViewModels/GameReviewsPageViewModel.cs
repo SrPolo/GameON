@@ -1,5 +1,7 @@
-﻿using GameON.Common.Models;
+﻿using GameON.Common.Helpers;
+using GameON.Common.Models;
 using GameON.Common.Services;
+using GameON.Prism.Helpers;
 using GameON.Prism.Views;
 using ImTools;
 using Prism.Commands;
@@ -26,7 +28,7 @@ namespace GameON.Prism.ViewModels
 
         public GameReviewsPageViewModel(INavigationService navigationService,IApiService apiService) : base(navigationService)
         {
-            Title = "Reviews";
+            Title = Languages.Review;
             _navigationService = navigationService;
             _apiService = apiService;            
         }
@@ -105,12 +107,20 @@ namespace GameON.Prism.ViewModels
 
         private async void MakeReviewAsync()
         {
-            NavigationParameters parameters = new NavigationParameters
+            if (Settings.IsLogin)
             {
-                { "videogame", VideoGame }
-            };
+                NavigationParameters parameters = new NavigationParameters
+                {
+                    { "videogame", VideoGame }
+                };
 
-            await _navigationService.NavigateAsync(nameof(MakeReviewPage), parameters);
+                await _navigationService.NavigateAsync(nameof(MakeReviewPage), parameters);
+            }
+            else
+            {
+                await _navigationService.NavigateAsync(nameof(LoginPage));
+            }
+
         }
     }
 }

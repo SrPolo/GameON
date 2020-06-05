@@ -1,5 +1,6 @@
 ﻿using GameON.Common.Models;
 using GameON.Common.Services;
+using GameON.Prism.Helpers;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
@@ -26,7 +27,7 @@ namespace GameON.Prism.ViewModels
         {
             _navigationService = navigationService;
             _apiService = apiService;
-            Title = "Users";
+            Title = Languages.Users;
             LoadUsersAsync();
         }
 

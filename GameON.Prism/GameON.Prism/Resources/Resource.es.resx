@@ -136,7 +136,7 @@
     <value>Correo electrónico</value>
   </data>
   <data name="EnterEmail" xml:space="preserve">
-    <value>Escribir la dirección de correo electrónico</value>
+    <value>Escriba la dirección de correo electrónico</value>
   </data>
   <data name="Explore" xml:space="preserve">
     <value>Explorar</value>
@@ -160,16 +160,16 @@
     <value>Cerrar sesión</value>
   </data>
   <data name="MakeReview" xml:space="preserve">
-    <value>Al terminar</value>
+    <value>Hacer Reseña</value>
   </data>
   <data name="ModifyUser" xml:space="preserve">
     <value>Modificar usuario</value>
   </data>
   <data name="MyGameList" xml:space="preserve">
-    <value>Mi juego</value>
+    <value>Mi lista de juegos</value>
   </data>
   <data name="MyReviews" xml:space="preserve">
-    <value>Mis comentarios</value>
+    <value>Mis reseñas</value>
   </data>
   <data name="OrLoginLabel" xml:space="preserve">
     <value>O inicia sesión con</value>
@@ -187,7 +187,7 @@
     <value>Jugado</value>
   </data>
   <data name="Playing" xml:space="preserve">
-    <value>Reproduciendo</value>
+    <value>Jugando</value>
   </data>
   <data name="RecoverPassword" xml:space="preserve">
     <value>Recuperar contraseña</value>
@@ -199,7 +199,7 @@
     <value>Fecha de lanzamiento:</value>
   </data>
   <data name="Review" xml:space="preserve">
-    <value>Revisar</value>
+    <value>Reseña</value>
   </data>
   <data name="Save" xml:space="preserve">
     <value>Guardar</value>
@@ -329,5 +329,35 @@
   </data>
   <data name="ChangePhotoNoSoccerUser" xml:space="preserve">
     <value>Los usuarios creados por redes sociales, deben cambiar la foto o contraseña en la red social.</value>
+  </data>
+  <data name="GameCenters" xml:space="preserve">
+    <value>Centros de juego</value>
+  </data>
+  <data name="SearchUsers" xml:space="preserve">
+    <value>Buscar usuarios</value>
+  </data>
+  <data name="ReviewDetail" xml:space="preserve">
+    <value>Detalle de la reseña</value>
+  </data>
+  <data name="UserProfile" xml:space="preserve">
+    <value>Perfil de usuario</value>
+  </data>
+  <data name="Users" xml:space="preserve">
+    <value>Usuarios</value>
+  </data>
+  <data name="VideoGame" xml:space="preserve">
+    <value>Videojuego</value>
+  </data>
+  <data name="VideoGames" xml:space="preserve">
+    <value>Videojuegos</value>
+  </data>
+  <data name="By" xml:space="preserve">
+    <value>Por:</value>
+  </data>
+  <data name="GameList" xml:space="preserve">
+    <value>Lista de juegos</value>
+  </data>
+  <data name="UserReviews" xml:space="preserve">
+    <value>Reseñas del usuario:</value>
   </data>
 </root>

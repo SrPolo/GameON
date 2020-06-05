@@ -4,6 +4,7 @@
              xmlns:prism="http://prismlibrary.com" xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms" xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="GameON.Prism.Views.GameReviewsPage"
+             xmlns:i18n="clr-namespace:GameON.Prism.Helpers"
              Title="{Binding Title}">
     <AbsoluteLayout>
         <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1"
@@ -39,8 +40,8 @@
                                                                     RetryDelay= "600"/>
                                 </Frame>
                                 <StackLayout Padding="10,5"
-                                             Grid.Column="1">                                    
-                                    <Label  Text="Score"
+                                             Grid.Column="1">
+                                    <Label  Text="{i18n:Translate Score}"
                                             FontAttributes="Bold"/>
                                     <rating:SfRating ItemCount="5"
                                                      Precision="Half"
@@ -48,7 +49,7 @@
                                                      ItemSize="20"
                                                      ReadOnly="True"
                                                      Value="{Binding Score}"/>
-                                    <Label  Text="Review:"
+                                    <Label  Text="{i18n:Translate Review}"
                                              FontAttributes="Bold"/>
                                     <Label Text="{Binding Review}"
                                                    FontSize="Small"
@@ -74,7 +75,7 @@
                 Margin="10"
                 IsEnabled="{Binding IsEnabled}"
                 Command="{Binding MakeReviewCommand}"
-                Text="Make a review"
+                Text="{i18n:Translate MakeReview}"
                 VerticalOptions="End"
                 HorizontalOptions="CenterAndExpand"/>
         <busyindicator:SfBusyIndicator AnimationType="Rectangle" 

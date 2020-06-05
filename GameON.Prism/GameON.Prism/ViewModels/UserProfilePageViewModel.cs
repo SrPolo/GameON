@@ -25,7 +25,7 @@ namespace GameON.Prism.ViewModels
 
         public UserProfilePageViewModel(INavigationService navigationService, IApiService apiService) : base(navigationService)
         {
-            Title = "User profile";
+            Title = Languages.UserProfile;
             _navigationService = navigationService;
             _apiService = apiService;
         }

@@ -1,4 +1,5 @@
-﻿using Prism.Commands;
+﻿using GameON.Prism.Helpers;
+using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
 using System;
@@ -11,7 +12,7 @@ namespace GameON.Prism.ViewModels
     {
         public MyReviewsPageViewModel(INavigationService navigationService):base(navigationService)
         {
-            Title = "My Reviews";
+            Title = Languages.MyReviews;
         }
     }
 }

@@ -61,13 +61,13 @@ namespace GameON.Prism.ViewModels
                 {
                     Icon = "ic_local_activity",
                     PageName = nameof(GamingCentersPage),
-                    Title = "Gaming centers"
+                    Title = Languages.GameCenters
                 },
                 new Menu
                 {
                     Icon = "ic_search",
                     PageName = nameof(UsersPage),
-                    Title = "Search users"
+                    Title = Languages.SearchUsers
                 },
                 new Menu
                 {

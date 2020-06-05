@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="http://prismlibrary.com" xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
              prism:ViewModelLocator.AutowireViewModel="True"
-             x:Class="GameON.Prism.Views.ReviewDetailsPage"
+             x:Class="GameON.Prism.Views.ReviewDetailsPage"             
+             xmlns:i18n="clr-namespace:GameON.Prism.Helpers"
              Title="{Binding Title}">
     
     <ScrollView>
@@ -43,7 +44,7 @@
                 <StackLayout VerticalOptions="FillAndExpand"
                          HorizontalOptions="Center"
                          Orientation="Vertical">
-                    <Label Text="Score"
+                    <Label Text="{i18n:Translate Score}"
                            FontSize="Medium"
                            VerticalOptions="Center"/>
                     <rating:SfRating ItemCount="5"
@@ -64,7 +65,7 @@
                          Grid.ColumnSpan="2"
                          Margin="0,10,0,0"
                          Orientation="Horizontal">
-                <Label Text="By :"/>
+                <Label Text="{i18n:Translate By}"/>
                 <Label Text="{Binding User.FirstName}"/>
             </StackLayout>
         </Grid>

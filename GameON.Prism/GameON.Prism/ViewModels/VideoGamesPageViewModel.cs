@@ -1,5 +1,6 @@
 ﻿using GameON.Common.Models;
 using GameON.Common.Services;
+using GameON.Prism.Helpers;
 using Prism.Commands;
 using Prism.Navigation;
 using System;
@@ -22,7 +23,7 @@ namespace GameON.Prism.ViewModels
 
         public VideoGamesPageViewModel(INavigationService navigationService, IApiService apiService) : base(navigationService)
         {
-            Title = "Video Games";
+            Title = Languages.VideoGames;
             _navigationService = navigationService;
             _apiService = apiService;
             LoadVideoGamesAsync();

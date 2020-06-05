@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="http://prismlibrary.com" xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms" xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms" xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:i18n="clr-namespace:GameON.Prism.Helpers"
              x:Class="GameON.Prism.Views.UserProfilePage"
              Title="{Binding Title}">
     <StackLayout>
@@ -21,20 +22,20 @@
                FontAttributes="Bold"
                TextColor="Black"
                HorizontalOptions="Center"/>
-        <Label Text="Favorite videogame"
+        <Label Text="{i18n:Translate FavoriteVideogame}"
                FontSize="Medium"
                HorizontalOptions="Center"/>
         <Label Text="{Binding User.VideoGame.Name}"
                FontSize="Medium"
                FontAttributes="Bold"
                HorizontalOptions="Center"/>
-        <Button Text="Game list"
+        <Button Text="{i18n:Translate GameList}"
                 Command="{Binding MyGameListCommand}"/>
-        
-        
-        
-        
-        <Label Text="User Reviews:"
+
+
+
+
+        <Label Text="{i18n:Translate UserReviews}"
                Margin="10,0"
                FontSize="Large"
                FontAttributes="Bold"/>
@@ -70,7 +71,7 @@
                                     </Frame>
                                     <StackLayout Padding="10,5"
                                              Grid.Column="1">
-                                        <Label  Text="Score"
+                                    <Label  Text="{i18n:Translate Score}"
                                             FontAttributes="Bold"/>
                                         <rating:SfRating ItemCount="5"
                                                      Precision="Half"
@@ -78,7 +79,7 @@
                                                      ItemSize="20"
                                                      ReadOnly="True"
                                                      Value="{Binding Score}"/>
-                                        <Label  Text="Review:"
+                                    <Label  Text="{i18n:Translate Review}"
                                              FontAttributes="Bold"/>
                                         <Label Text="{Binding Review}"
                                                    FontSize="Small"

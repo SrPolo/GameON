@@ -17,7 +17,13 @@ namespace GameON.Prism.Helpers
 
         
         public static string Culture { get; set; }
-
+        public static string VideoGames => Resource.VideoGames;
+        public static string VideoGame => Resource.VideoGame;
+        public static string Users => Resource.Users;
+        public static string UserProfile => Resource.UserProfile;
+        public static string ReviewDetail => Resource.ReviewDetail;
+        public static string SearchUsers => Resource.SearchUsers;
+        public static string GameCenters => Resource.GameCenters;
         public static string ChangePhotoNoSoccerUser => Resource.ChangePhotoNoSoccerUser;
 
         public static string UserUpdated => Resource.UserUpdated;
@@ -109,7 +115,10 @@ namespace GameON.Prism.Helpers
         public static string Score => Resource.Score;
         
         public static string ReleaseDate => Resource.ReleaseDate;
-        
+
+        public static string By => Resource.By;
+        public static string UserReviews => Resource.UserReviews;
+        public static string GameList => Resource.GameList;
         public static string MakeReview => Resource.MakeReview;
         
         public static string Synopsis => Resource.Synopsis;

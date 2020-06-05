@@ -118,246 +118,246 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Accept" xml:space="preserve">
-    <value>Erreur</value>
-  </data>
-  <data name="AddtoList" xml:space="preserve">
-    <value>Ajouter à la liste</value>
-  </data>
-  <data name="Cancel" xml:space="preserve">
-    <value>Annuler</value>
-  </data>
-  <data name="Developers" xml:space="preserve">
-    <value>Développeurs:</value>
-  </data>
-  <data name="Document" xml:space="preserve">
-    <value>Document</value>
-  </data>
-  <data name="Email" xml:space="preserve">
-    <value>Courrier électronique</value>
-  </data>
-  <data name="EnterEmail" xml:space="preserve">
-    <value>Entrez votre adresse e-mail</value>
-  </data>
-  <data name="Explore" xml:space="preserve">
-    <value>Explorer</value>
-  </data>
-  <data name="Firstname" xml:space="preserve">
-    <value>Prénom</value>
-  </data>
-  <data name="ForgotPassword" xml:space="preserve">
-    <value>Vous avez oublié votre mot de passe ?</value>
-  </data>
-  <data name="Genres" xml:space="preserve">
-    <value>Genres:</value>
-  </data>
-  <data name="Lastname" xml:space="preserve">
-    <value>Nom</value>
-  </data>
-  <data name="Login" xml:space="preserve">
-    <value>Connexion</value>
-  </data>
-  <data name="Logout" xml:space="preserve">
-    <value>déconnexion</value>
-  </data>
-  <data name="MakeReview" xml:space="preserve">
-    <value>Faire une évaluation</value>
-  </data>
-  <data name="ModifyUser" xml:space="preserve">
-    <value>Modifier l'utilisateur</value>
-  </data>
-  <data name="MyGameList" xml:space="preserve">
-    <value>Ma liste de jeux</value>
-  </data>
-  <data name="MyReviews" xml:space="preserve">
-    <value>Mes avis</value>
-  </data>
-  <data name="OrLoginLabel" xml:space="preserve">
-    <value>Ou connectez-vous avec</value>
-  </data>
-  <data name="Password" xml:space="preserve">
-    <value>Mot de passe</value>
-  </data>
-  <data name="PlantoPlay" xml:space="preserve">
-    <value>pour faire la lecture</value>
-  </data>
-  <data name="Platforms" xml:space="preserve">
-    <value>Plateformes:</value>
-  </data>
-  <data name="Played" xml:space="preserve">
-    <value>Lu</value>
-  </data>
-  <data name="Playing" xml:space="preserve">
-    <value>Lecture</value>
-  </data>
-  <data name="RecoverPassword" xml:space="preserve">
-    <value>Récupérer le mot de passe</value>
-  </data>
-  <data name="Register" xml:space="preserve">
-    <value>Inscrire dans la base de registres</value>
-  </data>
-  <data name="ReleaseDate" xml:space="preserve">
-    <value>Date de sortie:</value>
-  </data>
-  <data name="Review" xml:space="preserve">
-    <value>Révision</value>
-  </data>
-  <data name="Save" xml:space="preserve">
-    <value>Enregistrer</value>
-  </data>
-  <data name="Score" xml:space="preserve">
-    <value>Score</value>
-  </data>
-  <data name="Search" xml:space="preserve">
-    <value>Rechercher…</value>
-  </data>
-  <data name="SignupLabel" xml:space="preserve">
-    <value>Inscription d'un nouvel utilisateur</value>
-  </data>
-  <data name="Synopsis" xml:space="preserve">
-    <value>Synopsis:</value>
-  </data>
-  <data name="VideoGamesLabel" xml:space="preserve">
-    <value>Jeux vidéo</value>
-  </data>
-  <data name="FavoriteVideogame" xml:space="preserve">
-    <value>Jeu vidéo préféré</value>
-  </data>
-  <data name="FavoriteVideoGamePlaceHolder" xml:space="preserve">
-    <value>Sélectionnez un jeu vidéo</value>
-  </data>
-  <data name="ChangePassword" xml:space="preserve">
-    <value>Modifier le mot de passe</value>
-  </data>
-  <data name="Error" xml:space="preserve">
-    <value>Erreur</value>
-  </data>
-  <data name="ConnectionError" xml:space="preserve">
-    <value>Impossible de se connecter à internet</value>
-  </data>
-  <data name="PictureSource" xml:space="preserve">
-    <value>Où voulez-vous prendre la photo?</value>
-  </data>
-  <data name="FromCamera" xml:space="preserve">
-    <value>De l'appareil photo</value>
-  </data>
-  <data name="FromGallery" xml:space="preserve">
-    <value>À partir de la galerie</value>
-  </data>
-  <data name="DocumentError" xml:space="preserve">
-    <value>Vous devez saisir un document.</value>
-  </data>
-  <data name="FirstNameError" xml:space="preserve">
-    <value>Vous devez entrer un prénom.</value>
-  </data>
-  <data name="LastNameError" xml:space="preserve">
-    <value>Vous devez entrer un nom.</value>
+    <value>Accetta</value>
   </data>
   <data name="EmailError" xml:space="preserve">
-    <value>Vous devez entrer un email.</value>
+    <value>Devi inserire la tua email</value>
   </data>
   <data name="PasswordError" xml:space="preserve">
-    <value>Vous devez entrer un mot de passe.</value>
+    <value>Immettere una password.</value>
+  </data>
+  <data name="PictureSource" xml:space="preserve">
+    <value>Dove vuoi scattare la foto ?!</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Annulla</value>
+  </data>
+  <data name="FromCamera" xml:space="preserve">
+    <value>Da fotocamera</value>
+  </data>
+  <data name="FromGallery" xml:space="preserve">
+    <value>Da raccolta</value>
+  </data>
+  <data name="AddtoList" xml:space="preserve">
+    <value>Aggiungi a elenco</value>
+  </data>
+  <data name="DocumentError" xml:space="preserve">
+    <value>Devi inserire un documento.!</value>
+  </data>
+  <data name="FirstNameError" xml:space="preserve">
+    <value>- Immettere un nome</value>
+  </data>
+  <data name="LastNameError" xml:space="preserve">
+    <value>- Immettere un cognome</value>
+  </data>
+  <data name="Developers" xml:space="preserve">
+    <value>Sviluppatori</value>
+  </data>
+  <data name="Document" xml:space="preserve">
+    <value>Documento</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Posta elettronica</value>
   </data>
   <data name="LoginError" xml:space="preserve">
-    <value>Erreur formulaire de connexion</value>
+    <value>Errore al login!</value>
+  </data>
+  <data name="EnterEmail" xml:space="preserve">
+    <value>Immetti indirizzo di posta elettronica</value>
+  </data>
+  <data name="Explore" xml:space="preserve">
+    <value>Esplora</value>
+  </data>
+  <data name="Firstname" xml:space="preserve">
+    <value>Nome</value>
+  </data>
+  <data name="ForgotPassword" xml:space="preserve">
+    <value>Password dimenticata?</value>
+  </data>
+  <data name="Genres" xml:space="preserve">
+    <value>Generi</value>
+  </data>
+  <data name="Lastname" xml:space="preserve">
+    <value>Cognome</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Accesso</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Disconnetti</value>
+  </data>
+  <data name="MakeReview" xml:space="preserve">
+    <value>Scrivi una recensione</value>
+  </data>
+  <data name="ModifyUser" xml:space="preserve">
+    <value>Modifica utente</value>
+  </data>
+  <data name="MyGameList" xml:space="preserve">
+    <value>La mia partita!&amp;#x0D;</value>
+  </data>
+  <data name="MyReviews" xml:space="preserve">
+    <value>Le mie recensioni</value>
+  </data>
+  <data name="OrLoginLabel" xml:space="preserve">
+    <value>O accedi con</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password:</value>
+  </data>
+  <data name="PlantoPlay" xml:space="preserve">
+    <value>Per Giocare</value>
+  </data>
+  <data name="Platforms" xml:space="preserve">
+    <value>Piattaforme</value>
+  </data>
+  <data name="Played" xml:space="preserve">
+    <value>Được chơi</value>
+  </data>
+  <data name="Playing" xml:space="preserve">
+    <value>Riproduzione.</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Registra</value>
+  </data>
+  <data name="ReleaseDate" xml:space="preserve">
+    <value>Data di rilascio</value>
+  </data>
+  <data name="Review" xml:space="preserve">
+    <value>Visualizza</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Salva</value>
+  </data>
+  <data name="Score" xml:space="preserve">
+    <value>Punteggio</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Cerca</value>
+  </data>
+  <data name="SignupLabel" xml:space="preserve">
+    <value>Nuovo utente? ISCRIVITI!</value>
+  </data>
+  <data name="Synopsis" xml:space="preserve">
+    <value>Trama</value>
+  </data>
+  <data name="VideoGamesLabel" xml:space="preserve">
+    <value>Videogiochi</value>
+  </data>
+  <data name="RecoverPassword" xml:space="preserve">
+    <value>Recupera password!</value>
+  </data>
+  <data name="FavoriteVideogame" xml:space="preserve">
+    <value>Videogioco preferito!</value>
+  </data>
+  <data name="FavoriteVideoGamePlaceHolder" xml:space="preserve">
+    <value>Seleziona un videogioco!</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>Cambia password</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Errore</value>
+  </data>
+  <data name="ConnectionError" xml:space="preserve">
+    <value>Impossibile connettersi a Internet.</value>
   </data>
   <data name="ReviewError" xml:space="preserve">
-    <value>Vous devez entrer votre avis</value>
+    <value>Devi inserire la tua recensione!</value>
   </data>
   <data name="ScoreError" xml:space="preserve">
-    <value>Vous devez entrer un score</value>
+    <value>È necessario inserire un punteggio!</value>
   </data>
   <data name="GameListEmpty" xml:space="preserve">
-    <value>La liste des jeux d’utilisateurs est vide!</value>
+    <value>L'elenco dei giochi utente è vuoto!!</value>
   </data>
   <data name="Message" xml:space="preserve">
-    <value>Message</value>
+    <value>Messaggio</value>
   </data>
   <data name="ReviewSuccess" xml:space="preserve">
-    <value>Ton  avis a été publié!</value>
+    <value>La tua recensione sono stati pubblicati!!</value>
   </data>
   <data name="Ok" xml:space="preserve">
     <value>OK</value>
   </data>
   <data name="PasswordConfirm" xml:space="preserve">
-    <value>Confirmer le mot de passe</value>
+    <value>Conferma password</value>
   </data>
   <data name="PasswordConfirmError1" xml:space="preserve">
-    <value>Vous devez saisir un mot de passe.</value>
+    <value>È necessario inserire una password di conferma.!</value>
   </data>
   <data name="PasswordConfirmError2" xml:space="preserve">
-    <value>Le mot de passe et sa confirmation ne coïncident pas.</value>
+    <value>Le password immesse non corrispondono.</value>
   </data>
   <data name="PasswordConfirmPlaceHolder" xml:space="preserve">
-    <value>Saisir le mot de passe, puis valider...</value>
+    <value>Inserisci la password conferma ...!</value>
   </data>
   <data name="ConfirmNewPassword" xml:space="preserve">
-    <value>Confirmer le nouveau mot de passe</value>
+    <value>Conferma nuova password</value>
   </data>
   <data name="ConfirmNewPasswordError" xml:space="preserve">
-    <value>Vous devez saisir une confirmation pour le nouveau mot de passe.</value>
+    <value>È necessario inserire una conferma per la nuova password.!</value>
   </data>
   <data name="ConfirmNewPasswordError2" xml:space="preserve">
-    <value>La confirmation et le nouveau mot de passe ne correspondent pas.</value>
+    <value>La conferma e la nuova password non corrispondono.!</value>
   </data>
   <data name="CurrentPassword" xml:space="preserve">
-    <value>Mot de passe actuel</value>
+    <value>Password corrente</value>
   </data>
   <data name="CurrentPasswordError" xml:space="preserve">
-    <value>Veuillez saisir votre mot de passe actuel.</value>
+    <value>È necessario immettere la password utente corrente</value>
   </data>
   <data name="CurrentPasswordPlaceHolder" xml:space="preserve">
-    <value>Saisissez votre mot de passe actuel...</value>
+    <value>Immettere la password corrente.</value>
   </data>
   <data name="ConfirmNewPasswordPlaceHolder" xml:space="preserve">
-    <value>Veuillez saisir la confirmation de votre mot de passe...</value>
+    <value>Inserisci la password di conferma</value>
   </data>
   <data name="NewPassword" xml:space="preserve">
-    <value>Nouveau mot de passe</value>
+    <value>Nuova password</value>
   </data>
   <data name="NewPasswordError" xml:space="preserve">
-    <value>Vous devez entrer un nouveau mot de passe.</value>
+    <value>'Immettere una nuova password.';</value>
   </data>
   <data name="NewPasswordPlaceHolder" xml:space="preserve">
-    <value>Entrer le nouveau mot de passe.</value>
+    <value>Immetti la nuova password</value>
   </data>
   <data name="AddedSuccess" xml:space="preserve">
-    <value>Le jeu vidéo a été ajouté à votre liste!</value>
+    <value>Il videogioco è stato aggiunto alla tua lista !!</value>
   </data>
   <data name="UserUpdated" xml:space="preserve">
-    <value>L'utilisateur a été mis à jour</value>
+    <value>L'utente è stato aggiornato.</value>
   </data>
   <data name="ChangePhotoNoSoccerUser" xml:space="preserve">
-    <value>Les utilisateurs créés par les réseaux sociaux, doivent changer la photo ou le mot de passe sur le réseau social.</value>
+    <value>Gli utenti creati dai social network, devono modificare la foto o la password sul social network.!</value>
   </data>
   <data name="GameCenters" xml:space="preserve">
-    <value>Centres de jeu!</value>
+    <value>Centri di gioco!</value>
   </data>
   <data name="SearchUsers" xml:space="preserve">
-    <value>Rechercher des utilisateurs</value>
+    <value>Cerca utenti</value>
   </data>
   <data name="ReviewDetail" xml:space="preserve">
-    <value>Détail de l'avis</value>
+    <value>Dettaglio riesame</value>
   </data>
   <data name="UserProfile" xml:space="preserve">
-    <value>Profil utilisateur</value>
+    <value>Profilo utente</value>
   </data>
   <data name="Users" xml:space="preserve">
-    <value>Utilisateurs</value>
+    <value>Utenti</value>
   </data>
   <data name="VideoGame" xml:space="preserve">
-    <value>Jeu vidéo</value>
+    <value>videogame</value>
   </data>
   <data name="VideoGames" xml:space="preserve">
-    <value>Jeux vidéo</value>
+    <value>videogiochi</value>
   </data>
   <data name="By" xml:space="preserve">
-    <value>Par</value>
+    <value>Da</value>
   </data>
   <data name="GameList" xml:space="preserve">
-    <value>jeu</value>
+    <value>gioco</value>
   </data>
   <data name="UserReviews" xml:space="preserve">
-    <value>Avis des utilisateurs</value>
+    <value>Recensioni degli utenti</value>
   </data>
 </root>

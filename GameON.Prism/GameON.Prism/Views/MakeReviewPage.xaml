@@ -5,6 +5,7 @@
              xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
              xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms" xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:i18n="clr-namespace:GameON.Prism.Helpers"
              x:Class="GameON.Prism.Views.MakeReviewPage"
              Title="{Binding Title}">
 
@@ -45,7 +46,7 @@
                 <StackLayout VerticalOptions="FillAndExpand"
                          HorizontalOptions="Center"
                          Orientation="Vertical">
-                    <Label Text="Score"
+                    <Label Text="{i18n:Translate Score}"
                            FontSize="Medium"
                            VerticalOptions="Center"/>
                     <rating:SfRating ItemCount="5"
@@ -69,7 +70,7 @@
         </StackLayout>-->
             <inputLayout:SfTextInputLayout 
                     Grid.Row="2"
-                    Hint="Review"
+                    Hint="{i18n:Translate Review}"
                     Grid.ColumnSpan="2"
                     ShowCharCount="true"
                     CharMaxLength="1500">
@@ -87,7 +88,7 @@
                         VerticalOptions="End"
                         BorderRadius="30"
                         Margin="10,0,5,20"
-            	        Text="Cancel"/>
+            	        Text="{i18n:Translate Cancel}"/>
 
                     <Button Command="{Binding SaveCommand}"
             	        IsEnabled="{Binding IsEnabled}"
@@ -95,7 +96,7 @@
                         VerticalOptions="End"
                         BorderRadius="30"
                         Margin="5,0,10,20"
-            	        Text="Save"/>
+            	        Text="{i18n:Translate Save}"/>
                 </StackLayout>
 
             </StackLayout>

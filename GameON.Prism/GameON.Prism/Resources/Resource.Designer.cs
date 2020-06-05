@@ -88,6 +88,15 @@ namespace GameON.Prism.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to By:.
+        /// </summary>
+        public static string By {
+            get {
+                return ResourceManager.GetString("By", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         public static string Cancel {
@@ -318,6 +327,24 @@ namespace GameON.Prism.Resources {
         public static string FromGallery {
             get {
                 return ResourceManager.GetString("FromGallery", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Game Centers.
+        /// </summary>
+        public static string GameCenters {
+            get {
+                return ResourceManager.GetString("GameCenters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Game list.
+        /// </summary>
+        public static string GameList {
+            get {
+                return ResourceManager.GetString("GameList", resourceCulture);
             }
         }
         
@@ -610,6 +637,15 @@ namespace GameON.Prism.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Review detail.
+        /// </summary>
+        public static string ReviewDetail {
+            get {
+                return ResourceManager.GetString("ReviewDetail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You must enter your review.
         /// </summary>
         public static string ReviewError {
@@ -664,6 +700,15 @@ namespace GameON.Prism.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Search users.
+        /// </summary>
+        public static string SearchUsers {
+            get {
+                return ResourceManager.GetString("SearchUsers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New user? SIGN UP.
         /// </summary>
         public static string SignupLabel {
@@ -682,11 +727,56 @@ namespace GameON.Prism.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to User profile.
+        /// </summary>
+        public static string UserProfile {
+            get {
+                return ResourceManager.GetString("UserProfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User reviews:.
+        /// </summary>
+        public static string UserReviews {
+            get {
+                return ResourceManager.GetString("UserReviews", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Users.
+        /// </summary>
+        public static string Users {
+            get {
+                return ResourceManager.GetString("Users", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The user has been updated.
         /// </summary>
         public static string UserUpdated {
             get {
                 return ResourceManager.GetString("UserUpdated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Videogame.
+        /// </summary>
+        public static string VideoGame {
+            get {
+                return ResourceManager.GetString("VideoGame", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Videogames.
+        /// </summary>
+        public static string VideoGames {
+            get {
+                return ResourceManager.GetString("VideoGames", resourceCulture);
             }
         }
         

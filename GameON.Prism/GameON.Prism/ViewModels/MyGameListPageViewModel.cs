@@ -1,4 +1,5 @@
 ﻿using GameON.Common.Models;
+using GameON.Prism.Helpers;
 using Prism.Navigation;
 using System.Collections.Generic;
 
@@ -11,7 +12,7 @@ namespace GameON.Prism.ViewModels
 
         public MyGameListPageViewModel(INavigationService navigationService) : base(navigationService)
         {
-            Title = "My Game List";
+            Title = Languages.MyGameList;
         }
 
         public List<GameListResponse> GameList

@@ -1,9 +1,5 @@
-﻿using Prism.Commands;
-using Prism.Mvvm;
+﻿using GameON.Prism.Helpers;
 using Prism.Navigation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace GameON.Prism.ViewModels
 {
@@ -14,7 +10,7 @@ namespace GameON.Prism.ViewModels
         public GamingCentersPageViewModel(INavigationService navigationService) : base(navigationService)
         {
             _navigationService = navigationService;
-            Title = "Game Centers";
+            Title = Languages.GameCenters;
         }
     }
 }

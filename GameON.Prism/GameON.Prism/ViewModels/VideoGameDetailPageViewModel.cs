@@ -33,7 +33,7 @@ namespace GameON.Prism.ViewModels
 
         public VideoGameDetailPageViewModel(INavigationService navigationService, IApiService apiService) : base(navigationService)
         {
-            Title = "VideoGame";
+            Title = Languages.VideoGame;
             _navigationService = navigationService;
             _apiService = apiService;
         }
@@ -121,10 +121,9 @@ namespace GameON.Prism.ViewModels
         private async void ViewReviewsAsync()
         {
             NavigationParameters parameters = new NavigationParameters
-            {
-                { "videogame", VideoGame }
-            };
-
+                {
+                    { "videogame", VideoGame }
+                };
             await _navigationService.NavigateAsync(nameof(GameReviewsPage), parameters);
         }
 
@@ -179,9 +178,16 @@ namespace GameON.Prism.ViewModels
             AddToList(VgStatus.Played);
         }
 
-        private void Open()
+        private async void Open()
         {
-            IsOpen = true;
+            if (Settings.IsLogin)
+            {
+                IsOpen = true;
+            }
+            else
+            {
+                await _navigationService.NavigateAsync(nameof(LoginPage));
+            }
         }
 
     }
